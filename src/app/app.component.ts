@@ -715,12 +715,8 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private updateCountdown(): void {
-    // Calculamos 4 meses desde hoy para garantizar que siempre funcione
-    const today = new Date();
-    const launchDate = new Date(today);
-    launchDate.setMonth(today.getMonth() + 4);
-    launchDate.setDate(8); // Día 8 del mes
-    launchDate.setHours(12, 0, 0, 0); // Mediodía
+    // Fecha fija: 15 de octubre de 2025
+    const launchDate = new Date(2025, 9, 15, 12, 0, 0, 0); // Mes 9 = octubre (0-indexado)
 
     const now = new Date();
     const timeLeft = launchDate.getTime() - now.getTime();
@@ -751,10 +747,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   // Método para obtener la fecha de lanzamiento formateada
   getLaunchDateFormatted(): string {
-    const today = new Date();
-    const launchDate = new Date(today);
-    launchDate.setMonth(today.getMonth() + 4);
-    launchDate.setDate(8);
+    // Fecha fija: 15 de octubre de 2025
+    const launchDate = new Date(2025, 9, 15); // Mes 9 = octubre (0-indexado)
 
     return launchDate.toLocaleDateString('es-ES', {
       year: 'numeric',

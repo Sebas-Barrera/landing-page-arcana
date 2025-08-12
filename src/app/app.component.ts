@@ -60,12 +60,48 @@ export interface StarConfig {
   delay: number;
 }
 
-// Interface simplificada para countdown
 export interface CountdownData {
   days: number;
   hours: number;
   minutes: number;
   seconds: number;
+}
+
+// ========================================
+// NUEVAS INTERFACES
+// ========================================
+
+export interface OfficialDescriptionData {
+  text: string;
+  inspiration: string;
+  highlights: {
+    icon: string;
+    text: string;
+    color: string;
+  }[];
+}
+
+export interface FortuneState {
+  hasSeenToday: boolean;
+  lastSeenDate: string;
+  currentMessage: string;
+}
+
+export interface Differentiator {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  color: string;
+  badge?: string;
+}
+
+export interface BrandValue {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+  color: string;
 }
 
 // ========================================
@@ -189,6 +225,100 @@ export class AppComponent implements OnInit, OnDestroy {
       buttonText: 'Próximamente',
       popular: false,
       color: 'border-gold',
+    },
+  ]);
+
+  readonly differentiators = signal<Differentiator[]>([
+    {
+      id: 'experience',
+      title: 'Más de 30 Años de Experiencia',
+      description:
+        'Creada por expertos con décadas de experiencia real en el mundo esotérico y espiritual.',
+      icon: 'fas fa-user-graduate',
+      color: '#ffd700',
+      badge: 'Expertos Certificados',
+    },
+    {
+      id: 'accessibility',
+      title: 'Contenido Accesible y Místico',
+      description:
+        'Información comprensible para todos los niveles, sin perder la profundidad y misticismo auténtico.',
+      icon: 'fas fa-book-open',
+      color: '#b4a2fd',
+    },
+    {
+      id: 'integration',
+      title: 'Múltiples Corrientes Mágicas',
+      description: 'Integración de diversas ramas espirituales',
+      icon: 'fas fa-infinity',
+      color: '#50c878',
+    },
+    {
+      id: 'interactive',
+      title: 'Formato Interactivo Único',
+      description:
+        'Experiencia visual y tecnológica que hace la espiritualidad más cercana y envolvente.',
+      icon: 'fas fa-mobile-alt',
+      color: '#20b2aa',
+    },
+    {
+      id: 'expansion',
+      title: 'Visión Global y Física',
+      description:
+        'Plan de expansión internacional con tiendas físicas en México, España, Argentina y más países.',
+      icon: 'fas fa-globe-americas',
+      color: '#ff69b4',
+    },
+    {
+      id: 'community',
+      title: 'Comunidad de Transformación',
+      description:
+        'Más que usuarios, somos una familia espiritual que se apoya mutuamente en el crecimiento.',
+      icon: 'fas fa-users',
+      color: '#ffa500',
+    },
+  ]);
+
+  readonly brandValues = signal<BrandValue[]>([
+    {
+      id: 'authenticity',
+      name: 'Autenticidad',
+      description:
+        'Contenido verdadero, creado por expertos con décadas de experiencia.',
+      icon: 'fas fa-certificate',
+      color: '#ffd700',
+    },
+    {
+      id: 'purpose',
+      name: 'Magia con Propósito',
+      description:
+        'Herramientas y prácticas enfocadas en generar cambios reales y positivos.',
+      icon: 'fas fa-bullseye',
+      color: '#b4a2fd',
+    },
+    {
+      id: 'closeness',
+      name: 'Cercanía',
+      description:
+        'Lenguaje claro, accesible y amigable para todos los niveles de conocimiento.',
+      icon: 'fas fa-heart',
+      color: '#ff69b4',
+    },
+    {
+      id: 'diversity',
+      name: 'Diversidad Espiritual',
+      description:
+        'Inspirada en múltiples corrientes, culturas y prácticas mágicas del mundo.',
+      icon: 'fas fa-yin-yang',
+      color: '#50c878',
+    },
+    {
+      id: 'transformation',
+      name: 'Transformación Diaria',
+      description:
+        'Recursos aplicables de forma sencilla para mejorar la vida día a día.',
+      icon: 'fas fa-seedling',
+      color: '#20b2aa',
     },
   ]);
 
@@ -330,7 +460,48 @@ export class AppComponent implements OnInit, OnDestroy {
   });
 
   // ========================================
-  // NUEVA PROPIEDAD PARA COUNTDOWN Y FORMULARIO
+  // NUEVAS PROPIEDADES - DESCRIPCIÓN OFICIAL
+  // ========================================
+
+  readonly officialDescription = signal<OfficialDescriptionData>({
+    text: 'Arcana es tu guía mágica y espiritual, con mensajes, rituales y hechizos que abren caminos y elevan tu energía. Descubre el poder de cristales, hierbas y flores; atrae abundancia, amor, trabajo y bienestar. Accede a cursos, talleres, fases lunares y una comunidad mágica que te acompaña, además de un tarot interactivo para guiar tus decisiones.',
+    inspiration: 'Despierta tu poder: magia ancestral para la vida moderna',
+    highlights: [
+      {
+        icon: 'fas fa-gem',
+        text: 'Cristales y Gemas',
+        color: '#50c878',
+      },
+      {
+        icon: 'fas fa-leaf',
+        text: 'Hierbas y Flores',
+        color: '#20b2aa',
+      },
+      {
+        icon: 'fas fa-moon',
+        text: 'Fases Lunares',
+        color: '#e6e6fa',
+      },
+      {
+        icon: 'fas fa-users',
+        text: 'Comunidad Mágica',
+        color: '#b4a2fd',
+      },
+      {
+        icon: 'fas fa-magic',
+        text: 'Rituales y Hechizos',
+        color: '#ffd700',
+      },
+      {
+        icon: 'fas fa-eye',
+        text: 'Tarot Interactivo',
+        color: '#9370db',
+      },
+    ],
+  });
+
+  // ========================================
+  // PROPIEDADES PARA COUNTDOWN Y FORMULARIO
   // ========================================
 
   readonly countdown = signal<CountdownData>({
@@ -340,10 +511,39 @@ export class AppComponent implements OnInit, OnDestroy {
     seconds: 0,
   });
 
-  // Propiedades para el formulario de early access
   readonly showEarlyAccessForm = signal<boolean>(false);
   earlyAccessEmail: string = '';
   readonly formSubmitted = signal<boolean>(false);
+
+  // ========================================
+  // NUEVAS PROPIEDADES - GATITO DE LA FORTUNA
+  // ========================================
+
+  readonly isThrowingCookie = signal<boolean>(false);
+  readonly isCookieFlying = signal<boolean>(false);
+  readonly showFortuneMessage = signal<boolean>(false);
+  readonly showFortunePaper = signal<boolean>(false);
+  readonly showResetButton = signal<boolean>(false);
+  readonly dailyFortuneMessage = signal<string>('');
+
+  // Mensajes de fortuna
+  private readonly fortuneMessages: string[] = [
+    'La energía del universo conspira a tu favor hoy. Mantén tu corazón abierto a las sorpresas.',
+    'Los cristales susurran secretos de abundancia. Escucha con tu alma y actúa con confianza.',
+    'Tu intuición es tu mejor guía. Confía en las señales que el cosmos te envía.',
+    'Las fases lunares traen renovación. Es momento de dejar ir lo que ya no te sirve.',
+    'El amor propio es la magia más poderosa. Honra tu luz interior y verás milagros.',
+    'Los caminos se abren cuando sigues tu verdad. No temas brillar con autenticidad.',
+    'La abundancia fluye hacia quienes vibran en gratitud. Celebra cada pequeña bendición.',
+    'Tu energía atrae experiencias similares. Irradia positividad y recibe prosperidad.',
+    'Los rituales de protección te rodean de luz dorada. Camina seguro en tu poder.',
+    'La sabiduría ancestral vive en ti. Confía en el conocimiento que llevas en el alma.',
+  ];
+
+  // Propiedades para validación de email
+  readonly emailError = signal<boolean>(false);
+  readonly emailErrorMessage = signal<string>('');
+  readonly emailValid = signal<boolean>(false);
 
   // ========================================
   // PROPIEDADES PRIVADAS
@@ -374,11 +574,68 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this.isBrowser) {
       this.startTestimonialRotation();
       this.startCountdown();
+      this.initializeFortuneCat();
+      this.setupScrollNavbar();
+      this.initializeNavbar(); // 👈 Agregar esta línea
 
       this.deviceService.isMobile$.subscribe((isMobile) => {
         this.isMobile = isMobile;
       });
     }
+  }
+
+  // 👈 Agregar este método
+  private initializeNavbar(): void {
+    const navbar = document.querySelector('.navbar-container');
+    if (navbar) {
+      navbar.classList.add('navbar-visible');
+    }
+  }
+
+  private setupScrollNavbar(): void {
+    let lastScrollY = 0;
+    let ticking = false;
+
+    const updateNavbar = () => {
+      const navbar = document.querySelector('.navbar-container');
+      if (!navbar) return;
+
+      const currentScrollY = window.scrollY;
+
+      // Solo aplicar hide/show en móviles
+      if (this.isMobile) {
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+          // Scrolling hacia abajo y pasó los 100px - ocultar
+          navbar.classList.add('navbar-hidden');
+          navbar.classList.remove('navbar-visible');
+        } else if (currentScrollY < lastScrollY || currentScrollY <= 100) {
+          // Scrolling hacia arriba o está en el top - mostrar
+          navbar.classList.remove('navbar-hidden');
+          navbar.classList.add('navbar-visible');
+        }
+      } else {
+        // En desktop siempre visible
+        navbar.classList.remove('navbar-hidden');
+        navbar.classList.add('navbar-visible');
+      }
+
+      // Efecto de blur para scroll (funciona en todos los dispositivos)
+      if (currentScrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+
+      lastScrollY = currentScrollY;
+      ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(updateNavbar);
+        ticking = true;
+      }
+    });
   }
 
   ngOnDestroy(): void {
@@ -390,6 +647,10 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this.countdownInterval) {
       clearInterval(this.countdownInterval);
     }
+
+    // Limpiar estado al destruir componente
+    this.unblockBodyScroll();
+    this.showNavbar(); // 👈 Agregar
   }
 
   // ========================================
@@ -454,22 +715,44 @@ export class AppComponent implements OnInit, OnDestroy {
 
   onViewPlans(): void {
     this.showMembershipModal.set(true);
+    this.blockBodyScroll();
+    this.hideNavbar(); // 👈 Agregar
   }
 
   onStartPremium(): void {
     this.showMembershipModal.set(true);
+    this.blockBodyScroll();
+    this.hideNavbar(); // 👈 Agregar
   }
 
   onCloseMembershipModal(): void {
     this.showMembershipModal.set(false);
+    this.unblockBodyScroll();
+    this.showNavbar(); // 👈 Agregar
   }
 
   onSelectPlan(planId: string): void {
     console.log('Plan seleccionado:', planId);
-    this.showMembershipModal.set(false);
 
-    // Aquí puedes agregar la lógica para redirigir al proceso de pago
-    // Por ejemplo: this.navigateTo('/auth/register', { plan: planId });
+    // Cerrar modal y restaurar navbar
+    this.showMembershipModal.set(false);
+    this.unblockBodyScroll();
+    this.showNavbar();
+
+    // Si es un plan "Próximamente", redirigir al countdown
+    const selectedPlan = this.membershipPlans().find(
+      (plan) => plan.id === planId
+    );
+    if (selectedPlan && selectedPlan.buttonText === 'Próximamente') {
+      // Pequeño delay para que se cierre el modal primero
+      setTimeout(() => {
+        this.scrollToSection('el-despertar-llega-pronto');
+      }, 300);
+    } else {
+      // Aquí puedes agregar lógica para planes activos en el futuro
+      // Por ejemplo: redirigir a página de pago
+      console.log('Redirigir a proceso de pago para:', planId);
+    }
   }
 
   onStartTransformation(): void {
@@ -492,30 +775,16 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   // ========================================
-  // NUEVO MÉTODO SIMPLE PARA LANZAMIENTO
-  // ========================================
-
-  // ========================================
   // MÉTODOS PARA FORMULARIO DE EARLY ACCESS
   // ========================================
 
-  // Propiedades para validación de email
-  readonly emailError = signal<boolean>(false);
-  readonly emailErrorMessage = signal<string>('');
-  readonly emailValid = signal<boolean>(false);
-
   onToggleEarlyAccess(): void {
     this.showEarlyAccessForm.set(!this.showEarlyAccessForm());
-    // Si se cierra el formulario, resetear el estado
     if (!this.showEarlyAccessForm()) {
       this.formSubmitted.set(false);
       this.earlyAccessEmail = '';
     }
   }
-
-  // ========================================
-  // VALIDACIÓN DE EMAIL
-  // ========================================
 
   onEmailChange(): void {
     this.validateEmail();
@@ -524,17 +793,14 @@ export class AppComponent implements OnInit, OnDestroy {
   private validateEmail(): void {
     const email = this.earlyAccessEmail.trim();
 
-    // Reset estados
     this.emailError.set(false);
     this.emailValid.set(false);
     this.emailErrorMessage.set('');
 
-    // Si está vacío, no mostrar error pero tampoco válido
     if (!email) {
       return;
     }
 
-    // Validar formato básico de email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       this.emailError.set(true);
@@ -542,7 +808,6 @@ export class AppComponent implements OnInit, OnDestroy {
       return;
     }
 
-    // Validar que sea gmail específicamente
     const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/i;
     if (!gmailRegex.test(email)) {
       this.emailError.set(true);
@@ -552,7 +817,6 @@ export class AppComponent implements OnInit, OnDestroy {
       return;
     }
 
-    // Validar longitud del usuario (antes del @)
     const username = email.split('@')[0];
     if (username.length < 3) {
       this.emailError.set(true);
@@ -568,14 +832,12 @@ export class AppComponent implements OnInit, OnDestroy {
       return;
     }
 
-    // Validar caracteres consecutivos
     if (/\.{2,}/.test(username)) {
       this.emailError.set(true);
       this.emailErrorMessage.set('No se permiten puntos consecutivos');
       return;
     }
 
-    // Validar que no empiece o termine con punto
     if (username.startsWith('.') || username.endsWith('.')) {
       this.emailError.set(true);
       this.emailErrorMessage.set(
@@ -584,16 +846,14 @@ export class AppComponent implements OnInit, OnDestroy {
       return;
     }
 
-    // Si llegamos aquí, el email es válido
     this.emailValid.set(true);
   }
 
-  // Actualizar método onSubmitEarlyAccess para usar la nueva validación
   onSubmitEarlyAccess(): void {
     this.validateEmail();
 
     if (this.emailError()) {
-      return; // No enviar si hay errores
+      return;
     }
 
     if (!this.emailValid()) {
@@ -604,7 +864,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
     const email = this.earlyAccessEmail.trim();
 
-    // Simular verificación de email existente (en producción sería una llamada al backend)
     const existingEmails = [
       'test@gmail.com',
       'demo@gmail.com',
@@ -619,7 +878,6 @@ export class AppComponent implements OnInit, OnDestroy {
       return;
     }
 
-    // Email válido y no existe, registrar
     this.formSubmitted.set(true);
     this.showSuccessNotification();
 
@@ -631,6 +889,104 @@ export class AppComponent implements OnInit, OnDestroy {
       this.emailValid.set(false);
       this.emailErrorMessage.set('');
     }, 2000);
+  }
+
+  // ========================================
+  // NUEVOS MÉTODOS - GATITO DE LA FORTUNA
+  // ========================================
+
+  onFortuneCatClick(): void {
+    if (!this.canGetNewFortune()) {
+      this.resetFortuneAnimation();
+      return;
+    }
+
+    this.startFortuneSequence();
+  }
+
+  public canGetNewFortune(): boolean {
+    if (!this.isBrowser) return true;
+
+    const today = new Date().toDateString();
+    const lastSeen = localStorage.getItem('fortune_last_seen');
+
+    return lastSeen !== today;
+  }
+
+  private startFortuneSequence(): void {
+    this.isThrowingCookie.set(true);
+
+    setTimeout(() => {
+      this.isThrowingCookie.set(false);
+      this.isCookieFlying.set(true);
+
+      setTimeout(() => {
+        this.isCookieFlying.set(false);
+        this.showFortuneMessage.set(true);
+        this.generateDailyMessage();
+
+        setTimeout(() => {
+          this.showFortunePaper.set(true);
+
+          setTimeout(() => {
+            this.showResetButton.set(true);
+            this.markFortuneAsSeen();
+          }, 800);
+        }, 500);
+      }, 2000);
+    }, 1000);
+  }
+
+  private generateDailyMessage(): void {
+    if (!this.isBrowser) {
+      this.dailyFortuneMessage.set(this.fortuneMessages[0]);
+      return;
+    }
+
+    const today = new Date();
+    const seed = today.getFullYear() + today.getMonth() + today.getDate();
+    const messageIndex = seed % this.fortuneMessages.length;
+
+    const message = this.fortuneMessages[messageIndex];
+    this.dailyFortuneMessage.set(message);
+  }
+
+  private markFortuneAsSeen(): void {
+    if (!this.isBrowser) return;
+
+    const today = new Date().toDateString();
+    localStorage.setItem('fortune_last_seen', today);
+    localStorage.setItem('fortune_current_message', this.dailyFortuneMessage());
+  }
+
+  resetFortuneAnimation(): void {
+    this.isThrowingCookie.set(false);
+    this.isCookieFlying.set(false);
+    this.showFortuneMessage.set(false);
+    this.showFortunePaper.set(false);
+    this.showResetButton.set(false);
+
+    if (!this.canGetNewFortune() && this.isBrowser) {
+      const savedMessage = localStorage.getItem('fortune_current_message');
+      if (savedMessage) {
+        this.dailyFortuneMessage.set(savedMessage);
+      }
+    }
+
+    setTimeout(() => {
+      this.startFortuneSequence();
+    }, 300);
+  }
+
+  private initializeFortuneCat(): void {
+    if (!this.canGetNewFortune()) {
+      const savedMessage = localStorage.getItem('fortune_current_message');
+      if (savedMessage) {
+        this.dailyFortuneMessage.set(savedMessage);
+      } else {
+        this.generateDailyMessage();
+      }
+    }
   }
 
   // ========================================
@@ -715,16 +1071,10 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private updateCountdown(): void {
-    // Fecha fija: 15 de octubre de 2025
-    const launchDate = new Date(2025, 9, 15, 12, 0, 0, 0); // Mes 9 = octubre (0-indexado)
+    const launchDate = new Date(2025, 9, 15, 12, 0, 0, 0);
 
     const now = new Date();
     const timeLeft = launchDate.getTime() - now.getTime();
-
-    // Debug para ver qué pasa
-    console.log('Fecha actual:', now);
-    console.log('Fecha de lanzamiento:', launchDate);
-    console.log('Tiempo restante (ms):', timeLeft);
 
     if (timeLeft <= 0) {
       this.countdown.set({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -734,7 +1084,6 @@ export class AppComponent implements OnInit, OnDestroy {
       return;
     }
 
-    // Cálculos del countdown
     const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
     const hours = Math.floor(
       (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
@@ -745,10 +1094,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.countdown.set({ days, hours, minutes, seconds });
   }
 
-  // Método para obtener la fecha de lanzamiento formateada
   getLaunchDateFormatted(): string {
-    // Fecha fija: 15 de octubre de 2025
-    const launchDate = new Date(2025, 9, 15); // Mes 9 = octubre (0-indexado)
+    const launchDate = new Date(2025, 9, 15);
 
     return launchDate.toLocaleDateString('es-ES', {
       year: 'numeric',
@@ -788,7 +1135,6 @@ export class AppComponent implements OnInit, OnDestroy {
     }));
   }
 
-  // Método para hacer scroll suave a una sección específica
   scrollToSection(sectionId: string): void {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -799,7 +1145,10 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Método principal para mostrar notificaciones
+  // ========================================
+  // MÉTODOS PRIVADOS - NOTIFICACIONES
+  // ========================================
+
   private showCustomNotification(
     type: 'success' | 'error' | 'warning' | 'info',
     title: string,
@@ -810,18 +1159,15 @@ export class AppComponent implements OnInit, OnDestroy {
     this.notificationData.set({ type, title, message, icon });
     this.showNotification.set(true);
 
-    // Limpiar timeout anterior si existe
     if (this.notificationTimeout) {
       clearTimeout(this.notificationTimeout);
     }
 
-    // Auto-cerrar después del tiempo especificado
     this.notificationTimeout = setTimeout(() => {
       this.closeNotification();
     }, duration);
   }
 
-  // Método para cerrar notificación
   closeNotification(): void {
     this.showNotification.set(false);
     if (this.notificationTimeout) {
@@ -829,11 +1175,6 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
-  // ========================================
-  // NOTIFICACIONES
-  // ========================================
-
-  // Notificación de éxito para email registrado
   private showSuccessNotification(): void {
     this.showCustomNotification(
       'success',
@@ -843,7 +1184,6 @@ export class AppComponent implements OnInit, OnDestroy {
     );
   }
 
-  // Notificación de error para email ya registrado
   private showEmailExistsNotification(): void {
     this.showCustomNotification(
       'warning',
@@ -854,7 +1194,6 @@ export class AppComponent implements OnInit, OnDestroy {
     );
   }
 
-  // Notificación de error para email inválido
   private showInvalidEmailNotification(): void {
     this.showCustomNotification(
       'error',
@@ -863,5 +1202,47 @@ export class AppComponent implements OnInit, OnDestroy {
       'fas fa-times-circle',
       3000
     );
+  }
+
+  // ========================================
+  // MÉTODOS PARA CONTROL DE SCROLL DEL BODY
+  // ========================================
+
+  private blockBodyScroll(): void {
+    if (this.isBrowser) {
+      document.body.classList.add('modal-open');
+      // Alternativa más robusta si la primera no funciona:
+      // document.body.style.overflow = 'hidden';
+    }
+  }
+
+  private unblockBodyScroll(): void {
+    if (this.isBrowser) {
+      document.body.classList.remove('modal-open');
+      // Alternativa más robusta si la primera no funciona:
+      // document.body.style.overflow = '';
+    }
+  }
+
+  // ========================================
+  // MÉTODOS PARA OCULTAR/MOSTRAR NAVBAR
+  // ========================================
+
+  private hideNavbar(): void {
+    if (this.isBrowser) {
+      const navbar = document.querySelector('.navbar-container');
+      if (navbar) {
+        navbar.classList.add('navbar-modal-hidden');
+      }
+    }
+  }
+
+  private showNavbar(): void {
+    if (this.isBrowser) {
+      const navbar = document.querySelector('.navbar-container');
+      if (navbar) {
+        navbar.classList.remove('navbar-modal-hidden');
+      }
+    }
   }
 }

@@ -5,6 +5,34 @@
   position: relative;
   z-index: 1;
 }
+.spinner {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #0a5c40;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.spinner-small {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #ffffff33;
+  border-top: 2px solid #ffffff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.success { color: green; }
+.error { color: red; }
+
 
 :root {
   --font-serif: "Playfair Display", serif;

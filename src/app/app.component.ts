@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { DeviceDetectionService } from '../services/device-detection.service';
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 // ========================================
 // INTERFACES
@@ -513,6 +514,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   readonly showEarlyAccessForm = signal<boolean>(false);
   earlyAccessEmail: string = '';
+  loading = false;
+  googleScriptURL = 'https://script.google.com/macros/s/AKfycbwjImYUG8Z6SQgS9EgNkL9r3T69INHsC_0PtRf4CViGB4ptkqXl5lce8t7tAGvq4eJz/exec';
   readonly formSubmitted = signal<boolean>(false);
 
   // ========================================
@@ -561,7 +564,8 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     private readonly router: Router,
     @Inject(PLATFORM_ID) private readonly platformId: Object,
-    private deviceService: DeviceDetectionService
+    private deviceService: DeviceDetectionService,
+    private http: HttpClient
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
@@ -778,6 +782,55 @@ export class AppComponent implements OnInit, OnDestroy {
   // MÉTODOS PARA FORMULARIO DE EARLY ACCESS
   // ========================================
 
+  submitEmailToGoogleSheets(email: string) {
+    const body = new FormData();
+    body.append('email', email);
+
+    return this.http.post(this.googleScriptURL, body, { responseType: 'text' });
+  }
+
+  onSubmitEarlyAccess(): void {
+    this.loading = true;
+    this.validateEmail();
+
+    if (this.emailError()) {
+      this.loading = false; // Resetear loading en caso de error
+      return;
+    }
+
+    if (!this.emailValid()) {
+      this.emailError.set(true);
+      this.emailErrorMessage.set('Por favor ingresa un email válido');
+      this.loading = false; // Resetear loading en caso de error
+      return;
+    }
+
+    const email = this.earlyAccessEmail.trim();
+
+    this.submitEmailToGoogleSheets(email).subscribe({
+      next: () => {
+        this.loading = false; // Resetear loading en éxito
+        this.formSubmitted.set(true);
+        this.showSuccessNotification();
+
+        setTimeout(() => {
+          this.showEarlyAccessForm.set(false);
+          this.formSubmitted.set(false);
+          this.earlyAccessEmail = '';
+          this.emailError.set(false);
+          this.emailValid.set(false);
+          this.emailErrorMessage.set('');
+        }, 2000);
+      },
+      error: () => {
+        this.loading = false; // Resetear loading en error
+        this.emailError.set(true);
+        this.emailErrorMessage.set('❌ Hubo un error, intenta de nuevo.');
+      }
+    });
+  }
+
+
   onToggleEarlyAccess(): void {
     this.showEarlyAccessForm.set(!this.showEarlyAccessForm());
     if (!this.showEarlyAccessForm()) {
@@ -805,15 +858,6 @@ export class AppComponent implements OnInit, OnDestroy {
     if (!emailRegex.test(email)) {
       this.emailError.set(true);
       this.emailErrorMessage.set('Por favor ingresa un email válido');
-      return;
-    }
-
-    const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/i;
-    if (!gmailRegex.test(email)) {
-      this.emailError.set(true);
-      this.emailErrorMessage.set(
-        'Solo se permiten emails de Gmail (@gmail.com)'
-      );
       return;
     }
 
@@ -849,46 +893,20 @@ export class AppComponent implements OnInit, OnDestroy {
     this.emailValid.set(true);
   }
 
-  onSubmitEarlyAccess(): void {
-    this.validateEmail();
+  submitEmail() {
+    if (!this.earlyAccessEmail) return;
 
-    if (this.emailError()) {
-      return;
-    }
-
-    if (!this.emailValid()) {
-      this.emailError.set(true);
-      this.emailErrorMessage.set('Por favor ingresa un email válido');
-      return;
-    }
-
-    const email = this.earlyAccessEmail.trim();
-
-    const existingEmails = [
-      'test@gmail.com',
-      'demo@gmail.com',
-      'ejemplo@gmail.com',
-    ];
-
-    if (existingEmails.includes(email.toLowerCase())) {
-      this.emailError.set(true);
-      this.emailErrorMessage.set(
-        'Este email ya está registrado en nuestra lista'
-      );
-      return;
-    }
-
-    this.formSubmitted.set(true);
-    this.showSuccessNotification();
-
-    setTimeout(() => {
-      this.showEarlyAccessForm.set(false);
-      this.formSubmitted.set(false);
-      this.earlyAccessEmail = '';
-      this.emailError.set(false);
-      this.emailValid.set(false);
-      this.emailErrorMessage.set('');
-    }, 2000);
+    this.http.post(this.googleScriptURL, { email: this.earlyAccessEmail }).subscribe({
+      next: () => {
+        this.loading = false;
+        alert('✅ ¡Te has registrado para early access!');
+        this.earlyAccessEmail = '';
+      },
+      error: () => {
+        this.loading = false;
+        alert('❌ Hubo un error, intenta de nuevo.');
+      }
+    });
   }
 
   // ========================================

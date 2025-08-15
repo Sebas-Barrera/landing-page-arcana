@@ -243,7 +243,7 @@ export class AppComponent implements OnInit, OnDestroy {
       id: 'accessibility',
       title: 'Contenido Accesible y Místico',
       description:
-        'Creada por maestros y guías con un recorrido profundo en el arte místico y la práctica espiritual',
+        'Información comprensible para todos los niveles, sin perder la profundidad y misticismo auténtico.',
       icon: 'fas fa-book-open',
       color: '#b4a2fd',
     },

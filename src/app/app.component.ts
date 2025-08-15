@@ -159,7 +159,7 @@ export class AppComponent implements OnInit, OnDestroy {
     {
       id: 'basica',
       name: 'Básica',
-      price: '$199',
+      price: '$99',
       period: '/mes',
       description:
         'Todo lo de Gratuita + Significado de cristales, hierbas y flores + Fases lunares',
@@ -177,7 +177,7 @@ export class AppComponent implements OnInit, OnDestroy {
     {
       id: 'premium',
       name: 'Premium',
-      price: '$399',
+      price: '$199',
       period: '/año',
       description:
         'Todo lo de Gratuita + Significado de cristales, hierbas y flores + Fases lunares',
@@ -193,7 +193,7 @@ export class AppComponent implements OnInit, OnDestroy {
     {
       id: 'vip-mensual',
       name: 'VIP Mensual',
-      price: '$599',
+      price: '$699',
       period: '/mes',
       description:
         'Todo el contenido Premium y VIP + 1 lectura personalizada básica al mes + Acceso a cursos y dinámicas VIP',
@@ -232,25 +232,25 @@ export class AppComponent implements OnInit, OnDestroy {
   readonly differentiators = signal<Differentiator[]>([
     {
       id: 'experience',
-      title: 'Más de 30 Años de Experiencia',
+      title: 'Más de 30 Años de Sabiduría',
       description:
-        'Creada por expertos con décadas de experiencia real en el mundo esotérico y espiritual.',
+        'Creada por maestros y guías con un recorrido profundo en el arte místico y la práctica espiritual.',
       icon: 'fas fa-user-graduate',
-      color: '#ffd700',
+      color: '#ffa500',
       badge: 'Expertos Certificados',
     },
     {
       id: 'accessibility',
       title: 'Contenido Accesible y Místico',
       description:
-        'Información comprensible para todos los niveles, sin perder la profundidad y misticismo auténtico.',
+        'Creada por maestros y guías con un recorrido profundo en el arte místico y la práctica espiritual',
       icon: 'fas fa-book-open',
       color: '#b4a2fd',
     },
     {
       id: 'integration',
       title: 'Múltiples Corrientes Mágicas',
-      description: 'Integración de diversas ramas espirituales',
+      description: 'Integración de diversas ramas espirituales.',
       icon: 'fas fa-infinity',
       color: '#50c878',
     },
@@ -285,15 +285,15 @@ export class AppComponent implements OnInit, OnDestroy {
       id: 'authenticity',
       name: 'Autenticidad',
       description:
-        'Contenido verdadero, creado por expertos con décadas de experiencia.',
+        'Verdad y coherencia en cada contenido, fruto de conocimiento profundo y sabiduría ancestral.',
       icon: 'fas fa-certificate',
-      color: '#ffd700',
+      color: '#ffa500',
     },
     {
       id: 'purpose',
-      name: 'Magia con Propósito',
+      name: 'Propósito',
       description:
-        'Herramientas y prácticas enfocadas en generar cambios reales y positivos.',
+        'Cada herramienta nace para generar transformación positiva y despertar el potencial que llevas dentro.',
       icon: 'fas fa-bullseye',
       color: '#b4a2fd',
     },
@@ -301,7 +301,7 @@ export class AppComponent implements OnInit, OnDestroy {
       id: 'closeness',
       name: 'Cercanía',
       description:
-        'Lenguaje claro, accesible y amigable para todos los niveles de conocimiento.',
+        'Un lenguaje claro y cálido que acompaña tanto a quienes dan sus primeros pasos como a quienes ya caminan con experiencia en el sendero espiritual.',
       icon: 'fas fa-heart',
       color: '#ff69b4',
     },
@@ -309,15 +309,15 @@ export class AppComponent implements OnInit, OnDestroy {
       id: 'diversity',
       name: 'Diversidad Espiritual',
       description:
-        'Inspirada en múltiples corrientes, culturas y prácticas mágicas del mundo.',
+        'Inspiración tomada de múltiples tradiciones, culturas y saberes que enriquecen tu conexión interior.',
       icon: 'fas fa-yin-yang',
       color: '#50c878',
     },
     {
       id: 'transformation',
-      name: 'Transformación Diaria',
+      name: 'Evolución Diaria',
       description:
-        'Recursos aplicables de forma sencilla para mejorar la vida día a día.',
+        'Inspiración tomada de múltiples tradiciones, culturas y saberes que enriquecen tu conexión interior.',
       icon: 'fas fa-seedling',
       color: '#20b2aa',
     },
@@ -491,7 +491,7 @@ export class AppComponent implements OnInit, OnDestroy {
       {
         icon: 'fas fa-magic',
         text: 'Rituales y Hechizos',
-        color: '#ffd700',
+        color: '#ffa500',
       },
       {
         icon: 'fas fa-eye',
@@ -515,7 +515,8 @@ export class AppComponent implements OnInit, OnDestroy {
   readonly showEarlyAccessForm = signal<boolean>(false);
   earlyAccessEmail: string = '';
   loading = false;
-  googleScriptURL = 'https://script.google.com/macros/s/AKfycbwjImYUG8Z6SQgS9EgNkL9r3T69INHsC_0PtRf4CViGB4ptkqXl5lce8t7tAGvq4eJz/exec';
+  googleScriptURL =
+    'https://script.google.com/macros/s/AKfycbwjImYUG8Z6SQgS9EgNkL9r3T69INHsC_0PtRf4CViGB4ptkqXl5lce8t7tAGvq4eJz/exec';
   readonly formSubmitted = signal<boolean>(false);
 
   // ========================================
@@ -826,10 +827,9 @@ export class AppComponent implements OnInit, OnDestroy {
         this.loading = false; // Resetear loading en error
         this.emailError.set(true);
         this.emailErrorMessage.set('❌ Hubo un error, intenta de nuevo.');
-      }
+      },
     });
   }
-
 
   onToggleEarlyAccess(): void {
     this.showEarlyAccessForm.set(!this.showEarlyAccessForm());
@@ -896,17 +896,19 @@ export class AppComponent implements OnInit, OnDestroy {
   submitEmail() {
     if (!this.earlyAccessEmail) return;
 
-    this.http.post(this.googleScriptURL, { email: this.earlyAccessEmail }).subscribe({
-      next: () => {
-        this.loading = false;
-        alert('✅ ¡Te has registrado para early access!');
-        this.earlyAccessEmail = '';
-      },
-      error: () => {
-        this.loading = false;
-        alert('❌ Hubo un error, intenta de nuevo.');
-      }
-    });
+    this.http
+      .post(this.googleScriptURL, { email: this.earlyAccessEmail })
+      .subscribe({
+        next: () => {
+          this.loading = false;
+          alert('✅ ¡Te has registrado para early access!');
+          this.earlyAccessEmail = '';
+        },
+        error: () => {
+          this.loading = false;
+          alert('❌ Hubo un error, intenta de nuevo.');
+        },
+      });
   }
 
   // ========================================

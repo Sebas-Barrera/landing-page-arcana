@@ -502,7 +502,7 @@
         <!-- Información adicional -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
           <div class="fortune-info-item">
-            <i class="fas fa-magic text-2xl mb-3" style="color: #ffd700"></i>
+            <i class="fas fa-magic text-2xl mb-3" style="color: #ffa500"></i>
             <h4 class="font-semibold mb-2" style="color: #b4a2fd">
               Mensaje Único
             </h4>
@@ -554,13 +554,13 @@
             class="text-4xl lg:text-6xl xl:text-7xl font-normal mb-4 lg:mb-6 text-glow"
             style="color: #b4a2fd"
           >
-            El Despertar Llega Pronto
+            Una nueva era de magia está por revelarse
           </h2>
           <p
             class="text-xl lg:text-2xl xl:text-3xl mb-6 lg:mb-8 opacity-90 font-light"
             style="color: #b4a2fd"
           >
-            Una experiencia completamente renovada
+            Una nueva era de magia está por revelarse
           </p>
           <div
             class="inline-block bg-gradient-to-r from-transparent via-purple-500/20 to-transparent p-6 lg:p-8 rounded-2xl border border-purple-400/30 mb-8"
@@ -804,7 +804,10 @@
                       (click)="onSubmitEarlyAccess()"
                       [disabled]="loading"
                     >
-                      <i class="fas fa-paper-plane text-sm" *ngIf="!loading"></i>
+                      <i
+                        class="fas fa-paper-plane text-sm"
+                        *ngIf="!loading"
+                      ></i>
                       <div *ngIf="loading" class="spinner-small"></div>
                       {{ loading ? "Enviando..." : "Enviar" }}
                     </button>
@@ -1009,7 +1012,7 @@
           <div class="inline-block mb-8 different-icon-container">
             <i
               class="fas fa-star-of-david text-4xl lg:text-6xl different-main-icon"
-              style="color: #ffd700"
+              style="color: #ffa500"
             ></i>
             <div class="different-icon-rings">
               <div class="icon-ring ring-1"></div>
@@ -1021,15 +1024,16 @@
             class="text-3xl lg:text-5xl xl:text-6xl font-normal mb-6 lg:mb-8 text-glow different-title"
             style="color: #b4a2fd"
           >
-            ¿Por qué Arcana es Diferente?
+            Tu Portal a lo Esencial
           </h2>
 
           <p
             class="text-lg lg:text-xl xl:text-2xl opacity-90 max-w-4xl mx-auto leading-relaxed"
             style="color: #b4a2fd"
           >
-            Más que una app, somos una comunidad de transformación espiritual
-            respaldada por décadas de experiencia y sabiduría ancestral.
+            Más de una app, Arcana es un portal a tu propia energía, donde lo
+            ancestral y lo moderno se unen para guiarte en un camino auténtico y
+            transformador.
           </p>
 
           <div
@@ -1079,6 +1083,7 @@
               >
                 {{ differentiator.description }}
               </p>
+              <br />
 
               <!-- Badge destacado -->
               <div
@@ -1114,8 +1119,8 @@
               class="text-lg opacity-80 max-w-3xl mx-auto"
               style="color: #b4a2fd"
             >
-              Los principios que guían cada ritual, cada mensaje y cada
-              herramienta que creamos para ti.
+              Principios que guían la esencia de Arcana y dan vida a cada
+              ritual, palabra y experiencia.
             </p>
           </div>
 
@@ -1172,7 +1177,7 @@
             <button
               class="different-cta-button px-8 py-4 text-lg font-semibold transition-all duration-500 hover:scale-105"
               style="
-                background: linear-gradient(135deg, #ffd700 0%, #ffed4a 100%);
+                background: linear-gradient(135deg, #ffa500 0%, #ffed4a 100%);
                 color: #100820;
               "
               (click)="scrollToSection('el-despertar-llega-pronto')"
@@ -1671,6 +1676,7 @@
             }
           </div>
           <!-- Información Adicional -->
+          <!-- Información Adicional -->
           <div
             class="mt-8 p-6 rounded-xl border"
             style="
@@ -1678,14 +1684,16 @@
               border-color: #3a3a5a;
             "
           >
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+            <div
+              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center"
+            >
               <div class="flex flex-col items-center">
                 <i
                   class="fas fa-shield-alt text-3xl mb-2"
                   style="color: #50c878"
                 ></i>
                 <h4 class="font-semibold mb-1" style="color: #b4a2fd">
-                  Garantía de 7 días
+                  Prueba sin riesgo
                 </h4>
                 <p class="text-sm opacity-70" style="color: #b4a2fd">
                   Cancela sin compromiso
@@ -1705,6 +1713,18 @@
               </div>
               <div class="flex flex-col items-center">
                 <i
+                  class="fas fa-sync-alt text-3xl mb-2"
+                  style="color: #ffd700"
+                ></i>
+                <h4 class="font-semibold mb-1" style="color: #b4a2fd">
+                  Renovación Automática
+                </h4>
+                <p class="text-sm opacity-70" style="color: #b4a2fd">
+                  Cancela cuando quieras
+                </p>
+              </div>
+              <div class="flex flex-col items-center">
+                <i
                   class="fas fa-headset text-3xl mb-2"
                   style="color: #b4a2fd"
                 ></i>
@@ -1716,24 +1736,6 @@
                 </p>
               </div>
             </div>
-          </div>
-
-          <!-- Call to Action Footer -->
-          <div class="mt-6 text-center">
-            <p style="color: #b4a2fd" class="mb-4 opacity-90">
-              <i class="fas fa-sparkles mr-2"></i>
-              Únete a más de 10,000 personas que han transformado sus vidas
-            </p>
-            <p class="text-sm opacity-70" style="color: #b4a2fd">
-              ¿Tienes preguntas?
-              <button
-                (click)="onContactSupport()"
-                class="underline hover:opacity-100 transition-opacity duration-200 ml-1"
-                style="color: #b4a2fd"
-              >
-                Contacta a nuestro equipo
-              </button>
-            </p>
           </div>
         </div>
       </div>

@@ -76,14 +76,6 @@
           <a
             class="nav-link text-xs lg:text-sm px-2 py-1 lg:px-3 lg:py-2 hover:text-white hover:bg-opacity-20 hover:bg-purple-500 rounded-md transition-all duration-300 cursor-pointer"
             style="color: #b4a2fd"
-            (click)="scrollToSection('guia-magica')"
-          >
-            Guía Mágica
-          </a>
-
-          <a
-            class="nav-link text-xs lg:text-sm px-2 py-1 lg:px-3 lg:py-2 hover:text-white hover:bg-opacity-20 hover:bg-purple-500 rounded-md transition-all duration-300 cursor-pointer"
-            style="color: #b4a2fd"
             (click)="scrollToSection('mensaje-fortuna')"
           >
             Fortuna
@@ -92,17 +84,23 @@
           <a
             class="nav-link text-xs lg:text-sm px-2 py-1 lg:px-3 lg:py-2 hover:text-white hover:bg-opacity-20 hover:bg-purple-500 rounded-md transition-all duration-300 cursor-pointer"
             style="color: #b4a2fd"
-            (click)="scrollToSection('por-que-diferente')"
+            (click)="scrollToSection('guia-magica')"
           >
-            Diferencias
+            Guía Mágica
           </a>
-
           <a
             class="nav-link text-xs lg:text-sm px-2 py-1 lg:px-3 lg:py-2 hover:text-white hover:bg-opacity-20 hover:bg-purple-500 rounded-md transition-all duration-300 cursor-pointer"
             style="color: #b4a2fd"
             (click)="scrollToSection('servicios')"
           >
             Servicios
+          </a>
+          <a
+            class="nav-link text-xs lg:text-sm px-2 py-1 lg:px-3 lg:py-2 hover:text-white hover:bg-opacity-20 hover:bg-purple-500 rounded-md transition-all duration-300 cursor-pointer"
+            style="color: #b4a2fd"
+            (click)="scrollToSection('por-que-diferente')"
+          >
+            Diferencias
           </a>
         </div>
       </div>
@@ -111,7 +109,7 @@
       <div class="navbar-center">
         <div class="logo-container">
           <img
-            src="../../../../assets/logo/logo-arcana.png"
+            src="../../../../assets/logo/logoMargenDorado.png"
             alt="Arcana Logo"
             class="logo-image"
           />
@@ -124,6 +122,31 @@
           class="flex flex-wrap justify-end items-center space-x-2 lg:space-x-4"
         >
           <a
+            class="nav-link text-xs lg:text-sm px-2 py-1 lg:px-3 lg:py-2 rounded-md transition-all duration-300 cursor-pointer relative overflow-hidden group"
+            style="
+              color: #100820;
+              background: linear-gradient(135deg, #b4a2fd 0%, #ffd700 100%);
+              font-weight: 600;
+              box-shadow: 0 0 15px rgba(180, 162, 253, 0.4);
+              border: 2px solid transparent;
+              background-clip: padding-box;
+            "
+            (click)="scrollToSection('el-despertar-llega-pronto')"
+            onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 0 25px rgba(255, 215, 0, 0.6)'"
+            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 0 15px rgba(180, 162, 253, 0.4)'"
+          >
+            <span class="relative z-10 flex items-center gap-1">
+              <i class="fas fa-star text-xs"></i>
+              Acceso Anticipado
+              <i class="fas fa-arrow-right text-xs"></i>
+            </span>
+
+            <!-- Efecto de brillo animado -->
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
+            ></div>
+          </a>
+          <a
             class="text-sm lg:text-base px-3 py-2 hover:text-white hover:bg-opacity-20 hover:bg-purple-500 rounded-md transition-all duration-300 cursor-pointer flex items-center"
             style="color: #b4a2fd"
             (click)="onStartPremium()"
@@ -131,7 +154,6 @@
             <i class="fas fa-crown mr-1 text-xs"></i>
             Membresías
           </a>
-
           <div class="hidden lg:block w-px h-6 bg-purple-400 opacity-30"></div>
 
           <button
@@ -153,7 +175,6 @@
       <!-- Cristal Principal con Efectos -->
       <div class="mb-6 lg:mb-10 relative crystal-container">
         <div class="relative inline-block">
-          <img src="../../../../assets/welcomeImages/esfera.png" alt="" />
           <!-- Partículas Místicas -->
           <div class="mystical-particles">
             <div class="particle particle-1"></div>
@@ -242,294 +263,6 @@
         <div class="flex items-center opacity-80">
           <i class="fas fa-certificate mr-2 text-base"></i>
           <span>Certificado por maestros</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Nueva Sección: Descripción Oficial -->
-    <section
-      id="guia-magica"
-      class="official-description-section py-16 lg:py-20 px-4 lg:px-8 relative overflow-hidden"
-      style="
-        background: linear-gradient(
-          135deg,
-          #100820 0%,
-          #1a1760 50%,
-          #100820 100%
-        );
-      "
-    >
-      <!-- Partículas de fondo -->
-      <div class="absolute inset-0 pointer-events-none">
-        <div class="official-description-particle particle-1"></div>
-        <div class="official-description-particle particle-2"></div>
-        <div class="official-description-particle particle-3"></div>
-        <div class="official-description-particle particle-4"></div>
-        <div class="official-description-particle particle-5"></div>
-      </div>
-
-      <div class="max-w-6xl mx-auto relative z-10">
-        <!-- Header de la sección -->
-        <div class="text-center mb-12 lg:mb-16">
-          <div class="inline-block mb-6">
-            <i
-              class="fas fa-eye text-4xl lg:text-5xl mystical-icon"
-              style="color: #b4a2fd"
-            ></i>
-          </div>
-          <h2
-            class="text-3xl lg:text-5xl xl:text-6xl font-normal mb-6 lg:mb-8 text-glow official-title"
-            style="color: #b4a2fd"
-          >
-            Tu Guía Mágica y Espiritual
-          </h2>
-          <div
-            class="w-24 h-1 bg-gradient-to-r from-transparent via-purple-400 to-transparent mx-auto mb-8"
-          ></div>
-        </div>
-
-        <!-- Contenido principal -->
-        <div
-          class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center"
-        >
-          <!-- Columna izquierda - Descripción -->
-          <div class="lg:col-span-7 space-y-6">
-            <p
-              class="text-lg lg:text-xl xl:text-2xl leading-relaxed font-light official-description-text"
-              style="color: #b4a2fd"
-            >
-              {{ officialDescription().text }}
-            </p>
-
-            <!-- Elementos destacados -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
-              @for (highlight of officialDescription().highlights; track
-              highlight.icon) {
-              <div
-                class="flex items-center gap-3 p-4 rounded-lg border border-purple-400/20 bg-purple-500/5 backdrop-blur-sm official-highlight-item"
-              >
-                <i
-                  [class]="highlight.icon + ' text-xl'"
-                  [style.color]="highlight.color"
-                ></i>
-                <span
-                  class="text-sm lg:text-base font-medium"
-                  style="color: #b4a2fd"
-                >
-                  {{ highlight.text }}
-                </span>
-              </div>
-              }
-            </div>
-          </div>
-
-          <!-- Columna derecha - Elementos visuales -->
-          <div class="lg:col-span-5 text-center">
-            <!-- Cristal central con efectos -->
-            <div class="relative inline-block official-crystal-container">
-              <!-- Cristal principal -->
-              <div class="relative crystal-main-official">
-                <img
-                  src="../../../../assets/logo/logoMargenDorado.png"
-                  alt="Cristal Arcana"
-                  class="w-48 h-48 lg:w-64 lg:h-64 xl:w-80 xl:h-80 object-contain official-crystal-float"
-                />
-
-                <!-- Símbolos flotantes -->
-                <div class="official-symbol symbol-1">
-                  <i class="fas fa-star" style="color: #ffd700"></i>
-                </div>
-                <div class="official-symbol symbol-2">
-                  <i class="fas fa-moon" style="color: #e6e6fa"></i>
-                </div>
-                <div class="official-symbol symbol-3">
-                  <i class="fas fa-gem" style="color: #50c878"></i>
-                </div>
-                <div class="official-symbol symbol-4">
-                  <i class="fas fa-magic" style="color: #b4a2fd"></i>
-                </div>
-              </div>
-            </div>
-
-            <!-- Frase inspiradora -->
-            <div class="mt-8">
-              <p
-                class="text-base lg:text-lg italic opacity-80 official-inspiration"
-                style="color: #b4a2fd"
-              >
-                "{{ officialDescription().inspiration }}"
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Call to Action sutil -->
-        <div class="text-center mt-12 lg:mt-16">
-          <button
-            class="px-6 py-3 border border-purple-400/40 rounded-lg hover:bg-purple-500/10 transition-all duration-300 official-cta-subtle"
-            style="color: #b4a2fd"
-            (click)="scrollToSection('el-despertar-llega-pronto')"
-          >
-            <i class="fas fa-arrow-down mr-2"></i>
-            Descubre más sobre el despertar
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Nueva Sección: Gatito de la Fortuna -->
-    <section
-      id="mensaje-fortuna"
-      class="fortune-cat-section py-16 lg:py-20 px-4 lg:px-8 relative overflow-hidden"
-      style="background-color: #100820"
-    >
-      <!-- Partículas de fondo -->
-      <div class="absolute inset-0 pointer-events-none">
-        <div class="fortune-particle particle-1"></div>
-        <div class="fortune-particle particle-2"></div>
-        <div class="fortune-particle particle-3"></div>
-        <div class="fortune-particle particle-4"></div>
-      </div>
-
-      <div class="max-w-5xl mx-auto relative z-10">
-        <!-- Header de la sección -->
-        <div class="text-center mb-12 lg:mb-16">
-          <h2
-            class="text-3xl lg:text-5xl xl:text-6xl font-normal mb-6 text-glow fortune-title"
-            style="color: #b4a2fd"
-          >
-            <i class="fas fa-sparkles mr-3" style="color: #ffd700"></i>
-            Tu Mensaje de la Fortuna
-            <i class="fas fa-sparkles ml-3" style="color: #ffd700"></i>
-          </h2>
-          <p
-            class="text-lg lg:text-xl opacity-90 max-w-2xl mx-auto"
-            style="color: #b4a2fd"
-          >
-            El gatito místico tiene un mensaje especial para ti cada día.
-            ¡Descubre qué te depara la fortuna!
-          </p>
-        </div>
-
-        <!-- Contenedor principal del gatito -->
-        <div class="text-center mb-12">
-          <div class="fortune-cat-container relative inline-block">
-            <!-- Gatito principal -->
-            <div
-              class="fortune-cat-main cursor-pointer transition-all duration-500"
-              [class.animate-throw]="isThrowingCookie()"
-              (click)="onFortuneCatClick()"
-            >
-              <!-- Imagen del gatito (usar tu PNG aquí) -->
-              <img
-                src="../../../../assets/welcomeImages/gatito.png"
-                alt="Gatito de la Fortuna"
-                class="fortune-cat-image w-32 h-32 lg:w-48 lg:h-48 xl:w-56 xl:h-56 object-contain"
-              />
-
-              <!-- Efectos brillantes alrededor del gatito -->
-              <div class="fortune-sparkles">
-                <div class="sparkle sparkle-1"></div>
-                <div class="sparkle sparkle-2"></div>
-                <div class="sparkle sparkle-3"></div>
-                <div class="sparkle sparkle-4"></div>
-              </div>
-            </div>
-
-            <!-- Galleta voladora -->
-            <div
-              class="fortune-cookie flying-cookie"
-              [class.show]="isCookieFlying()"
-              [class.animate-fly]="isCookieFlying()"
-            >
-              <i class="fas fa-cookie-bite text-3xl" style="color: #d2691e"></i>
-            </div>
-
-            <!-- Galleta expandida con mensaje -->
-            <div
-              class="fortune-cookie-expanded"
-              [class.show]="showFortuneMessage()"
-              [class.animate-expand]="showFortuneMessage()"
-            >
-              <div class="fortune-cookie-large relative">
-                <i
-                  class="fas fa-cookie-bite text-6xl lg:text-8xl cookie-icon"
-                  style="color: #d2691e"
-                ></i>
-
-                <!-- Papelito con mensaje -->
-                <div class="fortune-paper" [class.show]="showFortunePaper()">
-                  <div class="fortune-paper-content">
-                    <p
-                      class="fortune-message text-sm lg:text-base font-medium"
-                      style="color: #100820"
-                    >
-                      {{ dailyFortuneMessage() }}
-                    </p>
-                    <div
-                      class="fortune-signature text-xs opacity-70 mt-2"
-                      style="color: #100820"
-                    >
-                      - El Gatito Místico ✨
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Botón para repetir animación -->
-            <div class="mt-8" *ngIf="showResetButton()">
-              <button
-                class="fortune-reset-btn px-6 py-3 border border-purple-400/40 rounded-lg hover:bg-purple-500/10 transition-all duration-300"
-                style="color: #b4a2fd"
-                (click)="resetFortuneAnimation()"
-              >
-                <i class="fas fa-redo mr-2"></i>
-                Ver mi mensaje nuevamente
-              </button>
-            </div>
-
-            <!-- Mensaje de "solo una vez por día" -->
-            <div class="mt-6" *ngIf="!canGetNewFortune()">
-              <p class="text-sm opacity-70" style="color: #b4a2fd">
-                <i class="fas fa-clock mr-2"></i>
-                El gatito te dará un nuevo mensaje mañana
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Información adicional -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-          <div class="fortune-info-item">
-            <i class="fas fa-magic text-2xl mb-3" style="color: #ffa500"></i>
-            <h4 class="font-semibold mb-2" style="color: #b4a2fd">
-              Mensaje Único
-            </h4>
-            <p class="text-sm opacity-80" style="color: #b4a2fd">
-              Cada día recibes un mensaje personalizado
-            </p>
-          </div>
-
-          <div class="fortune-info-item">
-            <i class="fas fa-heart text-2xl mb-3" style="color: #ff69b4"></i>
-            <h4 class="font-semibold mb-2" style="color: #b4a2fd">
-              Sabiduría Ancestral
-            </h4>
-            <p class="text-sm opacity-80" style="color: #b4a2fd">
-              Consejos basados en tradiciones místicas
-            </p>
-          </div>
-
-          <div class="fortune-info-item">
-            <i class="fas fa-sun text-2xl mb-3" style="color: #ffa500"></i>
-            <h4 class="font-semibold mb-2" style="color: #b4a2fd">
-              Energía Positiva
-            </h4>
-            <p class="text-sm opacity-80" style="color: #b4a2fd">
-              Mensajes para elevar tu vibración diaria
-            </p>
-          </div>
         </div>
       </div>
     </section>
@@ -847,6 +580,293 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="mensaje-fortuna"
+      class="fortune-cat-section py-16 lg:py-20 px-4 lg:px-8 relative overflow-hidden"
+      style="background-color: #100820"
+    >
+      <!-- Partículas de fondo -->
+      <div class="absolute inset-0 pointer-events-none">
+        <div class="fortune-particle particle-1"></div>
+        <div class="fortune-particle particle-2"></div>
+        <div class="fortune-particle particle-3"></div>
+        <div class="fortune-particle particle-4"></div>
+      </div>
+
+      <div class="max-w-5xl mx-auto relative z-10">
+        <!-- Header de la sección -->
+        <div class="text-center mb-12 lg:mb-16">
+          <h2
+            class="text-3xl lg:text-5xl xl:text-6xl font-normal mb-6 text-glow fortune-title"
+            style="color: #b4a2fd"
+          >
+            <i class="fas fa-sparkles mr-3" style="color: #ffd700"></i>
+            Tu Mensaje de la Fortuna
+            <i class="fas fa-sparkles ml-3" style="color: #ffd700"></i>
+          </h2>
+          <p
+            class="text-lg lg:text-xl opacity-90 max-w-2xl mx-auto"
+            style="color: #b4a2fd"
+          >
+            El gatito místico tiene un mensaje especial para ti cada día.
+            ¡Descubre qué te depara la fortuna!
+          </p>
+        </div>
+
+        <!-- Contenedor principal del gatito -->
+        <div class="text-center mb-12">
+          <div class="fortune-cat-container relative inline-block">
+            <!-- Gatito principal -->
+            <div
+              class="fortune-cat-main cursor-pointer transition-all duration-500"
+              [class.animate-throw]="isThrowingCookie()"
+              (click)="onFortuneCatClick()"
+            >
+              <!-- Imagen del gatito (usar tu PNG aquí) -->
+              <img
+                src="../../../../assets/welcomeImages/gatito.png"
+                alt="Gatito de la Fortuna"
+                class="fortune-cat-image w-32 h-32 lg:w-48 lg:h-48 xl:w-56 xl:h-56 object-contain"
+              />
+
+              <!-- Efectos brillantes alrededor del gatito -->
+              <div class="fortune-sparkles">
+                <div class="sparkle sparkle-1"></div>
+                <div class="sparkle sparkle-2"></div>
+                <div class="sparkle sparkle-3"></div>
+                <div class="sparkle sparkle-4"></div>
+              </div>
+            </div>
+
+            <!-- Galleta voladora -->
+            <div
+              class="fortune-cookie flying-cookie"
+              [class.show]="isCookieFlying()"
+              [class.animate-fly]="isCookieFlying()"
+            >
+              <i class="fas fa-cookie-bite text-3xl" style="color: #d2691e"></i>
+            </div>
+
+            <!-- Galleta expandida con mensaje -->
+            <div
+              class="fortune-cookie-expanded"
+              [class.show]="showFortuneMessage()"
+              [class.animate-expand]="showFortuneMessage()"
+            >
+              <div class="fortune-cookie-large relative">
+                <i
+                  class="fas fa-cookie-bite text-6xl lg:text-8xl cookie-icon"
+                  style="color: #d2691e"
+                ></i>
+
+                <!-- Papelito con mensaje -->
+                <div class="fortune-paper" [class.show]="showFortunePaper()">
+                  <div class="fortune-paper-content">
+                    <p
+                      class="fortune-message text-sm lg:text-base font-medium"
+                      style="color: #100820"
+                    >
+                      {{ dailyFortuneMessage() }}
+                    </p>
+                    <div
+                      class="fortune-signature text-xs opacity-70 mt-2"
+                      style="color: #100820"
+                    >
+                      - El Gatito Místico ✨
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Botón para repetir animación -->
+            <div class="mt-8" *ngIf="showResetButton()">
+              <button
+                class="fortune-reset-btn px-6 py-3 border border-purple-400/40 rounded-lg hover:bg-purple-500/10 transition-all duration-300"
+                style="color: #b4a2fd"
+                (click)="resetFortuneAnimation()"
+              >
+                <i class="fas fa-redo mr-2"></i>
+                Ver mi mensaje nuevamente
+              </button>
+            </div>
+
+            <!-- Mensaje de "solo una vez por día" -->
+            <div class="mt-6" *ngIf="!canGetNewFortune()">
+              <p class="text-sm opacity-70" style="color: #b4a2fd">
+                <i class="fas fa-clock mr-2"></i>
+                El gatito te dará un nuevo mensaje mañana
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Información adicional -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+          <div class="fortune-info-item">
+            <i class="fas fa-magic text-2xl mb-3" style="color: #ffa500"></i>
+            <h4 class="font-semibold mb-2" style="color: #b4a2fd">
+              Mensaje Único
+            </h4>
+            <p class="text-sm opacity-80" style="color: #b4a2fd">
+              Cada día recibes un mensaje personalizado
+            </p>
+          </div>
+
+          <div class="fortune-info-item">
+            <i class="fas fa-heart text-2xl mb-3" style="color: #ff69b4"></i>
+            <h4 class="font-semibold mb-2" style="color: #b4a2fd">
+              Sabiduría Ancestral
+            </h4>
+            <p class="text-sm opacity-80" style="color: #b4a2fd">
+              Consejos basados en tradiciones místicas
+            </p>
+          </div>
+
+          <div class="fortune-info-item">
+            <i class="fas fa-sun text-2xl mb-3" style="color: #ffa500"></i>
+            <h4 class="font-semibold mb-2" style="color: #b4a2fd">
+              Energía Positiva
+            </h4>
+            <p class="text-sm opacity-80" style="color: #b4a2fd">
+              Mensajes para elevar tu vibración diaria
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nueva Sección: Descripción Oficial -->
+    <section
+      id="guia-magica"
+      class="official-description-section py-16 lg:py-20 px-4 lg:px-8 relative overflow-hidden"
+      style="
+        background: linear-gradient(
+          135deg,
+          #100820 0%,
+          #1a1760 50%,
+          #100820 100%
+        );
+      "
+    >
+      <!-- Partículas de fondo -->
+      <div class="absolute inset-0 pointer-events-none">
+        <div class="official-description-particle particle-1"></div>
+        <div class="official-description-particle particle-2"></div>
+        <div class="official-description-particle particle-3"></div>
+        <div class="official-description-particle particle-4"></div>
+        <div class="official-description-particle particle-5"></div>
+      </div>
+
+      <div class="max-w-6xl mx-auto relative z-10">
+        <!-- Header de la sección -->
+        <div class="text-center mb-12 lg:mb-16">
+          <div class="inline-block mb-6">
+            <i
+              class="fas fa-eye text-4xl lg:text-5xl mystical-icon"
+              style="color: #b4a2fd"
+            ></i>
+          </div>
+          <h2
+            class="text-3xl lg:text-5xl xl:text-6xl font-normal mb-6 lg:mb-8 text-glow official-title"
+            style="color: #b4a2fd"
+          >
+            Tu Guía Mágica y Espiritual
+          </h2>
+          <div
+            class="w-24 h-1 bg-gradient-to-r from-transparent via-purple-400 to-transparent mx-auto mb-8"
+          ></div>
+        </div>
+
+        <!-- Contenido principal -->
+        <div
+          class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center"
+        >
+          <!-- Columna izquierda - Descripción -->
+          <div class="lg:col-span-7 space-y-6">
+            <p
+              class="text-lg lg:text-xl xl:text-2xl leading-relaxed font-light official-description-text"
+              style="color: #b4a2fd"
+            >
+              {{ officialDescription().text }}
+            </p>
+
+            <!-- Elementos destacados -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+              @for (highlight of officialDescription().highlights; track
+              highlight.icon) {
+              <div
+                class="flex items-center gap-3 p-4 rounded-lg border border-purple-400/20 bg-purple-500/5 backdrop-blur-sm official-highlight-item"
+              >
+                <i
+                  [class]="highlight.icon + ' text-xl'"
+                  [style.color]="highlight.color"
+                ></i>
+                <span
+                  class="text-sm lg:text-base font-medium"
+                  style="color: #b4a2fd"
+                >
+                  {{ highlight.text }}
+                </span>
+              </div>
+              }
+            </div>
+          </div>
+
+          <!-- Columna derecha - Elementos visuales -->
+          <div class="lg:col-span-5 text-center">
+            <!-- Cristal central con efectos -->
+            <div class="relative inline-block official-crystal-container">
+              <!-- Cristal principal -->
+              <div class="relative crystal-main-official">
+                <img
+                  src="../../../../assets/logo/logoMargenDorado.png"
+                  alt="Cristal Arcana"
+                  class="w-48 h-48 lg:w-64 lg:h-64 xl:w-80 xl:h-80 object-contain official-crystal-float"
+                />
+
+                <!-- Símbolos flotantes -->
+                <div class="official-symbol symbol-1">
+                  <i class="fas fa-star" style="color: #ffd700"></i>
+                </div>
+                <div class="official-symbol symbol-2">
+                  <i class="fas fa-moon" style="color: #e6e6fa"></i>
+                </div>
+                <div class="official-symbol symbol-3">
+                  <i class="fas fa-gem" style="color: #50c878"></i>
+                </div>
+                <div class="official-symbol symbol-4">
+                  <i class="fas fa-magic" style="color: #b4a2fd"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Frase inspiradora -->
+            <div class="mt-8">
+              <p
+                class="text-base lg:text-lg italic opacity-80 official-inspiration"
+                style="color: #b4a2fd"
+              >
+                "{{ officialDescription().inspiration }}"
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Call to Action sutil -->
+        <div class="text-center mt-12 lg:mt-16">
+          <button
+            class="px-6 py-3 border border-purple-400/40 rounded-lg hover:bg-purple-500/10 transition-all duration-300 official-cta-subtle"
+            style="color: #b4a2fd"
+            (click)="scrollToSection('el-despertar-llega-pronto')"
+          >
+            <i class="fas fa-arrow-down mr-2"></i>
+            Descubre más sobre el despertar
+          </button>
         </div>
       </div>
     </section>

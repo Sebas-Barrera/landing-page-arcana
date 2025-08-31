@@ -116,10 +116,26 @@ export interface BrandValue {
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit, OnDestroy {
+  registrationForm = {
+    name: '',
+    email: '',
+    whatsapp: '',
+  };
+
+  readonly registrationErrors = signal({
+    name: '',
+    email: '',
+    whatsapp: '',
+  });
+
+  readonly registrationLoading = signal(false);
+  readonly registrationSubmitted = signal(false);
+
   // ========================================
   // PROPIEDADES PÚBLICAS - ESTADO
   // ========================================
 
+  private scrollPosition: number = 0;
   readonly activeService = signal<string>('tarot');
   readonly currentTestimonial = signal<number>(0);
   isMobile: boolean = false;
@@ -465,7 +481,7 @@ export class AppComponent implements OnInit, OnDestroy {
   // ========================================
 
   readonly officialDescription = signal<OfficialDescriptionData>({
-    text: 'Arcana es tu guía mágica y espiritual, con mensajes, rituales y hechizos que abren caminos y elevan tu energía. Descubre el poder de cristales, hierbas y flores; atrae abundancia, amor, trabajo y bienestar. Accede a cursos, talleres, fases lunares y una comunidad mágica que te acompaña, además de un tarot interactivo para guiar tus decisiones.',
+    text: 'En Arcana encontrarás...',
     inspiration: 'Despierta tu poder: magia ancestral para la vida moderna',
     highlights: [
       {
@@ -719,12 +735,14 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   onViewPlans(): void {
+    this.saveScrollPosition();
     this.showMembershipModal.set(true);
     this.blockBodyScroll();
     this.hideNavbar(); // 👈 Agregar
   }
 
   onStartPremium(): void {
+    this.saveScrollPosition();
     this.showMembershipModal.set(true);
     this.blockBodyScroll();
     this.hideNavbar(); // 👈 Agregar
@@ -733,7 +751,15 @@ export class AppComponent implements OnInit, OnDestroy {
   onCloseMembershipModal(): void {
     this.showMembershipModal.set(false);
     this.unblockBodyScroll();
-    this.showNavbar(); // 👈 Agregar
+    this.showNavbar();
+
+    // Resetear formulario al cerrar
+    this.resetRegistrationForm();
+
+    // Restaurar posición del scroll
+    setTimeout(() => {
+      this.restoreScrollPosition();
+    }, 100);
   }
 
   onSelectPlan(planId: string): void {
@@ -744,19 +770,24 @@ export class AppComponent implements OnInit, OnDestroy {
     this.unblockBodyScroll();
     this.showNavbar();
 
-    // Si es un plan "Próximamente", redirigir al countdown
+    // Si es un plan "Próximamente", scroll suave a la sección
     const selectedPlan = this.membershipPlans().find(
       (plan) => plan.id === planId
     );
+
     if (selectedPlan && selectedPlan.buttonText === 'Próximamente') {
-      // Pequeño delay para que se cierre el modal primero
+      // Restaurar posición primero, luego hacer scroll suave
       setTimeout(() => {
-        this.scrollToSection('el-despertar-llega-pronto');
-      }, 300);
+        this.restoreScrollPosition();
+        setTimeout(() => {
+          this.scrollToSection('el-despertar-llega-pronto');
+        }, 200);
+      }, 100);
     } else {
-      // Aquí puedes agregar lógica para planes activos en el futuro
-      // Por ejemplo: redirigir a página de pago
-      console.log('Redirigir a proceso de pago para:', planId);
+      // Para planes activos, solo restaurar posición
+      setTimeout(() => {
+        this.restoreScrollPosition();
+      }, 100);
     }
   }
 
@@ -843,54 +874,30 @@ export class AppComponent implements OnInit, OnDestroy {
     this.validateEmail();
   }
 
-  private validateEmail(): void {
-    const email = this.earlyAccessEmail.trim();
-
-    this.emailError.set(false);
-    this.emailValid.set(false);
-    this.emailErrorMessage.set('');
-
+  validateEmail(): boolean {
+    const email = this.registrationForm.email.trim();
     if (!email) {
-      return;
+      this.registrationErrors.update((errors) => ({
+        ...errors,
+        email: 'El email es obligatorio',
+      }));
+      return false;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      this.emailError.set(true);
-      this.emailErrorMessage.set('Por favor ingresa un email válido');
-      return;
+      this.registrationErrors.update((errors) => ({
+        ...errors,
+        email: 'Por favor ingresa un email válido',
+      }));
+      return false;
     }
 
-    const username = email.split('@')[0];
-    if (username.length < 3) {
-      this.emailError.set(true);
-      this.emailErrorMessage.set(
-        'El nombre de usuario debe tener al menos 3 caracteres'
-      );
-      return;
-    }
-
-    if (username.length > 30) {
-      this.emailError.set(true);
-      this.emailErrorMessage.set('El nombre de usuario es demasiado largo');
-      return;
-    }
-
-    if (/\.{2,}/.test(username)) {
-      this.emailError.set(true);
-      this.emailErrorMessage.set('No se permiten puntos consecutivos');
-      return;
-    }
-
-    if (username.startsWith('.') || username.endsWith('.')) {
-      this.emailError.set(true);
-      this.emailErrorMessage.set(
-        'El email no puede empezar o terminar con punto'
-      );
-      return;
-    }
-
-    this.emailValid.set(true);
+    this.registrationErrors.update((errors) => ({
+      ...errors,
+      email: '',
+    }));
+    return true;
   }
 
   submitEmail() {
@@ -1230,17 +1237,19 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private blockBodyScroll(): void {
     if (this.isBrowser) {
-      document.body.classList.add('modal-open');
-      // Alternativa más robusta si la primera no funciona:
-      // document.body.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${this.scrollPosition}px`;
+      document.body.style.width = '100%';
     }
   }
 
   private unblockBodyScroll(): void {
     if (this.isBrowser) {
-      document.body.classList.remove('modal-open');
-      // Alternativa más robusta si la primera no funciona:
-      // document.body.style.overflow = '';
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
     }
   }
 
@@ -1263,6 +1272,168 @@ export class AppComponent implements OnInit, OnDestroy {
       if (navbar) {
         navbar.classList.remove('navbar-modal-hidden');
       }
+    }
+  }
+
+  private saveScrollPosition(): void {
+    if (this.isBrowser) {
+      this.scrollPosition =
+        window.pageYOffset || document.documentElement.scrollTop;
+    }
+  }
+
+  private restoreScrollPosition(): void {
+    if (this.isBrowser && this.scrollPosition >= 0) {
+      window.scrollTo({
+        top: this.scrollPosition,
+        behavior: 'auto', // Instantáneo, sin animación
+      });
+    }
+  }
+
+  // ENVIO DE DATOS DE FORMULARIO
+  validateName(): boolean {
+    const name = this.registrationForm.name.trim();
+    if (!name) {
+      this.registrationErrors.update((errors) => ({
+        ...errors,
+        name: 'El nombre es obligatorio',
+      }));
+      return false;
+    }
+
+    this.registrationErrors.update((errors) => ({
+      ...errors,
+      name: '',
+    }));
+    return true;
+  }
+
+  validateWhatsApp(): boolean {
+    const whatsapp = this.registrationForm.whatsapp.trim();
+    if (!whatsapp) {
+      this.registrationErrors.update((errors) => ({
+        ...errors,
+        whatsapp: 'El WhatsApp es obligatorio',
+      }));
+      return false;
+    }
+
+    this.registrationErrors.update((errors) => ({
+      ...errors,
+      whatsapp: '',
+    }));
+    return true;
+  }
+
+  isRegistrationFormValid(): boolean {
+    const nameValid = this.validateName();
+    const emailValid = this.validateEmail();
+    const whatsappValid = this.validateWhatsApp();
+
+    return nameValid && emailValid && whatsappValid;
+  }
+
+  // Métodos para manejar cambios en inputs
+  onNameChange(): void {
+    this.validateName();
+  }
+
+  onEmailChangeRegistration(): void {
+    this.validateEmail();
+  }
+
+  onWhatsAppChange(): void {
+    this.validateWhatsApp();
+  }
+
+  // Envío del formulario de registro
+  onSubmitRegistration(event: Event): void {
+    event.preventDefault();
+
+    if (!this.isRegistrationFormValid()) {
+      return;
+    }
+
+    this.registrationLoading.set(true);
+
+    // Crear FormData para enviar
+    const formData = new FormData();
+    formData.append('name', this.registrationForm.name);
+    formData.append('email', this.registrationForm.email);
+    formData.append('whatsapp', this.registrationForm.whatsapp);
+
+    this.http
+      .post(this.googleScriptURL, formData, { responseType: 'text' })
+      .subscribe({
+        next: () => {
+          this.registrationLoading.set(false);
+          this.registrationSubmitted.set(true);
+
+          // 🎯 INICIAR DESCARGA AUTOMÁTICA DEL PDF
+          setTimeout(() => {
+            this.downloadPDF();
+          }, 500); // Pequeño delay para mejor UX
+
+          // Cerrar modal después de 4 segundos (más tiempo para ver el mensaje)
+          setTimeout(() => {
+            this.onCloseMembershipModal();
+          }, 4000);
+        },
+        error: (error) => {
+          this.registrationLoading.set(false);
+          console.error('Error al registrar:', error);
+
+          // Mostrar error general
+          this.registrationErrors.update((errors) => ({
+            ...errors,
+            email: 'Error al enviar el formulario. Intenta de nuevo.',
+          }));
+        },
+      });
+  }
+
+  // 👈 AGREGAR: Reset del formulario
+  private resetRegistrationForm(): void {
+    this.registrationForm = {
+      name: '',
+      email: '',
+      whatsapp: '',
+    };
+
+    this.registrationErrors.set({
+      name: '',
+      email: '',
+      whatsapp: '',
+    });
+
+    this.registrationSubmitted.set(false);
+    this.registrationLoading.set(false);
+  }
+
+  // PDF
+  private downloadPDF(): void {
+    if (!this.isBrowser) return;
+
+    try {
+      // Crear elemento anchor temporal para la descarga
+      const link = document.createElement('a');
+      link.href = '/assets/5-rituales-poderosos.pdf';
+      link.download = '5-Rituales-Poderosos-Arcana.pdf';
+      link.target = '_blank';
+
+      // Agregar al DOM temporalmente
+      document.body.appendChild(link);
+
+      // Iniciar descarga
+      link.click();
+
+      // Limpiar
+      document.body.removeChild(link);
+
+      console.log('Descarga del PDF iniciada');
+    } catch (error) {
+      console.error('Error al descargar PDF:', error);
     }
   }
 }

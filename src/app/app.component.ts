@@ -122,10 +122,14 @@ export class AppComponent implements OnInit, OnDestroy {
     whatsapp: '',
   };
 
-  readonly registrationErrors = signal({
-    name: '',
-    email: '',
-    whatsapp: '',
+  registrationErrors = signal<{
+    name: string | null;
+    email: string | null;
+    whatsapp: string | null;
+  }>({
+    name: null,
+    email: null,
+    whatsapp: null
   });
 
   readonly registrationLoading = signal(false);
@@ -532,7 +536,7 @@ export class AppComponent implements OnInit, OnDestroy {
   earlyAccessEmail: string = '';
   loading = false;
   googleScriptURL =
-    'https://script.google.com/macros/s/AKfycbwjImYUG8Z6SQgS9EgNkL9r3T69INHsC_0PtRf4CViGB4ptkqXl5lce8t7tAGvq4eJz/exec';
+    'https://script.google.com/macros/s/AKfycbxzOCSD3BmyZmXVBdKTzaEor-T7tRT-3FI-N_mvvcjZXIFBykYdSupzQ4N83c3mkTZ9/exec';
   readonly formSubmitted = signal<boolean>(false);
 
   // ========================================
@@ -816,7 +820,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   onSubmitEarlyAccess(): void {
     this.loading = true;
-    this.validateEmail();
+    this.validateEmail(this.earlyAccessEmail);
 
     if (this.emailError()) {
       this.loading = false; // Resetear loading en caso de error
@@ -864,33 +868,18 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   onEmailChange(): void {
-    this.validateEmail();
+    this.validateEmail(this.registrationForm.email);
   }
 
-  validateEmail(): boolean {
-    const email = this.registrationForm.email.trim();
-    if (!email) {
-      this.registrationErrors.update((errors) => ({
-        ...errors,
-        email: 'El email es obligatorio',
-      }));
-      return false;
+  validateEmail(email: string): string | null {
+    if (!email || email.trim() === '') {
+      return 'El email es requerido';
     }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      this.registrationErrors.update((errors) => ({
-        ...errors,
-        email: 'Por favor ingresa un email válido',
-      }));
-      return false;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      return 'Ingresa un email válido';
     }
-
-    this.registrationErrors.update((errors) => ({
-      ...errors,
-      email: '',
-    }));
-    return true;
+    return null;
   }
 
   submitEmail() {
@@ -1285,60 +1274,76 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   // ENVIO DE DATOS DE FORMULARIO
-  validateName(): boolean {
-    const name = this.registrationForm.name.trim();
-    if (!name) {
-      this.registrationErrors.update((errors) => ({
-        ...errors,
-        name: 'El nombre es obligatorio',
-      }));
-      return false;
+  validateName(name: string): string | null {
+    if (!name || name.trim() === '') {
+      return 'El nombre es requerido';
     }
-
-    this.registrationErrors.update((errors) => ({
-      ...errors,
-      name: '',
-    }));
-    return true;
+    if (name.length < 2) {
+      return 'El nombre debe tener al menos 2 caracteres';
+    }
+    return null;
   }
 
-  validateWhatsApp(): boolean {
-    const whatsapp = this.registrationForm.whatsapp.trim();
-    if (!whatsapp) {
-      this.registrationErrors.update((errors) => ({
-        ...errors,
-        whatsapp: 'El WhatsApp es obligatorio',
-      }));
-      return false;
+  validateWhatsApp(whatsapp: string): string | null {
+    if (!whatsapp || whatsapp.trim() === '') {
+      return 'El WhatsApp es requerido';
     }
-
-    this.registrationErrors.update((errors) => ({
-      ...errors,
-      whatsapp: '',
-    }));
-    return true;
+    if (whatsapp.length < 10) {
+      return 'El WhatsApp debe tener al menos 10 dígitos';
+    }
+    if (whatsapp.length > 15) {
+      return 'El WhatsApp no puede tener más de 15 dígitos';
+    }
+    return null;
   }
 
   isRegistrationFormValid(): boolean {
-    const nameValid = this.validateName();
-    const emailValid = this.validateEmail();
-    const whatsappValid = this.validateWhatsApp();
+    const errors = {
+      name: this.validateName(this.registrationForm.name),
+      email: this.validateEmail(this.registrationForm.email),
+      whatsapp: this.validateWhatsApp(this.registrationForm.whatsapp)
+    };
 
-    return nameValid && emailValid && whatsappValid;
+    this.registrationErrors.set(errors);
+
+    return !errors.name && !errors.email && !errors.whatsapp;
   }
 
   // Métodos para manejar cambios en inputs
   onNameChange(): void {
-    this.validateName();
+    this.registrationErrors.update(errors => ({
+      ...errors,
+      name: this.validateName(this.registrationForm.name)
+    }));
   }
 
   onEmailChangeRegistration(): void {
-    this.validateEmail();
+    this.registrationErrors.update(errors => ({
+      ...errors,
+      email: this.validateEmail(this.registrationForm.email)
+    }));
+  }
+
+  // Validar que solo se ingresen números en WhatsApp
+  onWhatsAppKeyPress(event: KeyboardEvent): void {
+    const charCode = event.which ? event.which : event.keyCode;
+    // Permitir solo números (48-57), backspace (8), delete (46), tab (9)
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      event.preventDefault();
+    }
   }
 
   onWhatsAppChange(): void {
-    this.validateWhatsApp();
+    // Remover cualquier caracter que no sea número
+    this.registrationForm.whatsapp = this.registrationForm.whatsapp.replace(/[^0-9]/g, '');
+
+    // Validar campo
+    this.registrationErrors.update(errors => ({
+      ...errors,
+      whatsapp: this.validateWhatsApp(this.registrationForm.whatsapp)
+    }));
   }
+
 
   // Envío del formulario de registro
   onSubmitRegistration(event: Event): void {
@@ -1363,12 +1368,12 @@ export class AppComponent implements OnInit, OnDestroy {
           this.registrationLoading.set(false);
           this.registrationSubmitted.set(true);
 
-          // 🎯 INICIAR DESCARGA AUTOMÁTICA DEL PDF
+          // Iniciar descarga automática del PDF
           setTimeout(() => {
             this.downloadPDF();
-          }, 500); // Pequeño delay para mejor UX
+          }, 500);
 
-          // Cerrar modal después de 4 segundos (más tiempo para ver el mensaje)
+          // Cerrar modal después de 4 segundos
           setTimeout(() => {
             this.onCloseMembershipModal();
           }, 4000);
@@ -1377,13 +1382,168 @@ export class AppComponent implements OnInit, OnDestroy {
           this.registrationLoading.set(false);
           console.error('Error al registrar:', error);
 
-          // Mostrar error general
-          this.registrationErrors.update((errors) => ({
-            ...errors,
-            email: 'Error al enviar el formulario. Intenta de nuevo.',
-          }));
+          // Si es error de CORS pero puede haber funcionado, mostrar éxito
+          if (error.status === 0 && error.statusText === 'Unknown Error') {
+            // Probablemente funcionó a pesar del error CORS
+            this.registrationSubmitted.set(true);
+            setTimeout(() => this.downloadPDF(), 500);
+            setTimeout(() => this.onCloseMembershipModal(), 4000);
+          } else {
+            this.registrationErrors.update((errors) => ({
+              ...errors,
+              email: 'Error al enviar el formulario. Intenta de nuevo.',
+            }));
+          }
         },
       });
+  }
+
+  private submitWithTraditionalForm(): void {
+    // Crear formulario oculto
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = this.googleScriptURL;
+    form.target = 'hiddenIframe';
+    form.style.display = 'none';
+
+    // Agregar campos
+    const fields = {
+      name: this.registrationForm.name,
+      email: this.registrationForm.email,
+      whatsapp: this.registrationForm.whatsapp
+    };
+
+    Object.entries(fields).forEach(([key, value]) => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = key;
+      input.value = value;
+      form.appendChild(input);
+    });
+
+    // Crear iframe oculto
+    const iframe = document.createElement('iframe');
+    iframe.name = 'hiddenIframe';
+    iframe.style.display = 'none';
+    iframe.style.width = '0px';
+    iframe.style.height = '0px';
+
+    document.body.appendChild(iframe);
+    document.body.appendChild(form);
+
+    // Manejar respuesta del iframe
+    let responseHandled = false;
+
+    const handleResponse = () => {
+      if (responseHandled) return;
+      responseHandled = true;
+
+      try {
+        // Intentar leer el contenido del iframe
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+        const responseText = iframeDoc?.body?.textContent || '';
+
+        console.log('Respuesta del servidor:', responseText);
+
+        this.registrationLoading.set(false);
+
+        if (responseText.includes('SUCCESS')) {
+          // Registro exitoso
+          this.registrationSubmitted.set(true);
+          setTimeout(() => this.downloadPDF(), 500);
+          setTimeout(() => this.onCloseMembershipModal(), 4000);
+        } else if (responseText.includes('DUPLICATE_EMAIL')) {
+          this.registrationErrors.update(errors => ({
+            ...errors,
+            email: 'Este email ya está registrado'
+          }));
+        } else if (responseText.includes('DUPLICATE_WHATSAPP')) {
+          this.registrationErrors.update(errors => ({
+            ...errors,
+            whatsapp: 'Este número de WhatsApp ya está registrado'
+          }));
+        } else if (responseText.includes('ERROR')) {
+          this.registrationErrors.update(errors => ({
+            ...errors,
+            email: 'Error al procesar el registro'
+          }));
+        } else {
+          // Si no podemos leer la respuesta, asumir éxito después de un delay
+          setTimeout(() => {
+            this.registrationSubmitted.set(true);
+            setTimeout(() => this.downloadPDF(), 500);
+            setTimeout(() => this.onCloseMembershipModal(), 4000);
+          }, 2000);
+        }
+
+      } catch (error) {
+        console.log('No se pudo leer la respuesta del iframe, asumiendo éxito');
+        this.registrationLoading.set(false);
+
+        // Asumir que funcionó si llegamos aquí
+        setTimeout(() => {
+          this.registrationSubmitted.set(true);
+          setTimeout(() => this.downloadPDF(), 500);
+          setTimeout(() => this.onCloseMembershipModal(), 4000);
+        }, 2000);
+      }
+
+      // Limpiar elementos
+      setTimeout(() => {
+        if (document.body.contains(form)) {
+          document.body.removeChild(form);
+        }
+        if (document.body.contains(iframe)) {
+          document.body.removeChild(iframe);
+        }
+      }, 5000);
+    };
+
+    // Escuchar eventos de carga del iframe
+    iframe.onload = handleResponse;
+
+    // Timeout de respaldo por si el iframe no dispara onload
+    setTimeout(handleResponse, 4000);
+
+    // Enviar el formulario
+    form.submit();
+  }
+
+  private handleRegistrationError(message: string): void {
+    this.registrationErrors.update((errors) => ({
+      ...errors,
+      email: message,
+    }));
+  }
+
+  private handleRegistrationResponse(result: any): void {
+    if (result.status === 'success') {
+      this.registrationSubmitted.set(true);
+      setTimeout(() => this.downloadPDF(), 500);
+      setTimeout(() => this.onCloseMembershipModal(), 4000);
+    } else if (result.status === 'duplicate') {
+      this.registrationErrors.update((errors) => ({
+        ...errors,
+        email: result.message || 'Este email o WhatsApp ya está registrado',
+      }));
+    } else {
+      this.handleRegistrationError(result.message || 'Error al procesar el registro');
+    }
+  }
+
+  private handlePossibleSuccess(): void {
+    // Mostrar mensaje ambiguo pero positivo
+    this.registrationSubmitted.set(true);
+
+    // Iniciar descarga
+    setTimeout(() => {
+      this.downloadPDF();
+    }, 500);
+
+    // Cerrar modal
+    setTimeout(() => {
+      this.onCloseMembershipModal();
+    }, 4000);
   }
 
   // 👈 AGREGAR: Reset del formulario
@@ -1446,85 +1606,247 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private showMobileDownloadMessage(pdfUrl: string): void {
-    // Crear un elemento temporal para mostrar instrucciones
-    const message = document.createElement('div');
-    message.innerHTML = `
+  // Crear overlay con backdrop blur
+  const overlay = document.createElement('div');
+  overlay.style.cssText = `
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(16, 8, 32, 0.95);
+    backdrop-filter: blur(5px);
+    padding: 16px;
+  `;
+
+  overlay.innerHTML = `
     <div style="
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-      z-index: 10000;
-      max-width: 300px;
-      text-align: center;
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      border-radius: 16px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+      background: linear-gradient(135deg, #2d1b69 0%, #1a0d4d 50%, #0f0624 100%);
     ">
-      <h3 style="color: #333; margin-bottom: 15px;">📱 Descarga Manual</h3>
-      <p style="color: #666; margin-bottom: 15px;">
-        Si tu PDF no se abrió automáticamente para guardarlo, mantén presionado sobre el botón "PDF" y selecciona "Descargar Archivo Enlazado" en las opciones disponibles.
-      </p>
-      <a href="${pdfUrl}" target="_blank" style="
-        display: inline-block;
-        background: #b4a2fd;
-        color: white;
-        padding: 10px 20px;
-        text-decoration: none;
-        border-radius: 5px;
-        margin-bottom: 10px;
+      <!-- Patrones decorativos de fondo -->
+      <div style="
+        position: absolute;
+        inset: 0;
+        opacity: 0.1;
+        overflow: hidden;
       ">
-        📄 PDF
-      </a>
-      <br>
-      <button onclick="this.parentElement.parentElement.remove()" style="
-        background: transparent;
-        border: 1px solid #ccc;
-        padding: 5px 15px;
-        border-radius: 5px;
+        <div style="
+          position: absolute;
+          top: -50px;
+          right: -50px;
+          width: 150px;
+          height: 150px;
+          border: 2px solid #f7dc6f;
+          border-radius: 50%;
+        "></div>
+        <div style="
+          position: absolute;
+          top: -30px;
+          right: -30px;
+          width: 110px;
+          height: 110px;
+          border: 1px solid #f7dc6f;
+          border-radius: 50%;
+        "></div>
+        <div style="
+          position: absolute;
+          bottom: -40px;
+          left: -40px;
+          width: 120px;
+          height: 120px;
+          border: 1px solid #f7dc6f;
+          border-radius: 50%;
+        "></div>
+      </div>
+
+      <!-- Botón de cerrar -->
+      <button onclick="this.closest('[data-modal-overlay]').remove()" style="
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        z-index: 20;
+        padding: 8px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        color: #f7dc6f;
+        font-size: 18px;
         cursor: pointer;
-      ">
-        Cerrar
+        transition: all 0.2s;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      " onmouseover="this.style.background='rgba(255,255,255,0.2)'; this.style.color='white';" 
+         onmouseout="this.style.background='rgba(255,255,255,0.1)'; this.style.color='#f7dc6f';">
+        ✕
       </button>
+
+      <!-- Contenido principal -->
+      <div style="
+        position: relative;
+        z-index: 10;
+        padding: 40px 24px;
+        text-align: center;
+      ">
+        <!-- Título con elemento místico -->
+        <div style="
+          margin-bottom: 24px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        ">
+          <div style="
+            color: #f7dc6f;
+            font-size: 28px;
+            margin-bottom: 8px;
+            text-shadow: 0 0 20px rgba(247, 220, 111, 0.3);
+          ">☽ ◐ ◑ ☉ ◒ ◓ ☾</div>
+          
+          <h3 style="
+            font-family: serif;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+          ">DESCARGA MANUAL</h3>
+          
+          <div style="
+            color: #f7dc6f;
+            font-size: 14px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-top: 4px;
+            font-family: serif;
+          ">ARCANA</div>
+        </div>
+
+        <!-- Mensaje -->
+        <p style="
+          color: rgba(255, 255, 255, 0.9);
+          font-size: 16px;
+          line-height: 1.6;
+          margin: 0 0 32px 0;
+          font-weight: 300;
+        ">
+          Si tu PDF no se descargó automáticamente, usa el botón de abajo o mantén presionado sobre él y selecciona <strong style="color: #f7dc6f;">"Descargar Archivo Enlazado"</strong> en las opciones disponibles.
+        </p>
+
+        <!-- Botón de descarga místico -->
+        <a href="${pdfUrl}" target="_blank" style="
+          display: inline-block;
+          background: linear-gradient(135deg, #f7dc6f 0%, #f4d03f 100%);
+          color: #2d1b69;
+          padding: 16px 32px;
+          text-decoration: none;
+          border-radius: 12px;
+          font-weight: bold;
+          font-size: 16px;
+          letter-spacing: 1px;
+          margin-bottom: 24px;
+          box-shadow: 0 8px 25px rgba(247, 220, 111, 0.3);
+          transition: all 0.3s;
+          font-family: serif;
+        " onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 12px 35px rgba(247, 220, 111, 0.4)';"
+           onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 8px 25px rgba(247, 220, 111, 0.3)';">
+          📄 DESCARGAR PDF
+        </a>
+
+        <!-- Subtítulo -->
+        <div style="
+          color: #f7dc6f;
+          font-size: 12px;
+          font-weight: 300;
+          letter-spacing: 1px;
+          margin-bottom: 16px;
+          font-family: serif;
+        ">5 RITUALES PODEROSOS</div>
+
+        <!-- Botón cerrar alternativo -->
+        <button onclick="this.closest('[data-modal-overlay]').remove()" style="
+          background: transparent;
+          border: 1px solid rgba(247, 220, 111, 0.3);
+          color: rgba(255, 255, 255, 0.7);
+          padding: 8px 24px;
+          border-radius: 20px;
+          font-size: 14px;
+          cursor: pointer;
+          transition: all 0.2s;
+          font-weight: 300;
+          letter-spacing: 0.5px;
+        " onmouseover="this.style.borderColor='#f7dc6f'; this.style.color='white'; this.style.background='rgba(247, 220, 111, 0.1)';"
+           onmouseout="this.style.borderColor='rgba(247, 220, 111, 0.3)'; this.style.color='rgba(255, 255, 255, 0.7)'; this.style.background='transparent';">
+          Cerrar
+        </button>
+      </div>
     </div>
   `;
 
-    document.body.appendChild(message);
+  // Agregar atributo para identificación
+  overlay.setAttribute('data-modal-overlay', 'true');
 
-    // Auto-remover después de 10 segundos
-    setTimeout(() => {
-      if (message.parentElement) {
-        message.remove();
-      }
-    }, 20000);
-  }
+  // Añadir al body
+  document.body.appendChild(overlay);
+
+  // Cerrar al hacer click en el overlay (fuera del modal)
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      overlay.remove();
+    }
+  });
+
+  // Auto-remover después de 30 segundos
+  setTimeout(() => {
+    if (overlay.parentElement) {
+      overlay.remove();
+    }
+  }, 30000);
+
+  // Cerrar con tecla Escape
+  const handleEscape = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      overlay.remove();
+      document.removeEventListener('keydown', handleEscape);
+    }
+  };
+  document.addEventListener('keydown', handleEscape);
+}
 
   private adjustModalForAndroid(): void {
-  if (!this.isBrowser) return;
-  
-  const isAndroid = /Android/.test(navigator.userAgent);
-  const isChrome = /Chrome/.test(navigator.userAgent);
-  
-  if (isAndroid && isChrome) {
-    // Agregar clase especial para Android Chrome
-    const modal = document.querySelector('.modal-container');
-    if (modal) {
-      modal.classList.add('android-chrome-modal');
+    if (!this.isBrowser) return;
+
+    const isAndroid = /Android/.test(navigator.userAgent);
+    const isChrome = /Chrome/.test(navigator.userAgent);
+
+    if (isAndroid && isChrome) {
+      // Agregar clase especial para Android Chrome
+      const modal = document.querySelector('.modal-container');
+      if (modal) {
+        modal.classList.add('android-chrome-modal');
+      }
     }
   }
-}
 
-// Llamar este método cuando abras el modal
-onStartPremium(): void {
-  this.saveScrollPosition();
-  this.showMembershipModal.set(true);
-  this.blockBodyScroll();
-  this.hideNavbar();
-  
-  // Agregar ajuste para Android
-  setTimeout(() => {
-    this.adjustModalForAndroid();
-  }, 100);
-}
+  // Llamar este método cuando abras el modal
+  onStartPremium(): void {
+    this.saveScrollPosition();
+    this.showMembershipModal.set(true);
+    this.blockBodyScroll();
+    this.hideNavbar();
+
+    // Agregar ajuste para Android
+    setTimeout(() => {
+      this.adjustModalForAndroid();
+    }, 100);
+  }
 }

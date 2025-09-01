@@ -1231,203 +1231,299 @@
     </section>
 
     <!-- Modal de Registro -->
-<div
-  *ngIf="showMembershipModal()"
-  class="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto"
-  style="
-    background-color: rgba(16, 8, 32, 0.95);
-    backdrop-filter: blur(5px);
-    padding: env(safe-area-inset-top, 8px) env(safe-area-inset-right, 8px) env(safe-area-inset-bottom, 8px) env(safe-area-inset-left, 8px);
-  "
-  (click)="onCloseMembershipModal()"
->
-  <!-- Contenedor adaptivo sin header -->
-   <div
-    class="modal-container relative w-full rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden"
-    (click)="$event.stopPropagation()"
-    
-    style="background: transparent"
-  >
-    <!-- Layout adaptivo -->
-    <div class="modal-content flex flex-col lg:grid lg:grid-cols-2 h-full">
-      
-      <!-- Columna izquierda - Diseño místico con botón cerrar -->
+    <div
+      *ngIf="showMembershipModal()"
+      class="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto"
+      style="
+        background-color: rgba(16, 8, 32, 0.95);
+        backdrop-filter: blur(5px);
+        padding: env(safe-area-inset-top, 8px) env(safe-area-inset-right, 8px)
+          env(safe-area-inset-bottom, 8px) env(safe-area-inset-left, 8px);
+      "
+      (click)="onCloseMembershipModal()"
+    >
+      <!-- Contenedor adaptivo sin header -->
       <div
-        class="modal-left relative flex flex-col items-center justify-center text-center overflow-hidden"
-        style="background: linear-gradient(135deg, #2d1b69 0%, #1a0d4d 50%, #0f0624 100%);"
+        class="modal-container relative w-full rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden"
+        (click)="$event.stopPropagation()"
+        style="background: transparent"
       >
-        <!-- Botón de cerrar en la esquina superior derecha -->
-        <button
-          (click)="onCloseMembershipModal()"
-          class="absolute top-4 right-4 z-20 p-2 hover:bg-white/10 rounded-full transition-colors duration-200 text-yellow-400 hover:text-white"
-        >
-          <i class="fas fa-times text-xl"></i>
-        </button>
+        <!-- Layout adaptivo -->
+        <div class="modal-content flex flex-col lg:grid lg:grid-cols-2 h-full">
+          <!-- Columna izquierda - Diseño místico con botón cerrar -->
+          <div
+            class="modal-left relative flex flex-col items-center justify-center text-center overflow-hidden"
+            style="
+              background: linear-gradient(
+                135deg,
+                #2d1b69 0%,
+                #1a0d4d 50%,
+                #0f0624 100%
+              );
+            "
+          >
+            <!-- Botón de cerrar en la esquina superior derecha -->
+            <button
+              (click)="onCloseMembershipModal()"
+              class="absolute top-4 right-4 z-20 p-2 hover:bg-white/10 rounded-full transition-colors duration-200 text-yellow-400 hover:text-white"
+            >
+              <i class="fas fa-times text-xl"></i>
+            </button>
 
-        
-
-        <!-- Contenido principal -->
-        <div class="modal-mystical-content relative z-10 flex flex-col items-center">
-          <!-- Título superior con más espacio por la X -->
-          <h1 class="modal-subtitle text-yellow-400 font-light tracking-wide mb-4 sm:mb-8 lg:mb-12 sm:mt-0" style="font-family: serif;">
-            DESPIERTA TU PODER
-          </h1>
-
-          <!-- Logo central -->
-          <div class="modal-logo-container mb-1 sm:mb-8 lg:mb-12 relative">
-            <img
-              src="../../../../assets/logo/logoMargenDorado.png"
-              alt="Arcana Logo"
-              class="modal-logo object-contain filter drop-shadow-2xl"
-            />
-            <div class="absolute inset-0 rounded-full bg-gradient-radial from-yellow-400/20 via-transparent to-transparent animate-pulse"></div>
-          </div>
-
-          <!-- Título principal -->
-          <h2 class="modal-title text-white font-bold tracking-wider mb-2 sm:mb-4" style="font-family: serif; text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);">
-            ARCANA
-          </h2>
-
-          <!-- Subtítulo -->
-          <p class="modal-description text-yellow-400/90 font-light tracking-wide mb-4 sm:mb-8 lg:mb-12 max-w-xs" style="font-family: serif; line-height: 1.6;">
-            MAGIA ANCESTRAL PARA LA VIDA DIARIA
-          </p>
-
-          <!-- Fecha -->
-          <div class="modal-date text-yellow-400 font-light" style="font-family: serif;">
-            15 OCTUBRE 2025
-          </div><br>
-        </div>
-
-        <!-- Patrones decorativos -->
-        <div class="modal-patterns absolute left-1/2 transform -translate-x-1/2 flex items-center text-yellow-400/60">
-          <span class="text-xs sm:text-sm">☽</span>
-          <span class="text-[10px] sm:text-xs mx-1">◐</span>
-          <span class="text-xs sm:text-sm mx-1">◑</span>
-          <span class="text-sm sm:text-lg mx-1">☉</span>
-          <span class="text-xs sm:text-sm mx-1">◒</span>
-          <span class="text-[10px] sm:text-xs mx-1">◓</span>
-          <span class="text-xs sm:text-sm">☾</span>
-        </div>
-      </div>
-
-      <!-- Columna derecha - Formulario -->
-      <div class="modal-right flex flex-col bg-gray-50 relative">
-        <!-- Patrones decorativos de fondo -->
-        <div class="absolute inset-0 opacity-5 overflow-hidden">
-          <div class="absolute top-0 right-0 w-48 sm:w-96 h-48 sm:h-96 transform translate-x-16 sm:translate-x-32 -translate-y-16 sm:-translate-y-32">
-            <div class="w-full h-full border-2 sm:border-4 border-gray-300 rounded-full"></div>
-            <div class="absolute top-4 sm:top-8 left-4 sm:left-8 right-4 sm:right-8 bottom-4 sm:bottom-8 border sm:border-2 border-gray-300 rounded-full"></div>
-            <div class="absolute top-8 sm:top-16 left-8 sm:left-16 right-8 sm:right-16 bottom-8 sm:bottom-16 border border-gray-300 rounded-full"></div>
-          </div>
-        </div>
-
-        <div class="modal-form-container relative z-10 w-full max-w-md mx-auto">
-          <!-- Título del formulario -->
-          <h3 class="modal-form-title font-bold text-gray-700 text-center tracking-wider" style="font-family: serif; color: #4a5568;">
-            REGÍSTRATE
-          </h3>
-
-          <!-- Formulario -->
-          <form class="modal-form" (ngSubmit)="onSubmitRegistration($event)">
-            <!-- Campo Nombre -->
-            <div>
-              <input
-                type="text"
-                [(ngModel)]="registrationForm.name"
-                (input)="onNameChange()"
-                name="name"
-                placeholder="*Nombre"
-                class="modal-input w-full border-2 rounded-lg focus:outline-none transition-colors duration-300 text-gray-700 placeholder-gray-500"
-                [class.border-red-400]="registrationErrors().name"
-                [class.border-gray-300]="!registrationErrors().name"
-                [class.focus:border-red-500]="registrationErrors().name"
-                [class.focus:border-gray-400]="!registrationErrors().name"
-                style="font-size: 16px; background-color: rgba(255, 255, 255, 0.8);"
-              />
-              <div *ngIf="registrationErrors().name" class="text-red-500 text-xs mt-1">
-                {{ registrationErrors().name }}
-              </div>
-            </div>
-
-            <!-- Campo Email -->
-            <div>
-              <input
-                type="email"
-                [(ngModel)]="registrationForm.email"
-                (input)="onEmailChangeRegistration()"
-                name="email"
-                placeholder="*Email"
-                class="modal-input w-full border-2 rounded-lg focus:outline-none transition-colors duration-300 text-gray-700 placeholder-gray-500"
-                [class.border-red-400]="registrationErrors().email"
-                [class.border-gray-300]="!registrationErrors().email"
-                [class.focus:border-red-500]="registrationErrors().email"
-                [class.focus:border-gray-400]="!registrationErrors().email"
-                style="font-size: 16px; background-color: rgba(255, 255, 255, 0.8);"
-              />
-              <div *ngIf="registrationErrors().email" class="text-red-500 text-xs mt-1">
-                {{ registrationErrors().email }}
-              </div>
-            </div>
-
-            <!-- Campo WhatsApp -->
-            <div>
-              <input
-                type="tel"
-                [(ngModel)]="registrationForm.whatsapp"
-                (input)="onWhatsAppChange()"
-                name="whatsapp"
-                placeholder="*WhatsApp"
-                class="modal-input w-full border-2 rounded-lg focus:outline-none transition-colors duration-300 text-gray-700 placeholder-gray-500"
-                [class.border-red-400]="registrationErrors().whatsapp"
-                [class.border-gray-300]="!registrationErrors().whatsapp"
-                [class.focus:border-red-500]="registrationErrors().whatsapp"
-                [class.focus:border-gray-400]="!registrationErrors().whatsapp"
-                style="font-size: 16px; background-color: rgba(255, 255, 255, 0.8);"
-              />
-              <div *ngIf="registrationErrors().whatsapp" class="text-red-500 text-xs mt-1">
-                {{ registrationErrors().whatsapp }}
-              </div>
-            </div>
-
-            <!-- Botón de envío -->
-            <div class="modal-button-container">
-              <!-- Mensaje de éxito (después de enviar) -->
-              <div *ngIf="registrationSubmitted()" class="text-center py-4">
-                <i class="fas fa-check-circle text-3xl sm:text-4xl mb-4" style="color: #50c878"></i>
-                <h4 class="text-lg sm:text-xl font-medium mb-2" style="color: #4a5568">¡Registro Exitoso!</h4>
-                <p class="opacity-90 mb-3 text-sm sm:text-base" style="color: #4a5568">Tu descarga debería comenzar automáticamente.</p>
-                <div class="flex items-center justify-center gap-2 text-xs sm:text-sm opacity-75" style="color: #4a5568">
-                  <i class="fas fa-download"></i>
-                  <span class="text-center">Descargando: 5 Rituales Poderosos - Arcana.pdf</span>
-                </div>
-              </div>
-
-              <!-- Botón de envío (antes de enviar) -->
-              <button
-                *ngIf="!registrationSubmitted()"
-                type="submit"
-                [disabled]="registrationLoading()"
-                class="modal-submit-button w-full font-semibold text-gray-800 transition-all duration-300 hover:scale-105 active:scale-95 rounded-lg shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-                style="background: linear-gradient(135deg, #f7dc6f 0%, #f4d03f 100%);"
+            <!-- Contenido principal -->
+            <div
+              class="modal-mystical-content relative z-10 flex flex-col items-center"
+            >
+              <!-- Título superior con más espacio por la X -->
+              <h1
+                class="modal-subtitle text-yellow-400 font-light tracking-wide mb-4 sm:mb-8 lg:mb-12 sm:mt-0"
+                style="font-family: serif"
               >
-                <span *ngIf="!registrationLoading()">Descarga tu regalo aquí</span>
-                <span *ngIf="registrationLoading()" class="flex items-center justify-center gap-2">
-                  <div class="spinner-small"></div>
-                  Enviando...
-                </span>
-              </button>
-            </div>
-          </form>
+                DESPIERTA TU PODER
+              </h1>
 
-          <!-- Texto legal -->
-          <p class="modal-legal-text text-xs sm:text-sm text-gray-600 mt-4 sm:mt-6 text-center leading-relaxed px-1 sm:px-0 font-medium">
-            Al registrarte aceptas recibir información sobre Arcana y nuestros servicios.
-          </p>
+              <!-- Logo central -->
+              <div class="modal-logo-container mb-1 sm:mb-8 lg:mb-12 relative">
+                <img
+                  src="../../../../assets/logo/logoMargenDorado.png"
+                  alt="Arcana Logo"
+                  class="modal-logo object-contain filter drop-shadow-2xl"
+                />
+                <div
+                  class="absolute inset-0 rounded-full bg-gradient-radial from-yellow-400/20 via-transparent to-transparent animate-pulse"
+                ></div>
+              </div>
+
+              <!-- Título principal -->
+              <h2
+                class="modal-title text-white font-bold tracking-wider mb-2 sm:mb-4"
+                style="
+                  font-family: serif;
+                  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+                "
+              >
+                ARCANA
+              </h2>
+
+              <!-- Subtítulo -->
+              <p
+                class="modal-description text-yellow-400/90 font-light tracking-wide mb-4 sm:mb-8 lg:mb-12 max-w-xs"
+                style="font-family: serif; line-height: 1.6"
+              >
+                COMIENZA TU VIAJE MÍSTICO HOY MISMO.
+              </p>
+
+              <!-- Fecha -->
+              <div
+                class="modal-date text-yellow-400 font-light"
+                style="font-family: serif"
+              >
+                15 OCTUBRE 2025
+              </div>
+              <br />
+            </div>
+
+            <!-- Patrones decorativos -->
+            <div
+              class="modal-patterns absolute left-1/2 transform -translate-x-1/2 flex items-center text-yellow-400/60"
+            >
+              <span class="text-xs sm:text-sm">☽</span>
+              <span class="text-[10px] sm:text-xs mx-1">◐</span>
+              <span class="text-xs sm:text-sm mx-1">◑</span>
+              <span class="text-sm sm:text-lg mx-1">☉</span>
+              <span class="text-xs sm:text-sm mx-1">◒</span>
+              <span class="text-[10px] sm:text-xs mx-1">◓</span>
+              <span class="text-xs sm:text-sm">☾</span>
+            </div>
+          </div>
+
+          <!-- Columna derecha - Formulario -->
+          <div class="modal-right flex flex-col bg-gray-50 relative">
+            <!-- Patrones decorativos de fondo -->
+            <div class="absolute inset-0 opacity-5 overflow-hidden">
+              <div
+                class="absolute top-0 right-0 w-48 sm:w-96 h-48 sm:h-96 transform translate-x-16 sm:translate-x-32 -translate-y-16 sm:-translate-y-32"
+              >
+                <div
+                  class="w-full h-full border-2 sm:border-4 border-gray-300 rounded-full"
+                ></div>
+                <div
+                  class="absolute top-4 sm:top-8 left-4 sm:left-8 right-4 sm:right-8 bottom-4 sm:bottom-8 border sm:border-2 border-gray-300 rounded-full"
+                ></div>
+                <div
+                  class="absolute top-8 sm:top-16 left-8 sm:left-16 right-8 sm:right-16 bottom-8 sm:bottom-16 border border-gray-300 rounded-full"
+                ></div>
+              </div>
+            </div>
+
+            <div
+              class="modal-form-container relative z-10 w-full max-w-md mx-auto"
+            >
+              <!-- Título del formulario -->
+              <h3
+                class="modal-form-title font-bold text-gray-700 text-center tracking-wider"
+                style="font-family: serif; color: #4a5568"
+              >
+                REGÍSTRATE
+              </h3>
+
+              <!-- Formulario -->
+              <form
+                class="modal-form"
+                (ngSubmit)="onSubmitRegistration($event)"
+              >
+                <!-- Campo Nombre -->
+                <div>
+                  <input
+                    type="text"
+                    [(ngModel)]="registrationForm.name"
+                    (input)="onNameChange()"
+                    name="name"
+                    placeholder="*Nombre"
+                    class="modal-input w-full border-2 rounded-lg focus:outline-none transition-colors duration-300 text-gray-700 placeholder-gray-500"
+                    [class.border-red-400]="registrationErrors().name"
+                    [class.border-gray-300]="!registrationErrors().name"
+                    [class.focus:border-red-500]="registrationErrors().name"
+                    [class.focus:border-gray-400]="!registrationErrors().name"
+                    style="
+                      font-size: 16px;
+                      background-color: rgba(255, 255, 255, 0.8);
+                    "
+                  />
+                  <div
+                    *ngIf="registrationErrors().name"
+                    class="text-red-500 text-xs mt-1"
+                  >
+                    {{ registrationErrors().name }}
+                  </div>
+                </div>
+
+                <!-- Campo Email -->
+                <div>
+                  <input
+                    type="email"
+                    [(ngModel)]="registrationForm.email"
+                    (input)="onEmailChangeRegistration()"
+                    name="email"
+                    placeholder="*Email"
+                    class="modal-input w-full border-2 rounded-lg focus:outline-none transition-colors duration-300 text-gray-700 placeholder-gray-500"
+                    [class.border-red-400]="registrationErrors().email"
+                    [class.border-gray-300]="!registrationErrors().email"
+                    [class.focus:border-red-500]="registrationErrors().email"
+                    [class.focus:border-gray-400]="!registrationErrors().email"
+                    style="
+                      font-size: 16px;
+                      background-color: rgba(255, 255, 255, 0.8);
+                    "
+                  />
+                  <div
+                    *ngIf="registrationErrors().email"
+                    class="text-red-500 text-xs mt-1"
+                  >
+                    {{ registrationErrors().email }}
+                  </div>
+                </div>
+
+                <!-- Campo WhatsApp -->
+                <div>
+                  <input
+                    type="tel"
+                    [(ngModel)]="registrationForm.whatsapp"
+                    (input)="onWhatsAppChange()"
+                    (keypress)="onWhatsAppKeyPress($event)"
+                    name="whatsapp"
+                    placeholder="*WhatsApp (solo números)"
+                    maxlength="15"
+                    class="modal-input w-full border-2 rounded-lg focus:outline-none transition-colors duration-300 text-gray-700 placeholder-gray-500"
+                    [class.border-red-400]="registrationErrors().whatsapp"
+                    [class.border-gray-300]="!registrationErrors().whatsapp"
+                    [class.focus:border-red-500]="registrationErrors().whatsapp"
+                    [class.focus:border-gray-400]="
+                      !registrationErrors().whatsapp
+                    "
+                    style="
+                      font-size: 16px;
+                      background-color: rgba(255, 255, 255, 0.8);
+                    "
+                  />
+                  <div
+                    *ngIf="registrationErrors().whatsapp"
+                    class="text-red-500 text-xs mt-1"
+                  >
+                    {{ registrationErrors().whatsapp }}
+                  </div>
+                </div>
+
+                <!-- Botón de envío -->
+                <div class="modal-button-container">
+                  <!-- Mensaje de éxito (después de enviar) -->
+                  <div *ngIf="registrationSubmitted()" class="text-center py-4">
+                    <i
+                      class="fas fa-check-circle text-3xl sm:text-4xl mb-4"
+                      style="color: #50c878"
+                    ></i>
+                    <h4
+                      class="text-lg sm:text-xl font-medium mb-2"
+                      style="color: #4a5568"
+                    >
+                      ¡Registro Exitoso!
+                    </h4>
+                    <p
+                      class="opacity-90 mb-3 text-sm sm:text-base"
+                      style="color: #4a5568"
+                    >
+                      Tu descarga debería comenzar automáticamente.
+                    </p>
+                    <div
+                      class="flex items-center justify-center gap-2 text-xs sm:text-sm opacity-75"
+                      style="color: #4a5568"
+                    >
+                      <i class="fas fa-download"></i>
+                      <span class="text-center"
+                        >Descargando: 5 Rituales Poderosos - Arcana.pdf</span
+                      >
+                    </div>
+                  </div>
+
+                  <!-- Botón de envío (antes de enviar) -->
+                  <button
+                    *ngIf="!registrationSubmitted()"
+                    type="submit"
+                    [disabled]="registrationLoading()"
+                    class="modal-submit-button w-full font-semibold text-gray-800 transition-all duration-300 hover:scale-105 active:scale-95 rounded-lg shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        #f7dc6f 0%,
+                        #f4d03f 100%
+                      );
+                    "
+                  >
+                    <span *ngIf="!registrationLoading()"
+                      >Registrate y Obten tu Regalo</span
+                    >
+                    <span
+                      *ngIf="registrationLoading()"
+                      class="flex items-center justify-center gap-2"
+                    >
+                      <div class="spinner-small"></div>
+                      Enviando...
+                    </span>
+                  </button>
+                </div>
+              </form>
+
+              <!-- Texto legal -->
+              <p
+                class="modal-legal-text text-xs sm:text-sm text-gray-600 mt-4 sm:mt-6 text-center leading-relaxed px-1 sm:px-0 font-medium"
+              >
+                Al registrarte aceptas recibir información sobre Arcana y
+                nuestros servicios.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
   </div>
 </div>

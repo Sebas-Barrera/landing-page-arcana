@@ -72,6 +72,13 @@
           >
             Inicio
           </a>
+          <a
+            class="nav-link text-xs lg:text-sm px-2 py-1 lg:px-3 lg:py-2 hover:text-white hover:bg-opacity-20 hover:bg-purple-500 rounded-md transition-all duration-300 cursor-pointer"
+            style="color: #b4a2fd"
+            (click)="scrollToSection('el-despertar-llega-pronto')"
+          >
+            Lanzamiento
+          </a>
 
           <a
             class="nav-link text-xs lg:text-sm px-2 py-1 lg:px-3 lg:py-2 hover:text-white hover:bg-opacity-20 hover:bg-purple-500 rounded-md transition-all duration-300 cursor-pointer"
@@ -91,9 +98,9 @@
           <a
             class="nav-link text-xs lg:text-sm px-2 py-1 lg:px-3 lg:py-2 hover:text-white hover:bg-opacity-20 hover:bg-purple-500 rounded-md transition-all duration-300 cursor-pointer"
             style="color: #b4a2fd"
-            (click)="scrollToSection('servicios')"
+            (click)="scrollToSection('membresias')"
           >
-            Servicios
+            Membresías
           </a>
         </div>
       </div>
@@ -234,7 +241,8 @@
         <span class="opacity-70">¿Necesitas más información?</span>
         <button
           class="underline hover:text-white transition-all duration-300 cursor-pointer flex items-center gap-1"
-          (click)="onViewPlans()"
+          (click)="scrollToSection('membresias')"
+          (click)="scrollToSection('membresias')"
         >
           <i class="fas fa-info-circle text-xs"></i>
           Ver todas las membresías
@@ -485,7 +493,7 @@
 
     <section
       id="mensaje-fortuna"
-      class="fortune-cat-section py-16 lg:py-20 px-4 lg:px-8 relative overflow-hidden"
+      class="py-16 lg:py-20 px-4 lg:px-8 relative"
       style="background-color: #100820"
     >
       <!-- Partículas de fondo -->
@@ -782,18 +790,7 @@
     </div> -->
 
     <!-- Contenido de Servicios -->
-    <!-- Contenido de Servicios -->
-    <section
-      class="membership-section-container"
-      style="
-        background-color: #b4a2fd;
-        color: #100820;
-        min-height: 50vh;
-        padding: 3rem 1.5rem;
-      "
-      id="servicios"
-    >
-      <!-- <div
+    <!-- <div
         class="lg:border-r lg:pr-8 xl:pr-12"
         style="border-color: rgba(16, 8, 32, 0.2)"
       >
@@ -827,206 +824,175 @@
         </div>
       </div> -->
 
-      <!-- Divisor simple solo para móviles -->
-      <!-- @if (isMobile) {
+    <!-- Divisor simple solo para móviles -->
+    <!-- @if (isMobile) {
       <hr class="mobile-only-divider" />
       } -->
-      <!-- Contenedor centrado con CSS inline para mayor especificidad -->
+    <!-- Contenedor centrado con CSS inline para mayor especificidad -->
+
+    <!-- Sección de Membresías Completa -->
+    <section
+      id="membresias"
+      class="py-16 lg:py-20 px-4 lg:px-8 relative overflow-hidden"
+    >
       <div
-        class="membership-content-wrapper"
-        style="
-          width: 100%;
-          max-width: 72rem;
-          margin: 0 auto;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          text-align: center;
-        "
+        class="relative w-full max-w-5xl mx-auto bg-gradient-to-br from-purple-900/95 to-indigo-900/95 backdrop-blur-xl rounded-2xl shadow-2xl"
+        style="border: 2px solid #b4a2fd"
       >
-        <h2
-          class="text-3xl lg:text-4xl xl:text-5xl font-normal mb-8 lg:mb-12"
-          style="color: #100820; text-align: center; width: 100%"
-        >
-          Membresías
-        </h2>
-
-        <!-- Grid de 2 membresías centrado con CSS inline -->
+        <!-- Header de la Sección -->
         <div
-          class="membership-grid"
-          style="
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-            width: 100%;
-            max-width: 56rem;
-            margin-left: auto;
-            margin-right: auto;
-          "
+          class="backdrop-blur-lg px-6 py-4 border-b border-purple-400/30 rounded-t-2xl"
+          style="background-color: #0f0820"
         >
-          <!-- Media queries para responsive se manejan con CSS -->
-          <style>
-            @media (min-width: 768px) {
-              .membership-grid {
-                grid-template-columns: 1fr 1fr !important;
-                gap: 2rem !important;
-              }
-            }
-            @media (min-width: 1024px) {
-              .membership-grid {
-                gap: 2rem !important;
-              }
-            }
-
-            /* Forzar centrado */
-            .membership-section-container {
-              display: flex !important;
-              align-items: center !important;
-              justify-content: center !important;
-            }
-
-            .membership-content-wrapper {
-              display: flex !important;
-              flex-direction: column !important;
-              align-items: center !important;
-              justify-content: center !important;
-              text-align: center !important;
-            }
-          </style>
-
-          <!-- Membresía Básica -->
-          <div
-            class="border-2 border-purple-600 rounded-xl p-15 bg-purple-50/10 backdrop-blur-sm h-full flex flex-col"
-            style="min-height: 400px"
-          >
-            <div class="text-center mb-6">
-              <i
-                class="fas fa-star text-4xl lg:text-5xl opacity-60 mb-4"
-                style="color: #100820"
-              ></i>
-              <h3
-                class="text-2xl lg:text-3xl font-normal mb-3"
-                style="color: #100820"
+          <div class="flex items-left justify-left">
+            <div class="text-left">
+              <h2
+                class="text-2xl md:text-3xl font-bold text-white flex items-center justify-center gap-3"
               >
-                Básica
-              </h3>
-              <div class="text-3xl font-bold mb-2" style="color: #100820">
-                $199<span class="text-lg opacity-70">/mes</span>
-              </div>
-              <!-- <p class="text-sm opacity-70" style="color: #100820">
-                7 días gratis
-              </p> -->
-            </div>
-
-            <ul
-              class="list-disc list-inside text-sm lg:text-base space-y-2 mb-6 leading-relaxed flex-grow"
-              style="color: #100820"
-            >
-              <li>7 días Gratis</li>
-              <!-- <li>Significado básico de cristales</li>
-              <li>Fases lunares completas</li>
-              <li>Tarot interactivo básico</li>
-              <li>Rituales fundamentales</li> -->
-            </ul>
-
-            <button
-              class="w-full text-base font-normal bg-transparent border-2 py-3 cursor-pointer transition-all duration-300 hover:translate-y-1 premium-cta-button flex items-center justify-center gap-2 rounded-lg mt-auto"
-              style="color: #100820; border-color: #100820"
-              type="button"
-              (click)="onStartPremium()"
-            >
-              <i class="fas fa-star"></i>
-              <strong class="font-bold">Elegir Básica</strong>
-              <i class="fas fa-arrow-right"></i>
-            </button>
-          </div>
-
-          <!-- Membresía VIP -->
-          <div
-            class="border-2 border-yellow-500 rounded-xl p-15 bg-gradient-to-br from-yellow-50/20 to-purple-50/10 backdrop-blur-sm relative h-full flex flex-col"
-            style="min-height: 400px"
-          >
-            <!-- Badge de Popular -->
-            <div
-              class="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10"
-            >
-              <span
-                class="bg-yellow-500 text-black px-4 py-1 rounded-full text-xs font-bold shadow-lg"
-              >
-                MÁS POPULAR
-              </span>
-            </div>
-
-            <div class="text-center mb-6">
-              <i
-                class="fas fa-crown text-4xl lg:text-5xl opacity-60 mb-4 premium-crown-icon"
-                style="color: #100820"
-              ></i>
-              <h3
-                class="text-2xl lg:text-3xl font-normal mb-3"
-                style="color: #100820"
-              >
-                VIP
-              </h3>
-              <div class="text-3xl font-bold mb-2" style="color: #100820">
-                $599<span class="text-lg opacity-70">/mes</span>
-              </div>
-              <p class="text-sm opacity-70" style="color: #100820">
-                7 días gratis
+                Elige tu Membresía
+              </h2>
+              <p class="text-purple-200 mt-1">
+                Desbloquea tu potencial espiritual
               </p>
             </div>
-
-            <ul
-              class="list-disc list-inside text-sm lg:text-base space-y-2 mb-6 leading-relaxed flex-grow"
-              style="color: #100820"
-            >
-              <li>7 Días Gratis</li>
-              <!-- <li>Todo lo de la membresía Básica</li>
-              <li>1 lectura personalizada al mes</li>
-              <li>Acceso a cursos VIP</li>
-              <li>Dinámicas VIP exclusivas</li>
-              <li>Regalo de bienvenida especial</li>
-              <li>Soporte prioritario</li> -->
-            </ul>
-
-            <button
-              class="w-full text-base font-normal bg-transparent border-2 py-3 cursor-pointer transition-all duration-300 hover:translate-y-1 premium-cta-button flex items-center justify-center gap-2 rounded-lg mt-auto"
-              style="
-                color: #100820;
-                border-color: #ffd700;
-                background-color: rgba(255, 215, 0, 0.1);
-              "
-              type="button"
-              (click)="onStartPremium()"
-            >
-              <i class="fas fa-crown"></i>
-              <strong class="font-bold">Elegir VIP</strong>
-              <i class="fas fa-arrow-right"></i>
-            </button>
           </div>
         </div>
 
-        <!-- Información adicional centrada -->
-        <div
-          class="text-center"
-          style="max-width: 28rem; margin: 0 auto; width: 100%"
-        >
-          <p class="text-sm opacity-70 mb-3" style="color: #100820">
-            ¿No has solicitado tu acceso aún?
-          </p>
-          <button
-            class="inline-flex items-center gap-2 text-sm underline hover:no-underline transition-all duration-300 cursor-pointer"
-            style="color: #100820"
-            (click)="onStartPremium()"
+        <!-- Contenido de la Sección -->
+        <div class="p-6 rounded-b-2xl" style="background-color: #0f0820">
+          <!-- Grid de Planes -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <!-- Plan Básico -->
+            <div class="relative group">
+              <!-- Card del Plan -->
+              <div
+                class="relative h-full p-6 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-xl border border-purple-400 transition-all duration-300 hover:scale-105 hover:shadow-xl group-hover:border-purple-300/50"
+              >
+                <!-- Header del Plan -->
+                <div class="text-center mb-6">
+                  <h3 class="text-xl font-bold text-white mb-2">Básica</h3>
+                  <div class="flex items-baseline justify-center mb-2">
+                    <span class="text-3xl font-bold text-white">$199</span>
+                    <span class="text-lg text-purple-200">/mes</span>
+                  </div>
+                </div>
+
+                <!-- Features -->
+                <ul class="space-y-3 mb-8 text-center">
+                  <li class="flex items-center justify-center gap-3 text-sm">
+                    <i class="fas fa-check text-green-400"></i>
+                    <span class="text-purple-100">7 días Gratis</span>
+                  </li>
+                </ul>
+
+                <!-- Botón de Acción -->
+                <button
+                  (click)="onStartPremium()"
+                  class="w-full py-3 px-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:from-purple-500 hover:to-indigo-500"
+                >
+                  <i class="fas fa-magic"></i>
+                  <span>Elegir Básica</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Plan VIP -->
+            <div class="relative group">
+              <!-- Badge Popular -->
+              <div
+                class="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10"
+              >
+                <span
+                  class="bg-yellow-400 text-black px-4 py-1 rounded-full text-xs font-bold shadow-lg"
+                >
+                  MÁS POPULAR
+                </span>
+              </div>
+
+              <!-- Card del Plan -->
+              <div
+                class="relative h-full p-6 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-xl border border-yellow-400 ring-2 ring-yellow-400/50 shadow-yellow-400/20 transition-all duration-300 hover:scale-105 hover:shadow-xl group-hover:border-purple-300/50"
+              >
+                <!-- Header del Plan -->
+                <div class="text-center mb-6">
+                  <h3 class="text-xl font-bold text-white mb-2">VIP</h3>
+                  <div class="flex items-baseline justify-center mb-2">
+                    <span class="text-3xl font-bold text-white">$599</span>
+                    <span class="text-lg text-purple-200">/mes</span>
+                  </div>
+                </div>
+
+                <!-- Features -->
+                <ul class="space-y-3 mb-8 text-center">
+                  <li class="flex items-center justify-center gap-3 text-sm">
+                    <i class="fas fa-check text-green-400"></i>
+                    <span class="text-purple-100">7 Días Gratis</span>
+                  </li>
+                </ul>
+
+                <!-- Botón de Acción -->
+                <button
+                  (click)="onStartPremium()"
+                  class="w-full py-3 px-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 bg-gradient-to-r from-yellow-400 to-orange-400 text-black shadow-lg hover:shadow-yellow-400/25"
+                >
+                  <i class="fas fa-magic"></i>
+                  <span>Elegir VIP</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Información Adicional -->
+          <div
+            class="mt-8 p-6 rounded-xl border border-purple-400/50"
+            style="background-color: #0f0820"
           >
-            <i class="fas fa-user-plus text-xs"></i>
-            Envía tu correo y sé el primero en entrar
-          </button>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+              <div class="flex flex-col items-center">
+                <i class="fas fa-shield-alt text-3xl text-green-400 mb-2"></i>
+                <h4 class="font-semibold text-white mb-1">
+                  Garantía de 7 días
+                </h4>
+                <p class="text-purple-200 text-sm">Cancela sin compromiso</p>
+              </div>
+              <div class="flex flex-col items-center">
+                <i class="fas fa-credit-card text-3xl text-blue-400 mb-2"></i>
+                <h4 class="font-semibold text-white mb-1">Pago Seguro</h4>
+                <p class="text-purple-200 text-sm">Transacciones protegidas</p>
+              </div>
+              <div class="flex flex-col items-center">
+                <i class="fas fa-headset text-3xl text-purple-400 mb-2"></i>
+                <h4 class="font-semibold text-white mb-1">Soporte 24/7</h4>
+                <p class="text-purple-200 text-sm">Ayuda cuando la necesites</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Call to Action Footer -->
+          <div class="mt-6 text-center">
+            <p class="text-purple-200 mb-4">
+              <i class="fas fa-sparkles mr-2"></i>
+              Únete a más de 10,000 personas que han transformado sus vidas
+            </p>
+            <p class="text-sm text-purple-300">
+              ¿Tienes preguntas?
+              <button
+                (click)="onContactSupport()"
+                class="underline hover:text-white transition-colors duration-200 ml-1"
+              >
+                Contacta a nuestro equipo
+              </button>
+            </p>
+          </div>
         </div>
       </div>
     </section>
+
+    <!-- Línea divisoria -->
+    <div
+      class="border-t mx-auto max-w-6xl"
+      style="border-color: #3a3a5a; margin-top: 4rem; margin-bottom: 4rem"
+    ></div>
 
     <!-- Sección de Testimonios -->
     <section id="testimonios" class="py-20 px-6">
@@ -1264,467 +1230,204 @@
       </div>
     </section>
 
-    <!-- Modal de Membresías -->
-    <div
-      *ngIf="showMembershipModal()"
-      class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-80 backdrop-blur-sm"
-      (click)="onCloseMembershipModal()"
-    >
-      <div
-        class="relative w-full max-w-7xl max-h-[90vh] overflow-y-auto bg-gradient-to-br from-purple-900/95 to-indigo-900/95 backdrop-blur-xl rounded-2xl border border-purple-400/30 shadow-2xl"
-        (click)="$event.stopPropagation()"
-      >
-        <!-- Header del Modal -->
-        <div
-          class="sticky top-0 z-10 bg-gradient-to-r from-purple-800/90 to-indigo-800/90 backdrop-blur-lg px-6 py-4 border-b border-purple-400/30"
-        >
-          <div class="flex items-center justify-between">
-            <div>
-              <h2
-                class="text-2xl md:text-3xl font-bold text-white flex items-center gap-3"
-              >
-                <i class="fas fa-crown text-yellow-400"></i>
-                Elige tu Membresía
-              </h2>
-              <p class="text-purple-200 mt-1">
-                Desbloquea tu potencial espiritual
-              </p>
-            </div>
-            <button
-              (click)="onCloseMembershipModal()"
-              class="p-2 hover:bg-white/10 rounded-lg transition-colors duration-200 text-white hover:text-purple-200"
-            >
-              <i class="fas fa-times text-xl"></i>
-            </button>
-          </div>
-        </div>
-
-        <!-- Contenido del Modal -->
-        <div class="p-6">
-          <!-- Grid de Planes -->
-          <div
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6"
-          >
-            @for (plan of membershipPlans(); track plan.id) {
-            <div
-              class="relative group"
-              [class]="plan.popular ? 'lg:col-span-1 xl:col-span-1' : ''"
-            >
-              <!-- Badge Popular -->
-              <div
-                *ngIf="plan.popular"
-                class="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10"
-              ></div>
-
-              <!-- Card del Plan -->
-              <div
-                class="relative h-full p-6 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-xl border transition-all duration-300 hover:scale-105 hover:shadow-xl group-hover:border-purple-300/50"
-                [class]="
-                  plan.color +
-                  ' ' +
-                  (plan.popular
-                    ? 'ring-2 ring-yellow-400/50 shadow-yellow-400/20'
-                    : '')
-                "
-              >
-                <!-- Header del Plan -->
-                <div class="text-center mb-6">
-                  <h3 class="text-xl font-bold text-white mb-2">
-                    {{ plan.name }}
-                  </h3>
-                  <div class="flex items-baseline justify-center mb-2">
-                    <span class="text-3xl font-bold text-white">{{
-                      plan.price
-                    }}</span>
-                    <span class="text-lg text-purple-200">{{
-                      plan.period
-                    }}</span>
-                  </div>
-                  <p *ngIf="plan.subtitle" class="text-sm text-purple-300">
-                    {{ plan.subtitle }}
-                  </p>
-                </div>
-
-                <!-- Descripción -->
-                <p class="text-purple-200 text-sm mb-6 leading-relaxed">
-                  {{ plan.description }}
-                </p>
-
-                <!-- Features -->
-                <ul class="space-y-3 mb-8">
-                  @for (feature of plan.features; track feature) {
-                  <li class="flex items-start gap-3 text-sm">
-                    <i
-                      class="fas fa-check text-green-400 mt-0.5 flex-shrink-0"
-                    ></i>
-                    <span class="text-purple-100">{{ feature }}</span>
-                  </li>
-                  }
-                </ul>
-
-                <!-- Botón de Acción -->
-                <button
-                  (click)="onSelectPlan(plan.id)"
-                  class="w-full py-3 px-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
-                  [class]="
-                    plan.popular
-                      ? 'bg-gradient-to-r from-yellow-400 to-orange-400 text-black shadow-lg hover:shadow-yellow-400/25'
-                      : 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:from-purple-500 hover:to-indigo-500'
-                  "
-                >
-                  <i class="fas fa-magic"></i>
-                  <span>{{ plan.buttonText }}</span>
-                </button>
-              </div>
-            </div>
-            }
-          </div>
-
-          <!-- Información Adicional -->
-          <div
-            class="mt-8 p-6 bg-gradient-to-r from-purple-800/30 to-indigo-800/30 rounded-xl border border-purple-400/20"
-          >
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-              <div class="flex flex-col items-center">
-                <i class="fas fa-shield-alt text-3xl text-green-400 mb-2"></i>
-                <h4 class="font-semibold text-white mb-1">
-                  Garantía de 7 días
-                </h4>
-                <p class="text-purple-200 text-sm">Cancela sin compromiso</p>
-              </div>
-              <div class="flex flex-col items-center">
-                <i class="fas fa-credit-card text-3xl text-blue-400 mb-2"></i>
-                <h4 class="font-semibold text-white mb-1">Pago Seguro</h4>
-                <p class="text-purple-200 text-sm">Transacciones protegidas</p>
-              </div>
-              <div class="flex flex-col items-center">
-                <i class="fas fa-headset text-3xl text-purple-400 mb-2"></i>
-                <h4 class="font-semibold text-white mb-1">Soporte 24/7</h4>
-                <p class="text-purple-200 text-sm">Ayuda cuando la necesites</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Call to Action Footer -->
-          <div class="mt-6 text-center">
-            <p class="text-purple-200 mb-4">
-              <i class="fas fa-sparkles mr-2"></i>
-              Únete a más de 10,000 personas que han transformado sus vidas
-            </p>
-            <p class="text-sm text-purple-300">
-              ¿Tienes preguntas?
-              <button
-                (click)="onContactSupport()"
-                class="underline hover:text-white transition-colors duration-200 ml-1"
-              >
-                Contacta a nuestro equipo
-              </button>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!-- Modal de Registro -->
-    <div
-      *ngIf="showMembershipModal()"
-      class="fixed inset-0 z-50 flex items-center justify-center p-4"
-      style="
-        background-color: rgba(16, 8, 32, 0.95);
-        backdrop-filter: blur(5px);
-      "
-      (click)="onCloseMembershipModal()"
-    >
+<div
+  *ngIf="showMembershipModal()"
+  class="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto"
+  style="
+    background-color: rgba(16, 8, 32, 0.95);
+    backdrop-filter: blur(5px);
+    padding: env(safe-area-inset-top, 8px) env(safe-area-inset-right, 8px) env(safe-area-inset-bottom, 8px) env(safe-area-inset-left, 8px);
+  "
+  (click)="onCloseMembershipModal()"
+>
+  <!-- Contenedor adaptivo sin header -->
+   <div
+    class="modal-container relative w-full rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden"
+    (click)="$event.stopPropagation()"
+    
+    style="background: transparent"
+  >
+    <!-- Layout adaptivo -->
+    <div class="modal-content flex flex-col lg:grid lg:grid-cols-2 h-full">
+      
+      <!-- Columna izquierda - Diseño místico con botón cerrar -->
       <div
-        class="relative w-full max-w-6xl max-h-[90vh] overflow-hidden rounded-2xl shadow-2xl bg-white"
-        (click)="$event.stopPropagation()"
-        style="min-height: 600px"
+        class="modal-left relative flex flex-col items-center justify-center text-center overflow-hidden"
+        style="background: linear-gradient(135deg, #2d1b69 0%, #1a0d4d 50%, #0f0624 100%);"
       >
-        <!-- Botón de cerrar -->
+        <!-- Botón de cerrar en la esquina superior derecha -->
         <button
           (click)="onCloseMembershipModal()"
-          class="absolute top-4 right-4 z-20 p-2 hover:bg-black/10 rounded-full transition-colors duration-200 text-gray-600 hover:text-gray-800"
+          class="absolute top-4 right-4 z-20 p-2 hover:bg-white/10 rounded-full transition-colors duration-200 text-yellow-400 hover:text-white"
         >
           <i class="fas fa-times text-xl"></i>
         </button>
 
-        <!-- Layout de dos columnas -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 h-full min-h-[600px]">
-          <!-- Columna izquierda - Diseño místico -->
-          <div
-            class="relative flex flex-col items-center justify-center p-8 lg:p-12 text-center overflow-hidden"
-            style="
-              background: linear-gradient(
-                135deg,
-                #2d1b69 0%,
-                #1a0d4d 50%,
-                #0f0624 100%
-              );
-            "
-          >
-            <!-- Efectos de fondo -->
-            <div class="absolute inset-0 opacity-20">
-              <!-- Círculos decorativos -->
-              <div
-                class="absolute top-10 left-10 w-32 h-32 border border-yellow-400/30 rounded-full"
-              ></div>
-              <div
-                class="absolute bottom-20 right-15 w-24 h-24 border border-yellow-400/20 rounded-full"
-              ></div>
-              <div
-                class="absolute top-1/2 right-10 w-16 h-16 border border-yellow-400/25 rounded-full"
-              ></div>
+        
 
-              <!-- Estrellas decorativas -->
-              <div class="absolute top-16 right-20 text-yellow-400/40">✦</div>
-              <div class="absolute bottom-32 left-16 text-yellow-400/30">✧</div>
-              <div class="absolute top-1/3 left-8 text-yellow-400/35">✦</div>
-              <div class="absolute bottom-16 right-8 text-yellow-400/25">✧</div>
-            </div>
+        <!-- Contenido principal -->
+        <div class="modal-mystical-content relative z-10 flex flex-col items-center">
+          <!-- Título superior con más espacio por la X -->
+          <h1 class="modal-subtitle text-yellow-400 font-light tracking-wide mb-4 sm:mb-8 lg:mb-12 sm:mt-0" style="font-family: serif;">
+            DESPIERTA TU PODER
+          </h1>
 
-            <!-- Contenido principal -->
-            <div class="relative z-10 flex flex-col items-center">
-              <!-- Título superior -->
-              <h1
-                class="text-yellow-400 text-lg lg:text-xl font-light tracking-[0.3em] mb-8 lg:mb-12"
-                style="font-family: serif; letter-spacing: 0.3em"
-              >
-                DESPIERTA TU PODER
-              </h1>
-
-              <!-- Logo central -->
-              <div class="mb-8 lg:mb-12 relative">
-                <div class="relative">
-                  <img
-                    src="../../../../assets/logo/logoMargenDorado.png"
-                    alt="Arcana Logo"
-                    class="w-48 h-48 lg:w-64 lg:h-64 object-contain filter drop-shadow-2xl"
-                  />
-
-                  <!-- Efectos de brillo -->
-                  <div
-                    class="absolute inset-0 rounded-full bg-gradient-radial from-yellow-400/20 via-transparent to-transparent animate-pulse"
-                  ></div>
-                </div>
-              </div>
-
-              <!-- Título principal -->
-              <h2
-                class="text-white text-4xl lg:text-5xl font-bold mb-4 tracking-wider"
-                style="
-                  font-family: serif;
-                  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-                "
-              >
-                ARCANA
-              </h2>
-
-              <!-- Subtítulo -->
-              <p
-                class="text-yellow-400/90 text-sm lg:text-base font-light tracking-wide mb-8 lg:mb-12 max-w-xs"
-                style="font-family: serif; line-height: 1.6"
-              >
-                MAGIA ANCESTRAL PARA LA VIDA DIARIA
-              </p>
-
-              <!-- Fecha -->
-              <div
-                class="text-yellow-400 text-xl lg:text-2xl font-light tracking-[0.2em]"
-                style="font-family: serif; letter-spacing: 0.2em"
-              >
-                15 OCTUBRE 2025
-              </div>
-            </div>
-
-            <!-- Patrones decorativos -->
-            <div
-              class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex items-center space-x-2 text-yellow-400/60"
-            >
-              <span class="text-sm">☽</span>
-              <span class="text-xs">◐</span>
-              <span class="text-sm">◑</span>
-              <span class="text-lg">☉</span>
-              <span class="text-sm">◒</span>
-              <span class="text-xs">◓</span>
-              <span class="text-sm">☾</span>
-            </div>
+          <!-- Logo central -->
+          <div class="modal-logo-container mb-1 sm:mb-8 lg:mb-12 relative">
+            <img
+              src="../../../../assets/logo/logoMargenDorado.png"
+              alt="Arcana Logo"
+              class="modal-logo object-contain filter drop-shadow-2xl"
+            />
+            <div class="absolute inset-0 rounded-full bg-gradient-radial from-yellow-400/20 via-transparent to-transparent animate-pulse"></div>
           </div>
 
-          <!-- Columna derecha - Formulario -->
-          <div
-            class="flex flex-col justify-center p-8 lg:p-12 bg-gray-50 relative"
-          >
-            <!-- Patrones decorativos de fondo -->
-            <div class="absolute inset-0 opacity-5 overflow-hidden">
-              <div
-                class="absolute top-0 right-0 w-96 h-96 transform translate-x-32 -translate-y-32"
-              >
-                <div
-                  class="w-full h-full border-4 border-gray-300 rounded-full"
-                ></div>
-                <div
-                  class="absolute top-8 left-8 right-8 bottom-8 border-2 border-gray-300 rounded-full"
-                ></div>
-                <div
-                  class="absolute top-16 left-16 right-16 bottom-16 border border-gray-300 rounded-full"
-                ></div>
+          <!-- Título principal -->
+          <h2 class="modal-title text-white font-bold tracking-wider mb-2 sm:mb-4" style="font-family: serif; text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);">
+            ARCANA
+          </h2>
+
+          <!-- Subtítulo -->
+          <p class="modal-description text-yellow-400/90 font-light tracking-wide mb-4 sm:mb-8 lg:mb-12 max-w-xs" style="font-family: serif; line-height: 1.6;">
+            MAGIA ANCESTRAL PARA LA VIDA DIARIA
+          </p>
+
+          <!-- Fecha -->
+          <div class="modal-date text-yellow-400 font-light" style="font-family: serif;">
+            15 OCTUBRE 2025
+          </div><br>
+        </div>
+
+        <!-- Patrones decorativos -->
+        <div class="modal-patterns absolute left-1/2 transform -translate-x-1/2 flex items-center text-yellow-400/60">
+          <span class="text-xs sm:text-sm">☽</span>
+          <span class="text-[10px] sm:text-xs mx-1">◐</span>
+          <span class="text-xs sm:text-sm mx-1">◑</span>
+          <span class="text-sm sm:text-lg mx-1">☉</span>
+          <span class="text-xs sm:text-sm mx-1">◒</span>
+          <span class="text-[10px] sm:text-xs mx-1">◓</span>
+          <span class="text-xs sm:text-sm">☾</span>
+        </div>
+      </div>
+
+      <!-- Columna derecha - Formulario -->
+      <div class="modal-right flex flex-col bg-gray-50 relative">
+        <!-- Patrones decorativos de fondo -->
+        <div class="absolute inset-0 opacity-5 overflow-hidden">
+          <div class="absolute top-0 right-0 w-48 sm:w-96 h-48 sm:h-96 transform translate-x-16 sm:translate-x-32 -translate-y-16 sm:-translate-y-32">
+            <div class="w-full h-full border-2 sm:border-4 border-gray-300 rounded-full"></div>
+            <div class="absolute top-4 sm:top-8 left-4 sm:left-8 right-4 sm:right-8 bottom-4 sm:bottom-8 border sm:border-2 border-gray-300 rounded-full"></div>
+            <div class="absolute top-8 sm:top-16 left-8 sm:left-16 right-8 sm:right-16 bottom-8 sm:bottom-16 border border-gray-300 rounded-full"></div>
+          </div>
+        </div>
+
+        <div class="modal-form-container relative z-10 w-full max-w-md mx-auto">
+          <!-- Título del formulario -->
+          <h3 class="modal-form-title font-bold text-gray-700 text-center tracking-wider" style="font-family: serif; color: #4a5568;">
+            REGÍSTRATE
+          </h3>
+
+          <!-- Formulario -->
+          <form class="modal-form" (ngSubmit)="onSubmitRegistration($event)">
+            <!-- Campo Nombre -->
+            <div>
+              <input
+                type="text"
+                [(ngModel)]="registrationForm.name"
+                (input)="onNameChange()"
+                name="name"
+                placeholder="*Nombre"
+                class="modal-input w-full border-2 rounded-lg focus:outline-none transition-colors duration-300 text-gray-700 placeholder-gray-500"
+                [class.border-red-400]="registrationErrors().name"
+                [class.border-gray-300]="!registrationErrors().name"
+                [class.focus:border-red-500]="registrationErrors().name"
+                [class.focus:border-gray-400]="!registrationErrors().name"
+                style="font-size: 16px; background-color: rgba(255, 255, 255, 0.8);"
+              />
+              <div *ngIf="registrationErrors().name" class="text-red-500 text-xs mt-1">
+                {{ registrationErrors().name }}
               </div>
             </div>
 
-            <div class="relative z-10 max-w-md mx-auto w-full">
-              <!-- Título del formulario -->
-              <h3
-                class="text-2xl lg:text-3xl font-bold text-gray-700 mb-8 text-center tracking-wider"
-                style="font-family: serif; color: #4a5568"
-              >
-                REGÍSTRATE
-              </h3>
-
-              <!-- Formulario -->
-              <form class="space-y-6" (ngSubmit)="onSubmitRegistration($event)">
-                <!-- Campo Nombre -->
-                <div>
-                  <input
-                    type="text"
-                    [(ngModel)]="registrationForm.name"
-                    (input)="onNameChange()"
-                    name="name"
-                    placeholder="*Nombre"
-                    class="w-full px-4 py-4 border-2 rounded-lg focus:outline-none transition-colors duration-300 text-gray-700 placeholder-gray-500"
-                    [class.border-red-400]="registrationErrors().name"
-                    [class.border-gray-300]="!registrationErrors().name"
-                    [class.focus:border-red-500]="registrationErrors().name"
-                    [class.focus:border-gray-400]="!registrationErrors().name"
-                    style="
-                      font-size: 16px;
-                      background-color: rgba(255, 255, 255, 0.8);
-                    "
-                  />
-                  <div
-                    *ngIf="registrationErrors().name"
-                    class="text-red-500 text-sm mt-1"
-                  >
-                    {{ registrationErrors().name }}
-                  </div>
-                </div>
-
-                <!-- Campo Email -->
-                <div>
-                  <input
-                    type="email"
-                    [(ngModel)]="registrationForm.email"
-                    (input)="onEmailChangeRegistration()"
-                    name="email"
-                    placeholder="*Email"
-                    class="w-full px-4 py-4 border-2 rounded-lg focus:outline-none transition-colors duration-300 text-gray-700 placeholder-gray-500"
-                    [class.border-red-400]="registrationErrors().email"
-                    [class.border-gray-300]="!registrationErrors().email"
-                    [class.focus:border-red-500]="registrationErrors().email"
-                    [class.focus:border-gray-400]="!registrationErrors().email"
-                    style="
-                      font-size: 16px;
-                      background-color: rgba(255, 255, 255, 0.8);
-                    "
-                  />
-                  <div
-                    *ngIf="registrationErrors().email"
-                    class="text-red-500 text-sm mt-1"
-                  >
-                    {{ registrationErrors().email }}
-                  </div>
-                </div>
-
-                <!-- Campo WhatsApp -->
-                <div>
-                  <input
-                    type="tel"
-                    [(ngModel)]="registrationForm.whatsapp"
-                    (input)="onWhatsAppChange()"
-                    name="whatsapp"
-                    placeholder="*WhatsApp"
-                    class="w-full px-4 py-4 border-2 rounded-lg focus:outline-none transition-colors duration-300 text-gray-700 placeholder-gray-500"
-                    [class.border-red-400]="registrationErrors().whatsapp"
-                    [class.border-gray-300]="!registrationErrors().whatsapp"
-                    [class.focus:border-red-500]="registrationErrors().whatsapp"
-                    [class.focus:border-gray-400]="
-                      !registrationErrors().whatsapp
-                    "
-                    style="
-                      font-size: 16px;
-                      background-color: rgba(255, 255, 255, 0.8);
-                    "
-                  />
-                  <div
-                    *ngIf="registrationErrors().whatsapp"
-                    class="text-red-500 text-sm mt-1"
-                  >
-                    {{ registrationErrors().whatsapp }}
-                  </div>
-                </div>
-
-                <!-- Botón de envío -->
-                <div class="pt-4">
-                  <!-- Mensaje de éxito (después de enviar) -->
-                  <div *ngIf="registrationSubmitted()" class="text-center py-4">
-                    <i
-                      class="fas fa-check-circle text-4xl mb-4"
-                      style="color: #50c878"
-                    ></i>
-                    <h4 class="text-xl font-medium mb-2" style="color: #4a5568">
-                      ¡Registro Exitoso!
-                    </h4>
-                    <p class="opacity-90 mb-3" style="color: #4a5568">
-                      Tu descarga debería comenzar automáticamente.
-                    </p>
-                    <div
-                      class="flex items-center justify-center gap-2 text-sm opacity-75"
-                      style="color: #4a5568"
-                    >
-                      <i class="fas fa-download"></i>
-                      <span
-                        >Descargando: 5 Rituales Poderosos - Arcana.pdf</span
-                      >
-                    </div>
-                  </div>
-
-                  <!-- Botón de envío (antes de enviar) -->
-                  <button
-                    *ngIf="!registrationSubmitted()"
-                    type="submit"
-                    [disabled]="registrationLoading()"
-                    class="w-full py-4 px-6 font-semibold text-gray-800 transition-all duration-300 hover:scale-105 active:scale-95 rounded-lg shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-                    style="
-                      background: linear-gradient(
-                        135deg,
-                        #f7dc6f 0%,
-                        #f4d03f 100%
-                      );
-                      font-size: 18px;
-                    "
-                  >
-                    <span *ngIf="!registrationLoading()"
-                      >Descarga tu regalo aquí</span
-                    >
-                    <span
-                      *ngIf="registrationLoading()"
-                      class="flex items-center justify-center gap-2"
-                    >
-                      <div class="spinner-small"></div>
-                      Enviando...
-                    </span>
-                  </button>
-                </div>
-              </form>
-
-              <!-- Texto legal pequeño -->
-              <p class="text-xs text-gray-500 mt-6 text-center leading-relaxed">
-                Al registrarte aceptas recibir información sobre Arcana y
-                nuestros servicios. Nunca compartiremos tu información personal.
-              </p>
+            <!-- Campo Email -->
+            <div>
+              <input
+                type="email"
+                [(ngModel)]="registrationForm.email"
+                (input)="onEmailChangeRegistration()"
+                name="email"
+                placeholder="*Email"
+                class="modal-input w-full border-2 rounded-lg focus:outline-none transition-colors duration-300 text-gray-700 placeholder-gray-500"
+                [class.border-red-400]="registrationErrors().email"
+                [class.border-gray-300]="!registrationErrors().email"
+                [class.focus:border-red-500]="registrationErrors().email"
+                [class.focus:border-gray-400]="!registrationErrors().email"
+                style="font-size: 16px; background-color: rgba(255, 255, 255, 0.8);"
+              />
+              <div *ngIf="registrationErrors().email" class="text-red-500 text-xs mt-1">
+                {{ registrationErrors().email }}
+              </div>
             </div>
-          </div>
+
+            <!-- Campo WhatsApp -->
+            <div>
+              <input
+                type="tel"
+                [(ngModel)]="registrationForm.whatsapp"
+                (input)="onWhatsAppChange()"
+                name="whatsapp"
+                placeholder="*WhatsApp"
+                class="modal-input w-full border-2 rounded-lg focus:outline-none transition-colors duration-300 text-gray-700 placeholder-gray-500"
+                [class.border-red-400]="registrationErrors().whatsapp"
+                [class.border-gray-300]="!registrationErrors().whatsapp"
+                [class.focus:border-red-500]="registrationErrors().whatsapp"
+                [class.focus:border-gray-400]="!registrationErrors().whatsapp"
+                style="font-size: 16px; background-color: rgba(255, 255, 255, 0.8);"
+              />
+              <div *ngIf="registrationErrors().whatsapp" class="text-red-500 text-xs mt-1">
+                {{ registrationErrors().whatsapp }}
+              </div>
+            </div>
+
+            <!-- Botón de envío -->
+            <div class="modal-button-container">
+              <!-- Mensaje de éxito (después de enviar) -->
+              <div *ngIf="registrationSubmitted()" class="text-center py-4">
+                <i class="fas fa-check-circle text-3xl sm:text-4xl mb-4" style="color: #50c878"></i>
+                <h4 class="text-lg sm:text-xl font-medium mb-2" style="color: #4a5568">¡Registro Exitoso!</h4>
+                <p class="opacity-90 mb-3 text-sm sm:text-base" style="color: #4a5568">Tu descarga debería comenzar automáticamente.</p>
+                <div class="flex items-center justify-center gap-2 text-xs sm:text-sm opacity-75" style="color: #4a5568">
+                  <i class="fas fa-download"></i>
+                  <span class="text-center">Descargando: 5 Rituales Poderosos - Arcana.pdf</span>
+                </div>
+              </div>
+
+              <!-- Botón de envío (antes de enviar) -->
+              <button
+                *ngIf="!registrationSubmitted()"
+                type="submit"
+                [disabled]="registrationLoading()"
+                class="modal-submit-button w-full font-semibold text-gray-800 transition-all duration-300 hover:scale-105 active:scale-95 rounded-lg shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                style="background: linear-gradient(135deg, #f7dc6f 0%, #f4d03f 100%);"
+              >
+                <span *ngIf="!registrationLoading()">Descarga tu regalo aquí</span>
+                <span *ngIf="registrationLoading()" class="flex items-center justify-center gap-2">
+                  <div class="spinner-small"></div>
+                  Enviando...
+                </span>
+              </button>
+            </div>
+          </form>
+
+          <!-- Texto legal -->
+          <p class="modal-legal-text text-xs sm:text-sm text-gray-600 mt-4 sm:mt-6 text-center leading-relaxed px-1 sm:px-0 font-medium">
+            Al registrarte aceptas recibir información sobre Arcana y nuestros servicios.
+          </p>
         </div>
       </div>
     </div>
+  </div>
+</div>
   </div>
 </div>

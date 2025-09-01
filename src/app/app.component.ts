@@ -741,13 +741,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.hideNavbar(); // 👈 Agregar
   }
 
-  onStartPremium(): void {
-    this.saveScrollPosition();
-    this.showMembershipModal.set(true);
-    this.blockBodyScroll();
-    this.hideNavbar(); // 👈 Agregar
-  }
-
   onCloseMembershipModal(): void {
     this.showMembershipModal.set(false);
     this.unblockBodyScroll();
@@ -1416,24 +1409,122 @@ export class AppComponent implements OnInit, OnDestroy {
     if (!this.isBrowser) return;
 
     try {
-      // Crear elemento anchor temporal para la descarga
-      const link = document.createElement('a');
-      link.href = '/assets/5-rituales-poderosos.pdf';
-      link.download = '5-Rituales-Poderosos-Arcana.pdf';
-      link.target = '_blank';
+      const pdfUrl = '/assets/5-rituales-poderosos.pdf';
+      const fileName = '5-Rituales-Poderosos-Arcana.pdf';
 
-      // Agregar al DOM temporalmente
-      document.body.appendChild(link);
+      // Detectar si es iOS Safari
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+      const isSafari = /^((?!chrome|android).)*safari/i.test(
+        navigator.userAgent
+      );
 
-      // Iniciar descarga
-      link.click();
+      if (isIOS || isSafari || this.isMobile) {
+        // Para dispositivos móviles: abrir en nueva ventana
+        const newWindow = window.open(pdfUrl, '_blank');
+        if (!newWindow) {
+          // Si el popup fue bloqueado, mostrar mensaje
+          this.showMobileDownloadMessage(pdfUrl);
+        }
+      } else {
+        // Para desktop: descarga tradicional
+        const link = document.createElement('a');
+        link.href = pdfUrl;
+        link.download = fileName;
+        link.target = '_blank';
 
-      // Limpiar
-      document.body.removeChild(link);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
 
       console.log('Descarga del PDF iniciada');
     } catch (error) {
       console.error('Error al descargar PDF:', error);
+      // Fallback: abrir en nueva ventana
+      window.open('/assets/5-rituales-poderosos.pdf', '_blank');
     }
   }
+
+  private showMobileDownloadMessage(pdfUrl: string): void {
+    // Crear un elemento temporal para mostrar instrucciones
+    const message = document.createElement('div');
+    message.innerHTML = `
+    <div style="
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      z-index: 10000;
+      max-width: 300px;
+      text-align: center;
+    ">
+      <h3 style="color: #333; margin-bottom: 15px;">📱 Descarga Manual</h3>
+      <p style="color: #666; margin-bottom: 15px;">
+        Si tu PDF no se abrió automáticamente para guardarlo, mantén presionado sobre el botón "PDF" y selecciona "Descargar Archivo Enlazado" en las opciones disponibles.
+      </p>
+      <a href="${pdfUrl}" target="_blank" style="
+        display: inline-block;
+        background: #b4a2fd;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      ">
+        📄 PDF
+      </a>
+      <br>
+      <button onclick="this.parentElement.parentElement.remove()" style="
+        background: transparent;
+        border: 1px solid #ccc;
+        padding: 5px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+      ">
+        Cerrar
+      </button>
+    </div>
+  `;
+
+    document.body.appendChild(message);
+
+    // Auto-remover después de 10 segundos
+    setTimeout(() => {
+      if (message.parentElement) {
+        message.remove();
+      }
+    }, 20000);
+  }
+
+  private adjustModalForAndroid(): void {
+  if (!this.isBrowser) return;
+  
+  const isAndroid = /Android/.test(navigator.userAgent);
+  const isChrome = /Chrome/.test(navigator.userAgent);
+  
+  if (isAndroid && isChrome) {
+    // Agregar clase especial para Android Chrome
+    const modal = document.querySelector('.modal-container');
+    if (modal) {
+      modal.classList.add('android-chrome-modal');
+    }
+  }
+}
+
+// Llamar este método cuando abras el modal
+onStartPremium(): void {
+  this.saveScrollPosition();
+  this.showMembershipModal.set(true);
+  this.blockBodyScroll();
+  this.hideNavbar();
+  
+  // Agregar ajuste para Android
+  setTimeout(() => {
+    this.adjustModalForAndroid();
+  }, 100);
+}
 }

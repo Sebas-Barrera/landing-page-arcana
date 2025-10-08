@@ -254,14 +254,14 @@ export class AppComponent implements OnInit, OnDestroy {
       id: 'experience',
       title: 'Más de 30 Años de Sabiduría',
       description:
-        'Creada por maestros y guías con un recorrido profundo en el arte místico y la práctica espiritual.',
+        'Creada por maestros y guías con un recorrido profundo en el arte y la práctica espiritual.',
       icon: 'fas fa-user-graduate',
       color: '#ffa500',
       badge: 'Expertos Certificados',
     },
     {
       id: 'accessibility',
-      title: 'Contenido Accesible y Místico',
+      title: 'Contenido Accesible',
       description:
         'Información comprensible para todos los niveles, sin perder la profundidad y misticismo auténtico.',
       icon: 'fas fa-book-open',
@@ -374,15 +374,15 @@ export class AppComponent implements OnInit, OnDestroy {
   readonly services = signal<Service[]>([
     {
       id: 'tarot',
-      name: 'Tarot y Arcanos',
+      name: 'Arcanos',
       icon: 'fas fa-eye',
       description: 'Lecturas personalizadas que revelan tu destino',
       features: [
         'Lecturas personalizadas diarias',
         'Interpretación de arcanos mayores y menores',
         'Spreads especializados para diferentes temas',
-        'Consultas en vivo con tarotistas certificados',
-        'Curso completo de lectura de tarot',
+        // 'Consultas en vivo con tarotistas certificados',
+        // 'Curso completo de lectura de tarot',
       ],
     },
     {
@@ -392,30 +392,30 @@ export class AppComponent implements OnInit, OnDestroy {
       description: 'Cartas astrales y predicciones cósmicas',
       features: [
         'Carta astral personalizada completa',
-        'Predicciones basadas en tránsitos planetarios',
-        'Compatibilidad astrológica',
+        // 'Predicciones basadas en tránsitos planetarios',
+        // 'Compatibilidad astrológica',
         'Análisis de retorno solar anual',
-        'Astrología predictiva y evolutiva',
+        // 'Astrología predictiva y evolutiva',
       ],
     },
     {
       id: 'holistic',
       name: 'Terapias Holísticas',
       icon: 'fas fa-spa',
-      description: 'Chakras, frecuencias y sanación energética',
+      description: 'Chakras, frecuencias y energía',
       features: [
         'Equilibrio y sanación de chakras',
         'Terapias con frecuencias sonoras',
         'Meditaciones guiadas especializadas',
         'Trabajo con cristales y gemas',
-        'Técnicas de reiki y sanación energética',
+        'Técnicas de reiki y de energía',
       ],
     },
     {
       id: 'lunar',
       name: 'Ciclos Lunares',
       icon: 'fas fa-moon',
-      description: 'Rituales y ceremonias según las fases lunares',
+      description: 'Ceremonias según las fases lunares',
       features: [
         'Calendario lunar personalizado',
         'Rituales para cada fase lunar',
@@ -431,7 +431,7 @@ export class AppComponent implements OnInit, OnDestroy {
       name: 'María Elena',
       text: 'Arcana cambió mi vida. Las lecturas son increíblemente precisas y el contenido premium vale cada centavo.',
       stars: 5,
-      specialty: 'Tarot y Numerología',
+      specialty: 'Arcanos y Numerología',
     },
     {
       name: 'Carlos Mendoza',
@@ -454,7 +454,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   readonly premiumBenefits = signal<string[]>([
     'Todo el contenido Premium y VIP',
-    '1 lectura al mes (1 pregunta con nuestro equipo mágico)',
+    // '1 lectura al mes (1 pregunta con nuestro equipo mágico)',
     'Acceso a cursos VIP',
     'Dinámicas VIP exclusivas',
     'Regalo de bienvenida',
@@ -470,12 +470,12 @@ export class AppComponent implements OnInit, OnDestroy {
   readonly welcomeData = signal<WelcomeData>({
     title: 'Despierta tu sabiduría interior',
     description:
-      'Únete a miles de personas que han transformado sus vidas a través del tarot, astrología, terapias holísticas y rituales lunares. Tu despertar espiritual comienza aquí.',
+      'Únete a miles de personas que han transformado sus vidas a través de astrología, terapias holísticas y rituales lunares. Tu despertar espiritual comienza aquí.',
   });
 
   readonly finalCTA = signal<FinalCTA>({
     description:
-      'Únete a miles de personas que ya han transformado sus vidas con Arcana. Comienza tu viaje místico hoy mismo.',
+      'Únete a miles de personas que ya han transformado sus vidas con Arcana. Comienza tu camino hoy mismo.',
     buttonText: 'Comenzar Mi Transformación',
     disclaimer: '✨ 7 días gratis • Sin compromiso • Cancela cuando quieras',
   });
@@ -486,7 +486,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   readonly officialDescription = signal<OfficialDescriptionData>({
     text: 'En Arcana encontrarás...',
-    inspiration: 'Despierta tu poder: magia ancestral para la vida moderna',
+    inspiration: 'Despierta tu poder: prácticas de bienestar ancestrales para la vida moderna',
     highlights: [
       {
         icon: 'fas fa-gem',
@@ -505,17 +505,17 @@ export class AppComponent implements OnInit, OnDestroy {
       },
       {
         icon: 'fas fa-users',
-        text: 'Comunidad Mágica',
+        text: 'Comunidad',
         color: '#b4a2fd',
       },
       {
         icon: 'fas fa-magic',
-        text: 'Rituales y Hechizos',
+        text: 'Ceremonias de Intención',
         color: '#ffa500',
       },
       {
         icon: 'fas fa-eye',
-        text: 'Tarot Interactivo',
+        text: 'Aprendizaje Interactivo',
         color: '#9370db',
       },
     ],
@@ -550,15 +550,15 @@ export class AppComponent implements OnInit, OnDestroy {
   readonly showResetButton = signal<boolean>(false);
   readonly dailyFortuneMessage = signal<string>('');
 
-  // Mensajes de fortuna
+  // Reflexiones diarias
   private readonly fortuneMessages: string[] = [
     'La energía del universo conspira a tu favor hoy. Mantén tu corazón abierto a las sorpresas.',
-    'Los cristales susurran secretos de abundancia. Escucha con tu alma y actúa con confianza.',
+    'Los cristales susurran secretos de plenitud. Escucha con tu alma y actúa con confianza.',
     'Tu intuición es tu mejor guía. Confía en las señales que el cosmos te envía.',
     'Las fases lunares traen renovación. Es momento de dejar ir lo que ya no te sirve.',
     'El amor propio es la magia más poderosa. Honra tu luz interior y verás milagros.',
     'Los caminos se abren cuando sigues tu verdad. No temas brillar con autenticidad.',
-    'La abundancia fluye hacia quienes vibran en gratitud. Celebra cada pequeña bendición.',
+    'La plenitud fluye hacia quienes vibran en gratitud. Celebra cada pequeña bendición.',
     'Tu energía atrae experiencias similares. Irradia positividad y recibe prosperidad.',
     'Los rituales de protección te rodean de luz dorada. Camina seguro en tu poder.',
     'La sabiduría ancestral vive en ti. Confía en el conocimiento que llevas en el alma.',
@@ -1697,7 +1697,7 @@ export class AppComponent implements OnInit, OnDestroy {
         padding: 40px 24px;
         text-align: center;
       ">
-        <!-- Título con elemento místico -->
+        <!-- Título con elemento -->
         <div style="
           margin-bottom: 24px;
           display: flex;
@@ -1742,7 +1742,7 @@ export class AppComponent implements OnInit, OnDestroy {
           Si tu PDF no se descargó automáticamente, usa el botón de abajo o mantén presionado sobre él y selecciona <strong style="color: #f7dc6f;">"Descargar Archivo Enlazado"</strong> en las opciones disponibles.
         </p>
 
-        <!-- Botón de descarga místico -->
+        <!-- Botón de descarga -->
         <a href="${pdfUrl}" target="_blank" style="
           display: inline-block;
           background: linear-gradient(135deg, #f7dc6f 0%, #f4d03f 100%);

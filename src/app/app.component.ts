@@ -20,7 +20,7 @@ import { RouterOutlet, RouterModule } from '@angular/router'; // 👈 Agregar Ro
               class="h-8 w-auto opacity-80"
             >
             <span class="text-sm opacity-70" style="color: #b4a2fd">
-              © 2024 Arcana. Todos los derechos reservados.
+              © 2025 Arcana. Todos los derechos reservados.
             </span>
           </div>
 

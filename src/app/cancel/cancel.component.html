@@ -1,0 +1,82 @@
+<div class="cancel-container">
+  <!-- Animated Stars Background -->
+  <div class="fixed inset-0 pointer-events-none z-0">
+    <!-- Large Stars -->
+    @for (star of largeStars; track $index) {
+    <div
+      class="star large"
+      [style.top.%]="star.top"
+      [style.left.%]="star.left"
+      [style.animation-delay.s]="star.delay"
+    ></div>
+    }
+
+    <!-- Medium Stars -->
+    @for (star of mediumStars; track $index) {
+    <div
+      class="star medium"
+      [style.top.%]="star.top"
+      [style.left.%]="star.left"
+      [style.animation-delay.s]="star.delay"
+    ></div>
+    }
+
+    <!-- Small Stars -->
+    @for (star of smallStars; track $index) {
+    <div
+      class="star small"
+      [style.top.%]="star.top"
+      [style.left.%]="star.left"
+      [style.animation-delay.s]="star.delay"
+    ></div>
+    }
+
+    <!-- Sparkles -->
+    @for (sparkle of sparkles; track $index) {
+    <div
+      class="sparkle"
+      [style.top.%]="sparkle.top"
+      [style.left.%]="sparkle.left"
+      [style.animation-delay.s]="sparkle.delay"
+    ></div>
+    }
+
+    <!-- Floating Sparkles -->
+    @for (floatingSparkle of floatingSparkles; track $index) {
+    <div
+      class="floating-sparkle"
+      [style.top.%]="floatingSparkle.top"
+      [style.left.%]="floatingSparkle.left"
+      [style.animation-delay.s]="floatingSparkle.delay"
+    ></div>
+    }
+  </div>
+
+  <!-- Content -->
+  <div class="cancel-content">
+    <!-- Ícono de cancelación -->
+    <div class="cancel-icon-wrapper">
+      <div class="cancel-icon">
+        <i class="fas fa-times"></i>
+      </div>
+      <div class="cancel-glow"></div>
+    </div>
+
+    <!-- Mensaje -->
+    <h1 class="cancel-title">Compra Cancelada</h1>
+    <p class="cancel-message">
+      Tu compra ha sido cancelada.<br />
+      No se realizó ningún cargo. La magia te espera cuando estés listo 🌙
+    </p>
+
+    <!-- Botón opcional para cerrar -->
+    <button class="cancel-button" (click)="closeCancel()">
+      Volver al inicio
+    </button>
+
+    <!-- Indicador de auto-cierre -->
+    <div class="auto-close-indicator">
+      <div class="auto-close-bar"></div>
+    </div>
+  </div>
+</div>

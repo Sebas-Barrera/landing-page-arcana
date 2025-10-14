@@ -1,11 +1,51 @@
 import { Component } from '@angular/core';
-import { RouterOutlet, RouterModule } from '@angular/router'; // 👈 Agregar RouterModule
+import { RouterOutlet, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterModule], // 👈 Agregar RouterModule aquí
+  imports: [RouterOutlet, RouterModule],
   template: `
+
+  <!-- <div
+  style="
+    position: fixed;
+    top: 200px;
+    right: 20px;
+    z-index: 10000;
+    display: flex;
+    gap: 10px;
+  "
+>
+  <button
+    routerLink="/success"
+    style="
+      padding: 10px 20px;
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: serif;
+    "
+  >
+    Test Success
+  </button>
+  <button
+    routerLink="/cancel"
+    style="
+      padding: 10px 20px;
+      background: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: serif;
+    "
+  >
+    Test Cancel
+  </button>
+</div> -->
     <router-outlet></router-outlet>
     
     <!-- Footer que aparece en todas las páginas -->

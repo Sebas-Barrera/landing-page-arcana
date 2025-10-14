@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import { TerminosYCondicionesComponent } from './terminos-y-condiciones/terminos-y-condiciones.component';
 import { SoporteComponent } from './soporte/soporte.component';
 import { HomeComponent } from './home/home.component';
+import { SuccesComponent } from './succes/succes.component';
+import { CancelComponent } from './cancel/cancel.component';
 
 export const routes: Routes = [
   // Ruta raíz - muestra el HomeComponent
@@ -17,6 +19,14 @@ export const routes: Routes = [
   {
     path: 'soporte',
     component: SoporteComponent,
+  },
+  {
+    path: 'success',
+    component: SuccesComponent,
+  },
+  {
+    path: 'cancel',
+    component: CancelComponent,
   },
   {
     path: '**',

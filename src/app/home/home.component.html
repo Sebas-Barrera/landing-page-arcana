@@ -290,13 +290,13 @@
             class="text-4xl lg:text-6xl xl:text-7xl font-normal mb-4 lg:mb-6 text-glow"
             style="color: #b4a2fd"
           >
-            Una nueva era de magia está por revelarse
+            Arcana ya está disponible
           </h2>
           <p
             class="text-xl lg:text-2xl xl:text-3xl mb-6 lg:mb-8 opacity-90 font-light"
             style="color: #b4a2fd"
           >
-            Prepárate para conectar con lo que siempre has sentido.
+            Descárgala y comienza tu viaje espiritual hoy.
           </p>
           <div
             class="inline-block bg-gradient-to-r from-transparent via-purple-500/20 to-transparent p-6 lg:p-8 rounded-2xl border border-purple-400/30 mb-8"
@@ -305,188 +305,76 @@
               class="text-2xl lg:text-3xl font-bold mb-2"
               style="color: #b4a2fd"
             >
-              <i class="fas fa-calendar-star mr-3"></i>
-              {{ getLaunchDateFormatted() }}
+              <i class="fas fa-check-circle mr-3"></i>
+              Disponible en tiendas de aplicaciones
             </div>
             <div class="text-lg opacity-75" style="color: #b4a2fd">
-              El futuro de la mágia y espiritualidad digital
+              Busca “Arcana” en tu App Store favorita
             </div>
           </div>
         </div>
 
-        <!-- Contenido principal centrado -->
-        <div class="max-w-4xl mx-auto">
-          <!-- Título del countdown -->
-          <div class="text-center mb-8 lg:mb-12">
+        <!-- Contenido principal con video -->
+        <div
+          class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center"
+        >
+          <!-- Texto/CTA -->
+          <div class="space-y-6">
             <h3
-              class="text-2xl lg:text-3xl xl:text-4xl font-normal mb-4"
+              class="text-2xl lg:text-3xl xl:text-4xl font-normal"
               style="color: #b4a2fd"
             >
-              <i class="fas fa-hourglass-half mr-3"></i>
-              Cuenta Regresiva
+              <i class="fas fa-magic mr-3"></i>
+              Tu guía espiritual ya te espera
             </h3>
-          </div>
-
-          <!-- Contador principal -->
-          <div
-            class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-12 lg:mb-16"
-          >
-            <div
-              class="countdown-item text-center p-4 lg:p-6 rounded-xl border border-purple-400/30 bg-purple-500/10 backdrop-blur-sm"
+            <p
+              class="text-lg lg:text-xl opacity-90 font-light"
+              style="color: #b4a2fd"
             >
-              <div
-                class="countdown-number text-3xl lg:text-4xl xl:text-5xl font-bold mb-2"
-                style="color: #b4a2fd"
-              >
-                {{
-                  countdown().days < 10
-                    ? "0" + countdown().days
-                    : countdown().days
-                }}
-              </div>
-              <div
-                class="countdown-label text-sm lg:text-base opacity-75"
-                style="color: #b4a2fd"
-              >
-                Días
-              </div>
-            </div>
-            <div
-              class="countdown-item text-center p-4 lg:p-6 rounded-xl border border-purple-400/30 bg-purple-500/10 backdrop-blur-sm"
-            >
-              <div
-                class="countdown-number text-3xl lg:text-4xl xl:text-5xl font-bold mb-2"
-                style="color: #b4a2fd"
-              >
-                {{
-                  countdown().hours < 10
-                    ? "0" + countdown().hours
-                    : countdown().hours
-                }}
-              </div>
-              <div
-                class="countdown-label text-sm lg:text-base opacity-75"
-                style="color: #b4a2fd"
-              >
-                Horas
-              </div>
-            </div>
-            <div
-              class="countdown-item text-center p-4 lg:p-6 rounded-xl border border-purple-400/30 bg-purple-500/10 backdrop-blur-sm"
-            >
-              <div
-                class="countdown-number text-3xl lg:text-4xl xl:text-5xl font-bold mb-2"
-                style="color: #b4a2fd"
-              >
-                {{
-                  countdown().minutes < 10
-                    ? "0" + countdown().minutes
-                    : countdown().minutes
-                }}
-              </div>
-              <div
-                class="countdown-label text-sm lg:text-base opacity-75"
-                style="color: #b4a2fd"
-              >
-                Minutos
-              </div>
-            </div>
-            <div
-              class="countdown-item text-center p-4 lg:p-6 rounded-xl border border-purple-400/30 bg-purple-500/10 backdrop-blur-sm"
-            >
-              <div
-                class="countdown-number text-3xl lg:text-4xl xl:text-5xl font-bold mb-2"
-                style="color: #b4a2fd"
-              >
-                {{
-                  countdown().seconds < 10
-                    ? "0" + countdown().seconds
-                    : countdown().seconds
-                }}
-              </div>
-              <div
-                class="countdown-label text-sm lg:text-base opacity-75"
-                style="color: #b4a2fd"
-              >
-                Segundos
-              </div>
-            </div>
-          </div>
-
-          <!-- Formulario de early access -->
-          <div
-            *ngIf="showEarlyAccessForm()"
-            class="early-access-form p-6 lg:p-8 rounded-xl border border-purple-400/30 bg-purple-500/5 backdrop-blur-sm max-w-lg mx-auto"
-          >
-            <!-- Formulario normal (antes de enviar) -->
-            <div *ngIf="!formSubmitted()" class="space-y-4">
-              <div>
-                <label
-                  class="block text-sm font-medium mb-2"
-                  style="color: #b4a2fd"
-                >
-                  <i class="fas fa-magic mr-2"></i> Tu email
-                </label>
-                <input
-                  type="email"
-                  [(ngModel)]="earlyAccessEmail"
-                  (input)="onEmailChange()"
-                  placeholder="tu@email.com"
-                  class="w-full px-4 py-3 rounded-lg border border-purple-400/30 bg-purple-500/10 backdrop-blur-sm text-white placeholder-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-300"
-                  style="color: #b4a2fd"
-                />
-                <div *ngIf="emailError()" class="text-red-400 mt-2 text-sm">
-                  {{ emailErrorMessage() }}
-                </div>
-              </div>
-              <div class="flex gap-3">
-                <button
-                  class="flex-1 px-4 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-all duration-300 flex items-center justify-center gap-2"
-                  (click)="onSubmitEarlyAccess()"
-                  [disabled]="loading"
-                >
-                  <i class="fas fa-paper-plane text-sm" *ngIf="!loading"></i>
-                  <div *ngIf="loading" class="spinner-small"></div>
-                  {{ loading ? "Enviando..." : "Enviar" }}
-                </button>
-                <button
-                  class="px-4 py-3 border border-purple-400/30 hover:bg-purple-500/10 rounded-lg font-medium transition-all duration-300 flex items-center justify-center"
-                  style="color: #b4a2fd"
-                  (click)="onToggleEarlyAccess()"
-                  [disabled]="loading"
-                >
-                  <span>Cancelar</span>
-                </button>
-              </div>
-            </div>
-
-            <!-- Mensaje de confirmación (después de enviar) -->
-            <div *ngIf="formSubmitted()" class="text-center py-4">
-              <i
-                class="fas fa-check-circle text-4xl mb-4"
-                style="color: #50c878"
-              ></i>
-              <h4 class="text-xl font-medium mb-2" style="color: #b4a2fd">
-                ¡Registro Exitoso!
-              </h4>
-              <p class="opacity-90" style="color: #b4a2fd">
-                Te notificaremos cuando el acceso anticipado esté disponible.
-              </p>
-            </div>
-          </div>
-
-          <!-- Información adicional -->
-          <div class="text-center mt-8">
+              Meditaciones, rituales, oráculos y asesorías energéticas, ahora en
+              tu móvil.
+            </p>
             <div class="text-sm opacity-75 space-y-2" style="color: #b4a2fd">
-              <p class="flex items-center justify-center gap-2">
-                <i class="fas fa-shield-alt text-xs"></i>
-                No spam, solo actualizaciones importantes
+              <p class="flex items-center gap-2">
+                <i class="fas fa-mobile-alt text-xs"></i>
+                Disponible para iOS y Android
               </p>
-              <p class="flex items-center justify-center gap-2">
-                <i class="fas fa-users text-xs"></i>
-                Únete a nuestra comunidad de más de 10,000 miembros
+              <p class="flex items-center gap-2">
+                <i class="fas fa-star text-xs"></i>
+                Experiencia optimizada y segura
               </p>
             </div>
+          </div>
+
+          <!-- Video responsivo -->
+          <div>
+            <div
+              class="relative w-full overflow-hidden rounded-xl border border-purple-400/30 bg-purple-500/10 shadow-lg"
+              style="padding-top: 56.25%"
+            >
+              <iframe
+                class="absolute inset-0 w-full h-full"
+                src="https://www.youtube.com/embed/gUshFjVYJO8?rel=0&modestbranding=1&playsinline=1"
+                title="Bienvenida y Bienvenido a Arcana"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+
+        <!-- Información adicional -->
+        <div class="text-center mt-8">
+          <div class="text-sm opacity-75 space-y-2" style="color: #b4a2fd">
+            <p class="flex items-center justify-center gap-2">
+              <i class="fas fa-shield-alt text-xs"></i>
+              No spam, solo actualizaciones importantes
+            </p>
+            <p class="flex items-center justify-center gap-2">
+              <i class="fas fa-users text-xs"></i>
+              Únete a nuestra comunidad de más de 10,000 miembros
+            </p>
           </div>
         </div>
       </div>

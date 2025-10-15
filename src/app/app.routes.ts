@@ -21,11 +21,11 @@ export const routes: Routes = [
     component: SoporteComponent,
   },
   {
-    path: 'success',
+    path: 'payment/success',
     component: SuccesComponent,
   },
   {
-    path: 'cancel',
+    path: 'payment/cancel',
     component: CancelComponent,
   },
   {

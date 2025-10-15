@@ -28,7 +28,18 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/_redirects"
+              "src/_redirects",
+              "public/.well-known/apple-app-site-association",
+              {
+                "glob": "apple-app-site-association",
+                "input": "public/.well-known/apple-app-site-association",
+                "output": "/"
+              },
+              {
+                "glob": "assetlinks.json",
+                "input": "public/.well-known/assetlinks.json",
+                "output": "/"
+              }
             ],
             "styles": [
               "src/styles.scss",

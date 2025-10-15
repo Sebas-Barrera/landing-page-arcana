@@ -109,12 +109,11 @@ export interface BrandValue {
 // COMPONENTE PRINCIPAL
 // ========================================
 
-
 @Component({
   selector: 'app-home',
   imports: [CommonModule, FormsModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit, OnDestroy {
   registrationForm = {
@@ -470,11 +469,15 @@ export class HomeComponent implements OnInit, OnDestroy {
       'Únete a miles de personas que han transformado sus vidas a través del tarot, astrología, terapias holísticas y rituales lunares. Tu despertar espiritual comienza aquí.',
   });
 
-  readonly finalCTA = signal<FinalCTA>({
+  readonly finalCTA = signal<{
+    title: string;
+    description: string;
+    buttonText: string;
+  }>({
+    title: 'Tu Despertar Espiritual Comienza Hoy',
     description:
-      'Únete a miles de personas que ya han transformado sus vidas con Arcana. Comienza tu viaje místico hoy mismo.',
-    buttonText: 'Comenzar Mi Transformación',
-    disclaimer: '✨ 7 días gratis • Sin compromiso • Cancela cuando quieras',
+      'Descarga Arcana y accede a todo el poder de la magia ancestral en tu móvil. Rituales, cristales, tarot y sabiduría espiritual esperan por ti.',
+    buttonText: 'Descargar Ahora',
   });
 
   // ========================================
@@ -1502,30 +1505,26 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   private adjustModalForAndroid(): void {
-  if (!this.isBrowser) return;
-  
-  const isAndroid = /Android/.test(navigator.userAgent);
-  const isChrome = /Chrome/.test(navigator.userAgent);
-  
-  if (isAndroid && isChrome) {
-    // Agregar clase especial para Android Chrome
-    const modal = document.querySelector('.modal-container');
-    if (modal) {
-      modal.classList.add('android-chrome-modal');
+    if (!this.isBrowser) return;
+
+    const isAndroid = /Android/.test(navigator.userAgent);
+    const isChrome = /Chrome/.test(navigator.userAgent);
+
+    if (isAndroid && isChrome) {
+      // Agregar clase especial para Android Chrome
+      const modal = document.querySelector('.modal-container');
+      if (modal) {
+        modal.classList.add('android-chrome-modal');
+      }
     }
   }
-}
 
-// Llamar este método cuando abras el modal
-onStartPremium(): void {
-  this.saveScrollPosition();
-  this.showMembershipModal.set(true);
-  this.blockBodyScroll();
-  this.hideNavbar();
-  
-  // Agregar ajuste para Android
-  setTimeout(() => {
-    this.adjustModalForAndroid();
-  }, 100);
-}
+  // Métodos para abrir las tiendas
+  openAppStore(): void {
+    window.open('https://www.facebook.com/');
+  }
+
+  openGooglePlay(): void {
+    window.open('https://www.facebook.com/');
+  }
 }

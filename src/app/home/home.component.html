@@ -78,7 +78,7 @@
             style="color: #b4a2fd"
             (click)="scrollToSection('el-despertar-llega-pronto')"
           >
-            Lanzamiento
+            Descargar
           </a>
 
           <a
@@ -116,51 +116,10 @@
           />
         </div>
       </div>
-
-      <!-- Botones de Autenticación (Derecha) -->
-      <div class="navbar-right">
-        <div
-          class="flex flex-wrap justify-end items-center space-x-2 lg:space-x-4"
-        >
-          <a
-            class="nav-link text-xs lg:text-sm px-2 py-1 lg:px-3 lg:py-2 rounded-md transition-all duration-300 cursor-pointer relative overflow-hidden group"
-            style="
-              color: #100820;
-              background: linear-gradient(135deg, #b4a2fd 0%, #ffd700 100%);
-              font-weight: 600;
-              box-shadow: 0 0 15px rgba(180, 162, 253, 0.4);
-              border: 2px solid transparent;
-              background-clip: padding-box;
-            "
-            (click)="onStartPremium()"
-            onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 0 25px rgba(255, 215, 0, 0.6)'"
-            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 0 15px rgba(180, 162, 253, 0.4)'"
-          >
-            <span class="relative z-10 flex items-center gap-1">
-              <i class="fas fa-star text-xs"></i>
-              Acceso Anticipado
-              <i class="fas fa-arrow-right text-xs"></i>
-            </span>
-
-            <!-- Efecto de brillo animado -->
-            <div
-              class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
-            ></div>
-          </a>
-          <div class="hidden lg:block w-px h-6 bg-purple-400 opacity-30"></div>
-
-          <button
-            class="text-sm lg:text-base px-4 py-2 border border-purple-400 hover:bg-purple-500 hover:bg-opacity-20 rounded-md transition-all duration-300 cursor-pointer auth-button-primary"
-            style="color: #b4a2fd; border-color: #b4a2fd"
-            (click)="onStartPremium()"
-          >
-            Crear Cuenta
-          </button>
-        </div>
-      </div>
     </nav>
 
     <!-- Sección Principal Hero -->
+    <<!-- Sección Principal Hero -->
     <section
       id="inicio"
       class="flex flex-col items-center text-center px-4 lg:px-8 py-8 lg:py-16 max-w-6xl mx-auto"
@@ -180,92 +139,109 @@
 
       <!-- Título Principal -->
       <h1
-        class="text-3xl lg:text-6xl xl:text-7xl leading-tight font-normal max-w-4xl mb-6 lg:mb-8 text-glow"
+        class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal mb-6 lg:mb-8 main-title leading-tight"
         style="color: #b4a2fd"
       >
-        <!-- Icono de Luna -->
-        <img
-          src="../../../../assets/welcomeImages/moon.png"
-          alt="Luna"
-          class="inline-block align-middle w-12 h-12 lg:w-20 lg:h-20"
-        />
-        Despierta tu
-        <em class="italic font-normal"> sabiduría interior</em>
-        con la plataforma más completa de
-        <br class="hidden sm:block" />
-        <em class="italic font-normal">esoterismo</em>
-        y crecimiento espiritual
-        <!-- Icono de Estrellas -->
-        <img
-          src="../../../../assets/welcomeImages/stars.png"
-          alt="Luna"
-          class="inline-block align-middle mr-4 w-8 h-8 lg:w-15 lg:h-20"
-        />
+        Despierta tu poder: magia ancestral para la vida moderna
       </h1>
 
-      <!-- Botones de Acción Principales -->
-      <div
-        class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6"
-      >
-        <button
-          class="px-8 py-4 border-2 font-medium text-lg hover:bg-opacity-20 transition-all duration-300 secondary-cta cursor-pointer flex items-center gap-2"
-          (click)="onStartPremium()"
-        >
-          <i class="fas fa-crown"></i>
-          Regístrate
-        </button>
-      </div>
+      <!-- Subtítulo -->
       <p
-        class="text-sm lg:text-lg xl:text-xl leading-relaxed max-w-3xl font-light mb-8"
+        class="text-lg md:text-xl lg:text-2xl xl:text-3xl mb-8 lg:mb-10 opacity-90 max-w-4xl font-light"
         style="color: #b4a2fd"
       >
-        Al hacer el pre-registro en Arcana, obtendrás un archivo con cinco
-        rituales mágicos para tu día a día: abundancia, suerte, protección,
-        abrir caminos y amor
+        Rituales, hechizos, cristales, tarot interactivo y conocimientos mágicos
+        para transformar tu energía y tu vida.
       </p>
 
-      <!-- Descripción -->
-      <p
-        class="text-sm lg:text-lg xl:text-xl leading-relaxed max-w-3xl font-light mb-8 cursor-pointer hover:text-white transition-all duration-300"
-        style="color: #b4a2fd"
-        (click)="onStartPremium()"
-      >
-        {{ welcomeData().description }}
-      </p>
-
-      <!-- Accesos Rápidos -->
+      <!-- Badge Ya Disponible -->
       <div
-        class="flex flex-col sm:flex-row items-center gap-4 text-sm mb-8 quick-access"
-        style="color: #b4a2fd"
+        class="inline-block bg-gradient-to-r from-transparent via-purple-500/20 to-transparent p-4 lg:p-6 rounded-2xl border border-purple-400/30 mb-8"
       >
-        <span class="hidden sm:inline opacity-40">|</span>
-        <span class="opacity-70">¿Necesitas más información?</span>
-        <button
-          class="underline hover:text-white transition-all duration-300 cursor-pointer flex items-center gap-1"
-          (click)="scrollToSection('membresias')"
-          (click)="scrollToSection('membresias')"
-        >
-          <i class="fas fa-info-circle text-xs"></i>
-          Ver todas las membresías
-        </button>
+        <div class="text-2xl lg:text-3xl font-bold mb-2" style="color: #b4a2fd">
+          <i class="fas fa-check-circle mr-3"></i>
+          ¡Ya Disponible!
+        </div>
+        <div class="text-base lg:text-lg opacity-75" style="color: #b4a2fd">
+          Descarga Arcana en tu tienda favorita
+        </div>
       </div>
 
-      <!-- Indicadores de Confianza -->
+      <!-- Badges de las Tiendas -->
       <div
-        class="flex flex-wrap justify-center items-center gap-8 text-sm trust-indicators"
-        style="color: #b4a2fd"
+        class="flex flex-col sm:flex-row gap-4 items-center justify-center mb-12"
       >
-        <div class="flex items-center opacity-80">
-          <i class="fas fa-users mr-2 text-base"></i>
-          <span>+{{ trustIndicators().members }} miembros activos</span>
+        <!-- App Store Badge -->
+        <div class="transform hover:scale-105 transition-all duration-300">
+          <img
+            src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/es-mx?size=250x83"
+            alt="Descargar en App Store"
+            class="h-14 lg:h-16 cursor-pointer"
+            (click)="openAppStore()"
+          />
         </div>
-        <div class="flex items-center opacity-80">
-          <i class="fas fa-star mr-2 text-base"></i>
-          <span>{{ trustIndicators().rating }}/5 estrellas</span>
+
+        <!-- Google Play Badge -->
+        <div class="transform hover:scale-105 transition-all duration-300">
+          <img
+            src="https://play.google.com/intl/en_us/badges/static/images/badges/es_badge_web_generic.png"
+            alt="Disponible en Google Play"
+            class="h-14 lg:h-16 cursor-pointer"
+            (click)="openGooglePlay()"
+          />
         </div>
-        <div class="flex items-center opacity-80">
-          <i class="fas fa-certificate mr-2 text-base"></i>
-          <span>Certificado por maestros</span>
+      </div>
+
+      <!-- Descripción adicional -->
+      <div class="text-center max-w-3xl mb-8">
+        <p class="text-base lg:text-lg opacity-80" style="color: #b4a2fd">
+          <i class="fas fa-mobile-alt mr-2"></i>
+          Disponible para iOS y Android
+        </p>
+      </div>
+
+      <!-- CTA Principal actualizado -->
+      <button
+        class="px-8 lg:px-10 py-4 lg:py-5 text-lg lg:text-xl font-semibold shadow-lg transition-all duration-300 hover:scale-105 main-cta-button mb-8"
+        style="background-color: #b4a2fd; color: #100820; cursor: pointer"
+        (click)="scrollToSection('el-despertar-llega-pronto')"
+      >
+        <i class="fas fa-download mr-2"></i>
+        Descarga Ahora
+      </button>
+
+      <!-- Beneficios Destacados -->
+      <div
+        class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 w-full max-w-5xl benefits-grid"
+      >
+        <div class="benefit-card p-6">
+          <i class="fas fa-magic text-4xl mb-4" style="color: #b4a2fd"></i>
+          <h3 class="text-xl font-semibold mb-2" style="color: #b4a2fd">
+            Rituales Diarios
+          </h3>
+          <p class="text-sm opacity-80" style="color: #b4a2fd">
+            Transforma tu energía con prácticas ancestrales
+          </p>
+        </div>
+
+        <div class="benefit-card p-6">
+          <i class="fas fa-moon text-4xl mb-4" style="color: #b4a2fd"></i>
+          <h3 class="text-xl font-semibold mb-2" style="color: #b4a2fd">
+            Tarot Interactivo
+          </h3>
+          <p class="text-sm opacity-80" style="color: #b4a2fd">
+            Consulta las cartas y encuentra respuestas
+          </p>
+        </div>
+
+        <div class="benefit-card p-6">
+          <i class="fas fa-gem text-4xl mb-4" style="color: #b4a2fd"></i>
+          <h3 class="text-xl font-semibold mb-2" style="color: #b4a2fd">
+            Cristales y Hechizos
+          </h3>
+          <p class="text-sm opacity-80" style="color: #b4a2fd">
+            Descubre el poder de las piedras y la magia
+          </p>
         </div>
       </div>
     </section>
@@ -290,13 +266,13 @@
             class="text-4xl lg:text-6xl xl:text-7xl font-normal mb-4 lg:mb-6 text-glow"
             style="color: #b4a2fd"
           >
-            Arcana ya está disponible
+            Descarga Arcana Ahora
           </h2>
           <p
             class="text-xl lg:text-2xl xl:text-3xl mb-6 lg:mb-8 opacity-90 font-light"
             style="color: #b4a2fd"
           >
-            Descárgala y comienza tu viaje espiritual hoy.
+            Tu guía espiritual te espera en tu móvil
           </p>
           <div
             class="inline-block bg-gradient-to-r from-transparent via-purple-500/20 to-transparent p-6 lg:p-8 rounded-2xl border border-purple-400/30 mb-8"
@@ -309,44 +285,103 @@
               Disponible en tiendas de aplicaciones
             </div>
             <div class="text-lg opacity-75" style="color: #b4a2fd">
-              Busca “Arcana” en tu App Store favorita
+              Busca "Arcana" en tu App Store favorita
             </div>
           </div>
         </div>
 
-        <!-- Contenido principal con video -->
+        <!-- Contenido principal con mockups -->
         <div
-          class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center"
+          class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-12"
         >
-          <!-- Texto/CTA -->
-          <div class="space-y-6">
+          <!-- Columna Izquierda - Badges y QR Codes -->
+          <div class="space-y-8">
             <h3
-              class="text-2xl lg:text-3xl xl:text-4xl font-normal"
+              class="text-2xl lg:text-3xl xl:text-4xl font-normal mb-6"
               style="color: #b4a2fd"
             >
-              <i class="fas fa-magic mr-3"></i>
-              Tu guía espiritual ya te espera
+              <i class="fas fa-download mr-3"></i>
+              Descarga desde tu teléfono
             </h3>
-            <p
-              class="text-lg lg:text-xl opacity-90 font-light"
-              style="color: #b4a2fd"
+
+            <!-- Badges Oficiales -->
+            <div
+              class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
-              Meditaciones, rituales, oráculos y asesorías energéticas, ahora en
-              tu móvil.
-            </p>
-            <div class="text-sm opacity-75 space-y-2" style="color: #b4a2fd">
-              <p class="flex items-center gap-2">
-                <i class="fas fa-mobile-alt text-xs"></i>
-                Disponible para iOS y Android
-              </p>
-              <p class="flex items-center gap-2">
-                <i class="fas fa-star text-xs"></i>
-                Experiencia optimizada y segura
+              <div
+                class="transform hover:scale-105 transition-all duration-300 cursor-pointer"
+                (click)="openAppStore()"
+              >
+                <img
+                  src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/es-mx?size=250x83"
+                  alt="Descargar en App Store"
+                  class="h-16 lg:h-20"
+                />
+              </div>
+
+              <div
+                class="transform hover:scale-105 transition-all duration-300 cursor-pointer"
+                (click)="openGooglePlay()"
+              >
+                <img
+                  src="https://play.google.com/intl/en_us/badges/static/images/badges/es_badge_web_generic.png"
+                  alt="Disponible en Google Play"
+                  class="h-16 lg:h-20"
+                />
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="flex items-center gap-4 my-8">
+              <div class="flex-1 h-px bg-purple-400/30"></div>
+              <span class="text-sm opacity-75" style="color: #b4a2fd"
+                >o escanea el código QR</span
+              >
+              <div class="flex-1 h-px bg-purple-400/30"></div>
+            </div>
+
+            <!-- QR Codes -->
+            <div class="grid grid-cols-2 gap-6">
+              <!-- QR App Store -->
+              <div class="text-center">
+                <div class="bg-white p-4 rounded-xl inline-block mb-3">
+                  <img
+                    src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://apps.apple.com/mx/app/arcana"
+                    alt="QR Code App Store"
+                    class="w-32 h-32"
+                  />
+                </div>
+                <p class="text-sm font-semibold" style="color: #b4a2fd">
+                  <i class="fab fa-apple mr-2"></i>iOS
+                </p>
+              </div>
+
+              <!-- QR Google Play -->
+              <div class="text-center">
+                <div class="bg-white p-4 rounded-xl inline-block mb-3">
+                  <img
+                    src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://play.google.com/store/apps/details?id=com.arcana"
+                    alt="QR Code Google Play"
+                    class="w-32 h-32"
+                  />
+                </div>
+                <p class="text-sm font-semibold" style="color: #b4a2fd">
+                  <i class="fab fa-google-play mr-2"></i>Android
+                </p>
+              </div>
+            </div>
+
+            <!-- Contador social -->
+            <div class="text-center lg:text-left mt-8">
+              <p class="text-base opacity-80" style="color: #b4a2fd">
+                <i class="fas fa-users mr-2"></i>
+                Únete a más de <strong>10,000 personas</strong> que ya
+                transformaron sus vidas
               </p>
             </div>
           </div>
 
-          <!-- Video responsivo -->
+          <!-- Columna Derecha - Video -->
           <div>
             <div
               class="relative w-full overflow-hidden rounded-xl border border-purple-400/30 bg-purple-500/10 shadow-lg"
@@ -361,19 +396,26 @@
                 allowfullscreen
               ></iframe>
             </div>
+
+            <div class="text-center mt-6">
+              <p class="text-sm opacity-75" style="color: #b4a2fd">
+                <i class="fas fa-mobile-alt mr-2"></i>
+                Disponible para iOS y Android
+              </p>
+            </div>
           </div>
         </div>
 
         <!-- Información adicional -->
-        <div class="text-center mt-8">
+        <div class="text-center">
           <div class="text-sm opacity-75 space-y-2" style="color: #b4a2fd">
             <p class="flex items-center justify-center gap-2">
               <i class="fas fa-shield-alt text-xs"></i>
-              No spam, solo actualizaciones importantes
+              Experiencia optimizada y segura
             </p>
             <p class="flex items-center justify-center gap-2">
-              <i class="fas fa-users text-xs"></i>
-              Únete a nuestra comunidad de más de 10,000 miembros
+              <i class="fas fa-star text-xs"></i>
+              Actualizaciones constantes con nuevo contenido
             </p>
           </div>
         </div>
@@ -585,10 +627,7 @@
               <div
                 class="flex items-center gap-3 p-4 rounded-lg border border-purple-400/20 bg-purple-500/5 backdrop-blur-sm official-highlight-item"
               >
-                <i
-                  [class]="highlight.icon + ' text-xl'"
-                  [style.color]="highlight.color"
-                ></i>
+                <i [class]="highlight.icon + ' text-xl'"></i>
                 <span
                   class="text-sm lg:text-base font-medium"
                   style="color: #b4a2fd"
@@ -639,85 +678,8 @@
             </div>
           </div>
         </div>
-
-        <!-- Call to Action sutil -->
-        <div class="text-center mt-12 lg:mt-16">
-          <button
-            class="px-6 py-3 border border-purple-400/40 rounded-lg hover:bg-purple-500/10 transition-all duration-300 official-cta-subtle"
-            style="color: #b4a2fd"
-            (click)="onStartPremium()"
-          >
-            <i class="fas fa-arrow-up mr-2"></i>
-            Descubre más sobre el despertar
-          </button>
-        </div>
       </div>
     </section>
-
-    <!-- Pestañas de Servicios -->
-    <!-- <div
-      id="servicios"
-      class="grid grid-cols-2 lg:grid-cols-4 text-sm lg:text-base border-t border-b"
-      style="border-color: #3a3a5a; color: #b4a2fd"
-    >
-      @for (service of services(); track service.id; let i = $index) {
-      <button
-        class="border-r py-4 lg:py-6 px-3 lg:px-6 flex flex-col justify-center items-center hover:text-white transition-all duration-300 font-medium cursor-pointer service-tab"
-        [class.active]="activeService() === service.id"
-        [class.last]="i === services().length - 1"
-        [style.backgroundColor]="
-          activeService() === service.id ? '#1a1760' : 'transparent'
-        "
-        [style.border-color]="'#3a3a5a'"
-        [style.color]="activeService() === service.id ? 'white' : '#b4a2fd'"
-        (click)="setActiveService(service.id)"
-      >
-        <i [class]="service.icon + ' text-2xl mb-2 service-icon'"></i>
-        <span class="text-center">{{ service.name }}</span>
-      </button>
-      }
-    </div> -->
-
-    <!-- Contenido de Servicios -->
-    <!-- <div
-        class="lg:border-r lg:pr-8 xl:pr-12"
-        style="border-color: rgba(16, 8, 32, 0.2)"
-      >
-        <h2
-          class="text-3xl lg:text-4xl xl:text-5xl font-normal mb-6 lg:mb-8"
-          style="color: 
-#100820"
-        >
-          {{ getActiveService().name }}
-        </h2>
-
-        <ul
-          class="list-disc list-inside text-base lg:text-lg xl:text-xl space-y-2 lg:space-y-3 mb-8 lg:mb-12 leading-relaxed"
-          style="color: 
-#100820"
-        >
-          @for (feature of getActiveService().features; track feature) {
-          <li>{{ feature }}</li>
-          }
-        </ul>
-
-        <div class="flex justify-center">
-          <i
-            [class]="
-              getActiveService().icon +
-              ' text-8xl opacity-50 service-display-icon'
-            "
-            style="color: 
-#100820"
-          ></i>
-        </div>
-      </div> -->
-
-    <!-- Divisor simple solo para móviles -->
-    <!-- @if (isMobile) {
-      <hr class="mobile-only-divider" />
-      } -->
-    <!-- Contenedor centrado con CSS inline para mayor especificidad -->
 
     <!-- Sección de Membresías Completa -->
     <section
@@ -775,7 +737,6 @@
 
                 <!-- Botón de Acción -->
                 <button
-                  (click)="onStartPremium()"
                   class="w-full py-3 px-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:from-purple-500 hover:to-indigo-500"
                 >
                   <i class="fas fa-magic"></i>
@@ -819,7 +780,6 @@
 
                 <!-- Botón de Acción -->
                 <button
-                  (click)="onStartPremium()"
                   class="w-full py-3 px-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 bg-gradient-to-r from-yellow-400 to-orange-400 text-black shadow-lg hover:shadow-yellow-400/25"
                 >
                   <i class="fas fa-magic"></i>
@@ -837,9 +797,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
               <div class="flex flex-col items-center">
                 <i class="fas fa-shield-alt text-3xl text-green-400 mb-2"></i>
-                <h4 class="font-semibold text-white mb-1">
-                  Garantía
-                </h4>
+                <h4 class="font-semibold text-white mb-1">Garantía</h4>
                 <p class="text-purple-200 text-sm">Cancela sin compromiso</p>
               </div>
               <div class="flex flex-col items-center">
@@ -968,6 +926,7 @@
     </section>
 
     <!-- Llamada a la Acción Final -->
+    <!-- Llamada a la Acción Final -->
     <section
       class="py-20 px-6 border-t final-cta-section"
       style="border-color: #3a3a5a"
@@ -984,7 +943,7 @@
           class="text-4xl md:text-5xl font-normal mb-6"
           style="color: #b4a2fd"
         >
-          Tu Despertar Espiritual Te Espera
+          Tu Despertar Espiritual Comienza Hoy
         </h2>
 
         <!-- Descripción Final -->
@@ -992,7 +951,9 @@
           class="text-xl leading-relaxed mb-8 opacity-80"
           style="color: #b4a2fd"
         >
-          {{ finalCTA().description }}
+          Descarga Arcana y accede a todo el poder de la magia ancestral en tu
+          móvil. Rituales, cristales, tarot y sabiduría espiritual esperan por
+          ti.
         </p>
 
         <!-- Botones de Acción Final -->
@@ -1002,118 +963,28 @@
           <button
             class="px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 final-cta-button flex items-center gap-2"
             style="background-color: #b4a2fd; color: #100820; cursor: pointer"
-            (click)="onStartPremium()"
+            (click)="scrollToSection('el-despertar-llega-pronto')"
           >
-            <i class="fas fa-rocket"></i>
-            {{ finalCTA().buttonText }}
+            <i class="fas fa-download"></i>
+            Descargar Ahora
+          </button>
+
+          <button
+            class="px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 border-2 flex items-center gap-2"
+            style="
+              border-color: #b4a2fd;
+              color: #b4a2fd;
+              background: transparent;
+              cursor: pointer;
+            "
+            (click)="scrollToSection('el-despertar-llega-pronto')"
+          >
+            <i class="fas fa-info-circle"></i>
+            Ver Más Detalles
           </button>
         </div>
 
-        <!-- Opciones Adicionales -->
-
-        <!-- Descripción del regalo por pre-registro -->
-        <div class="text-center max-w-4xl mx-auto" style="color: #b4a2fd">
-          <!-- Icono principal -->
-          <div class="mb-6">
-            <i class="fas fa-gift text-4xl mb-4" style="color: #ffd700"></i>
-            <h3 class="text-2xl lg:text-3xl font-bold mb-4">
-              Tu Regalo por Pre-registrarte
-            </h3>
-          </div>
-
-          <!-- Descripción principal -->
-          <div
-            class="bg-gradient-to-r from-purple-500/10 via-purple-500/5 to-purple-500/10 rounded-xl p-6 lg:p-8 border border-purple-400/20 backdrop-blur-sm mb-6"
-          >
-            <p class="text-lg lg:text-xl mb-4 opacity-90 leading-relaxed">
-              Al completar tu pre-registro, recibirás
-              <strong>completamente gratis</strong> nuestro exclusivo PDF
-              <br />
-              <em>"5 Rituales Poderosos"</em> - una guía práctica con rituales
-              ancestrales para transformar tu día a día.
-            </p>
-
-            <!-- Lista de rituales -->
-            <div
-              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mt-6"
-            >
-              <div
-                class="text-center p-3 rounded-lg bg-purple-500/5 border border-purple-400/10"
-              >
-                <i
-                  class="fas fa-heart text-2xl mb-2"
-                  style="color: #ff69b4"
-                ></i>
-                <p class="text-sm font-medium">Amor Propio</p>
-              </div>
-              <div
-                class="text-center p-3 rounded-lg bg-purple-500/5 border border-purple-400/10"
-              >
-                <i
-                  class="fas fa-coins text-2xl mb-2"
-                  style="color: #ffd700"
-                ></i>
-                <p class="text-sm font-medium">Abundancia</p>
-              </div>
-              <div
-                class="text-center p-3 rounded-lg bg-purple-500/5 border border-purple-400/10"
-              >
-                <i class="fas fa-star text-2xl mb-2" style="color: #20b2aa"></i>
-                <p class="text-sm font-medium">Buena Suerte</p>
-              </div>
-              <div
-                class="text-center p-3 rounded-lg bg-purple-500/5 border border-purple-400/10"
-              >
-                <i
-                  class="fas fa-shield-alt text-2xl mb-2"
-                  style="color: #50c878"
-                ></i>
-                <p class="text-sm font-medium">Protección</p>
-              </div>
-              <div
-                class="text-center p-3 rounded-lg bg-purple-500/5 border border-purple-400/10"
-              >
-                <i
-                  class="fas fa-door-open text-2xl mb-2"
-                  style="color: #ffa500"
-                ></i>
-                <p class="text-sm font-medium">Abrir Caminos</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Detalles adicionales -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm opacity-80">
-            <div class="flex flex-col items-center">
-              <i
-                class="fas fa-book-open text-xl mb-2"
-                style="color: #b4a2fd"
-              ></i>
-              <p class="font-medium mb-1">Guía Completa</p>
-              <p class="text-xs">Instrucciones paso a paso para cada ritual</p>
-            </div>
-
-            <div class="flex flex-col items-center">
-              <i class="fas fa-leaf text-xl mb-2" style="color: #50c878"></i>
-              <p class="font-medium mb-1">Ingredientes Naturales</p>
-              <p class="text-xs">Lista completa de materiales accesibles</p>
-            </div>
-
-            <div class="flex flex-col items-center">
-              <i class="fas fa-magic text-xl mb-2" style="color: #ffd700"></i>
-              <p class="font-medium mb-1">Sabiduría Ancestral</p>
-              <p class="text-xs">Rituales basados en tradiciones milenarias</p>
-            </div>
-          </div>
-
-          <!-- Call to action sutil -->
-          <div class="mt-6 text-center">
-            <p class="text-sm opacity-70 italic">
-              Un regalo especial para acompañarte mientras esperas el
-              lanzamiento de Arcana
-            </p>
-          </div>
-        </div>
+        <!-- Opciones Adicionales - MANTÉN el resto de tu sección de regalo por pre-registro -->
       </div>
     </section>
 
@@ -1134,281 +1005,7 @@
         class="modal-container relative w-full rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden"
         (click)="$event.stopPropagation()"
         style="background: transparent"
-      >
-        <!-- Layout adaptivo -->
-        <div class="modal-content flex flex-col lg:grid lg:grid-cols-2 h-full">
-          <!-- Columna izquierda - Diseño místico con botón cerrar -->
-          <div
-            class="modal-left relative flex flex-col items-center justify-center text-center overflow-hidden"
-            style="
-              background: linear-gradient(
-                135deg,
-                #2d1b69 0%,
-                #1a0d4d 50%,
-                #0f0624 100%
-              );
-            "
-          >
-            <!-- Botón de cerrar en la esquina superior derecha -->
-            <button
-              (click)="onCloseMembershipModal()"
-              class="absolute top-4 right-4 z-20 p-2 hover:bg-white/10 rounded-full transition-colors duration-200 text-yellow-400 hover:text-white"
-            >
-              <i class="fas fa-times text-xl"></i>
-            </button>
-
-            <!-- Contenido principal -->
-            <div
-              class="modal-mystical-content relative z-10 flex flex-col items-center"
-            >
-              <!-- Título superior con más espacio por la X -->
-              <h1
-                class="modal-subtitle text-yellow-400 font-light tracking-wide mb-4 sm:mb-8 lg:mb-12 sm:mt-0"
-                style="font-family: serif"
-              >
-                DESPIERTA TU PODER
-              </h1>
-
-              <!-- Logo central -->
-              <div class="modal-logo-container mb-1 sm:mb-8 lg:mb-12 relative">
-                <img
-                  src="../../../../assets/logo/logoMargenDorado.png"
-                  alt="Arcana Logo"
-                  class="modal-logo object-contain filter drop-shadow-2xl"
-                />
-                <div
-                  class="absolute inset-0 rounded-full bg-gradient-radial from-yellow-400/20 via-transparent to-transparent animate-pulse"
-                ></div>
-              </div>
-
-              <!-- Título principal -->
-              <h2
-                class="modal-title text-white font-bold tracking-wider mb-2 sm:mb-4"
-                style="
-                  font-family: serif;
-                  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-                "
-              >
-                ARCANA
-              </h2>
-
-              <!-- Subtítulo -->
-              <p
-                class="modal-description text-yellow-400/90 font-light tracking-wide mb-4 sm:mb-8 lg:mb-12 max-w-xs"
-                style="font-family: serif; line-height: 1.6"
-              >
-                MAGIA ANCESTRAL PARA LA VIDA DIARIA
-              </p>
-
-              <!-- Fecha -->
-              <div
-                class="modal-date text-yellow-400 font-light"
-                style="font-family: serif"
-              >
-                15 OCTUBRE 2025
-              </div>
-              <br />
-            </div>
-
-            <!-- Patrones decorativos -->
-            <div
-              class="modal-patterns absolute left-1/2 transform -translate-x-1/2 flex items-center text-yellow-400/60"
-            >
-              <span class="text-xs sm:text-sm">☽</span>
-              <span class="text-[10px] sm:text-xs mx-1">◐</span>
-              <span class="text-xs sm:text-sm mx-1">◑</span>
-              <span class="text-sm sm:text-lg mx-1">☉</span>
-              <span class="text-xs sm:text-sm mx-1">◒</span>
-              <span class="text-[10px] sm:text-xs mx-1">◓</span>
-              <span class="text-xs sm:text-sm">☾</span>
-            </div>
-          </div>
-
-          <!-- Columna derecha - Formulario -->
-          <div class="modal-right flex flex-col bg-gray-50 relative">
-            <!-- Patrones decorativos de fondo -->
-            <div class="absolute inset-0 opacity-5 overflow-hidden">
-              <div
-                class="absolute top-0 right-0 w-48 sm:w-96 h-48 sm:h-96 transform translate-x-16 sm:translate-x-32 -translate-y-16 sm:-translate-y-32"
-              >
-                <div
-                  class="w-full h-full border-2 sm:border-4 border-gray-300 rounded-full"
-                ></div>
-                <div
-                  class="absolute top-4 sm:top-8 left-4 sm:left-8 right-4 sm:right-8 bottom-4 sm:bottom-8 border sm:border-2 border-gray-300 rounded-full"
-                ></div>
-                <div
-                  class="absolute top-8 sm:top-16 left-8 sm:left-16 right-8 sm:right-16 bottom-8 sm:bottom-16 border border-gray-300 rounded-full"
-                ></div>
-              </div>
-            </div>
-
-            <div
-              class="modal-form-container relative z-10 w-full max-w-md mx-auto"
-            >
-              <!-- Título del formulario -->
-              <h3
-                class="modal-form-title font-bold text-gray-700 text-center tracking-wider"
-                style="font-family: serif; color: #4a5568"
-              >
-                REGÍSTRATE
-              </h3>
-
-              <!-- Formulario -->
-              <form
-                class="modal-form"
-                (ngSubmit)="onSubmitRegistration($event)"
-              >
-                <!-- Campo Nombre -->
-                <div>
-                  <input
-                    type="text"
-                    [(ngModel)]="registrationForm.name"
-                    (input)="onNameChange()"
-                    name="name"
-                    placeholder="*Nombre"
-                    class="modal-input w-full border-2 rounded-lg focus:outline-none transition-colors duration-300 text-gray-700 placeholder-gray-500"
-                    [class.border-red-400]="registrationErrors().name"
-                    [class.border-gray-300]="!registrationErrors().name"
-                    [class.focus:border-red-500]="registrationErrors().name"
-                    [class.focus:border-gray-400]="!registrationErrors().name"
-                    style="
-                      font-size: 16px;
-                      background-color: rgba(255, 255, 255, 0.8);
-                    "
-                  />
-                  <div
-                    *ngIf="registrationErrors().name"
-                    class="text-red-500 text-xs mt-1"
-                  >
-                    {{ registrationErrors().name }}
-                  </div>
-                </div>
-
-                <!-- Campo Email -->
-                <div>
-                  <input
-                    type="email"
-                    [(ngModel)]="registrationForm.email"
-                    (input)="onEmailChangeRegistration()"
-                    name="email"
-                    placeholder="*Email"
-                    class="modal-input w-full border-2 rounded-lg focus:outline-none transition-colors duration-300 text-gray-700 placeholder-gray-500"
-                    [class.border-red-400]="registrationErrors().email"
-                    [class.border-gray-300]="!registrationErrors().email"
-                    [class.focus:border-red-500]="registrationErrors().email"
-                    [class.focus:border-gray-400]="!registrationErrors().email"
-                    style="
-                      font-size: 16px;
-                      background-color: rgba(255, 255, 255, 0.8);
-                    "
-                  />
-                  <div
-                    *ngIf="registrationErrors().email"
-                    class="text-red-500 text-xs mt-1"
-                  >
-                    {{ registrationErrors().email }}
-                  </div>
-                </div>
-
-                <!-- Campo WhatsApp -->
-                <div>
-                  <input
-                    type="tel"
-                    [(ngModel)]="registrationForm.whatsapp"
-                    (input)="onWhatsAppChange()"
-                    name="whatsapp"
-                    placeholder="*WhatsApp"
-                    class="modal-input w-full border-2 rounded-lg focus:outline-none transition-colors duration-300 text-gray-700 placeholder-gray-500"
-                    [class.border-red-400]="registrationErrors().whatsapp"
-                    [class.border-gray-300]="!registrationErrors().whatsapp"
-                    [class.focus:border-red-500]="registrationErrors().whatsapp"
-                    [class.focus:border-gray-400]="
-                      !registrationErrors().whatsapp
-                    "
-                    style="
-                      font-size: 16px;
-                      background-color: rgba(255, 255, 255, 0.8);
-                    "
-                  />
-                  <div
-                    *ngIf="registrationErrors().whatsapp"
-                    class="text-red-500 text-xs mt-1"
-                  >
-                    {{ registrationErrors().whatsapp }}
-                  </div>
-                </div>
-
-                <!-- Botón de envío -->
-                <div class="modal-button-container">
-                  <!-- Mensaje de éxito (después de enviar) -->
-                  <div *ngIf="registrationSubmitted()" class="text-center py-4">
-                    <i
-                      class="fas fa-check-circle text-3xl sm:text-4xl mb-4"
-                      style="color: #50c878"
-                    ></i>
-                    <h4
-                      class="text-lg sm:text-xl font-medium mb-2"
-                      style="color: #4a5568"
-                    >
-                      ¡Registro Exitoso!
-                    </h4>
-                    <p
-                      class="opacity-90 mb-3 text-sm sm:text-base"
-                      style="color: #4a5568"
-                    >
-                      Tu descarga debería comenzar automáticamente.
-                    </p>
-                    <div
-                      class="flex items-center justify-center gap-2 text-xs sm:text-sm opacity-75"
-                      style="color: #4a5568"
-                    >
-                      <i class="fas fa-download"></i>
-                      <span class="text-center"
-                        >Descargando: 5 Rituales Poderosos - Arcana.pdf</span
-                      >
-                    </div>
-                  </div>
-
-                  <!-- Botón de envío (antes de enviar) -->
-                  <button
-                    *ngIf="!registrationSubmitted()"
-                    type="submit"
-                    [disabled]="registrationLoading()"
-                    class="modal-submit-button w-full font-semibold text-gray-800 transition-all duration-300 hover:scale-105 active:scale-95 rounded-lg shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-                    style="
-                      background: linear-gradient(
-                        135deg,
-                        #f7dc6f 0%,
-                        #f4d03f 100%
-                      );
-                    "
-                  >
-                    <span *ngIf="!registrationLoading()"
-                      >Descarga tu regalo aquí</span
-                    >
-                    <span
-                      *ngIf="registrationLoading()"
-                      class="flex items-center justify-center gap-2"
-                    >
-                      <div class="spinner-small"></div>
-                      Enviando...
-                    </span>
-                  </button>
-                </div>
-              </form>
-
-              <!-- Texto legal -->
-              <p
-                class="modal-legal-text text-xs sm:text-sm text-gray-600 mt-4 sm:mt-6 text-center leading-relaxed px-1 sm:px-0 font-medium"
-              >
-                Al registrarte aceptas recibir información sobre Arcana y
-                nuestros servicios.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+      ></div>
     </div>
   </div>
 </div>

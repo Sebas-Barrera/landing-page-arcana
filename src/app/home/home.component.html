@@ -154,41 +154,65 @@
         para transformar tu energía y tu vida.
       </p>
 
-      <!-- Badge Ya Disponible -->
-      <div
-        class="inline-block bg-gradient-to-r from-transparent via-purple-500/20 to-transparent p-4 lg:p-6 rounded-2xl border border-purple-400/30 mb-8"
-      >
-        <div class="text-2xl lg:text-3xl font-bold mb-2" style="color: #b4a2fd">
-          <i class="fas fa-check-circle mr-3"></i>
-          ¡Ya Disponible!
+      <div class="text-center mb-6">
+        <div
+          class="inline-block bg-yellow-500/20 border border-yellow-400/50 text-yellow-200 px-6 py-3 rounded-lg mb-4"
+        >
+          <i class="fas fa-exclamation-triangle mr-2"></i>
+          <span class="font-semibold">Aviso Importante:</span>
         </div>
-        <div class="text-base lg:text-lg opacity-75" style="color: #b4a2fd">
-          Descarga Arcana en tu tienda favorita
-        </div>
+        <p class="text-lg text-yellow-100 max-w-2xl mx-auto">
+          El lanzamiento se retrasará temporalmente debido a problemas técnicos
+          con nuestros servidores.
+          <br />
+          <span class="font-bold"
+            >Estaremos en servicio a partir del 25 de octubre.</span
+          >
+        </p>
+        <p class="text-sm text-yellow-200/80 mt-2">
+          Agradecemos tu comprensión y paciencia.
+        </p>
       </div>
 
-      <!-- Badges de las Tiendas -->
-      <div
-        class="flex flex-col sm:flex-row gap-4 items-center justify-center mb-12"
-      >
-        <!-- App Store Badge -->
-        <div class="transform hover:scale-105 transition-all duration-300">
-          <img
-            src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/es-mx?size=250x83"
-            alt="Descargar en App Store"
-            class="h-14 lg:h-16 cursor-pointer"
-            (click)="openAppStore()"
-          />
+      <!-- Badge Ya Disponible -->
+      <div class="blur-[4px] p-6 rounded-2xl">
+        <!-- Tu contenido actual aquí -->
+        <div
+          class="inline-block bg-gradient-to-r from-transparent via-purple-500/20 to-transparent p-4 lg:p-6 rounded-2xl border border-purple-400/30 mb-8"
+        >
+          <div
+            class="text-2xl lg:text-3xl font-bold mb-2"
+            style="color: #b4a2fd"
+          >
+            <i class="fas fa-check-circle mr-3"></i>
+            ¡Ya Disponible!
+          </div>
+          <div class="text-base lg:text-lg opacity-75" style="color: #b4a2fd">
+            Descarga Arcana en tu tienda favorita
+          </div>
         </div>
 
-        <!-- Google Play Badge -->
-        <div class="transform hover:scale-105 transition-all duration-300">
-          <img
-            src="https://play.google.com/intl/en_us/badges/static/images/badges/es_badge_web_generic.png"
-            alt="Disponible en Google Play"
-            class="h-14 lg:h-16 cursor-pointer"
-            (click)="openGooglePlay()"
-          />
+        <!-- Badges de las Tiendas -->
+        <div
+          class="flex flex-col sm:flex-row gap-4 items-center justify-center mb-12"
+        >
+          <!-- App Store Badge -->
+          <div class="transform hover:scale-105 transition-all duration-300">
+            <img
+              src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/es-mx?size=250x83"
+              alt="Descargar en App Store"
+              class="h-14 lg:h-16 cursor-pointer"
+            />
+          </div>
+
+          <!-- Google Play Badge -->
+          <div class="transform hover:scale-105 transition-all duration-300">
+            <img
+              src="https://play.google.com/intl/en_us/badges/static/images/badges/es_badge_web_generic.png"
+              alt="Disponible en Google Play"
+              class="h-14 lg:h-16 cursor-pointer"
+            />
+          </div>
         </div>
       </div>
 
@@ -261,7 +285,7 @@
     >
       <div class="max-w-6xl mx-auto relative z-10">
         <!-- Header de la sección -->
-        <div class="text-center mb-12 lg:mb-16">
+        <div class="text-center mb-12 lg:mb-16 blur-[3px]">
           <h2
             class="text-4xl lg:text-6xl xl:text-7xl font-normal mb-4 lg:mb-6 text-glow"
             style="color: #b4a2fd"
@@ -290,6 +314,26 @@
           </div>
         </div>
 
+        <div class="text-center mb-6">
+          <div
+            class="inline-block bg-yellow-500/20 border border-yellow-400/50 text-yellow-200 px-6 py-3 rounded-lg mb-4"
+          >
+            <i class="fas fa-exclamation-triangle mr-2"></i>
+            <span class="font-semibold">Aviso Importante:</span>
+          </div>
+          <p class="text-lg text-yellow-100 max-w-2xl mx-auto">
+            El lanzamiento se retrasará temporalmente debido a problemas
+            técnicos con nuestros servidores.
+            <br />
+            <span class="font-bold"
+              >Estaremos en servicio a partir del 25 de octubre.</span
+            >
+          </p>
+          <p class="text-sm text-yellow-200/80 mt-2">
+            Agradecemos tu comprensión y paciencia.
+          </p>
+        </div>
+
         <!-- Contenido principal con mockups -->
         <div
           class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-12"
@@ -297,7 +341,7 @@
           <!-- Columna Izquierda - Badges y QR Codes -->
           <div class="space-y-8">
             <h3
-              class="text-2xl lg:text-3xl xl:text-4xl font-normal mb-6"
+              class="text-2xl lg:text-3xl xl:text-4xl font-normal mb-6 blur-[4px]"
               style="color: #b4a2fd"
             >
               <i class="fas fa-download mr-3"></i>
@@ -306,7 +350,7 @@
 
             <!-- Badges Oficiales -->
             <div
-              class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+              class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start blur-[4px]"
             >
               <div
                 class="transform hover:scale-105 transition-all duration-300 cursor-pointer"
@@ -332,7 +376,7 @@
             </div>
 
             <!-- Divider -->
-            <div class="flex items-center gap-4 my-8">
+            <div class="flex items-center gap-4 my-8 blur-[4px]">
               <div class="flex-1 h-px bg-purple-400/30"></div>
               <span class="text-sm opacity-75" style="color: #b4a2fd"
                 >o escanea el código QR</span
@@ -341,7 +385,7 @@
             </div>
 
             <!-- QR Codes -->
-            <div class="grid grid-cols-2 gap-6">
+            <div class="grid grid-cols-2 gap-6 blur-[4px]">
               <!-- QR App Store -->
               <div class="text-center">
                 <div class="bg-white p-4 rounded-xl inline-block mb-3">
@@ -712,7 +756,9 @@
         <!-- Contenido de la Sección -->
         <div class="p-6 rounded-b-2xl" style="background-color: #0f0820">
           <!-- Grid de Planes -->
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
+          >
             <!-- Plan Básico -->
             <div class="relative group">
               <!-- Card del Plan -->
@@ -726,7 +772,10 @@
                     <span class="text-3xl font-bold text-white">$199</span>
                     <span class="text-lg text-purple-200">/mes</span>
                   </div>
-                  <p class="text-sm text-purple-300 mt-2">Acceso completo a la plataforma con funcionalidades esenciales</p>
+                  <p class="text-sm text-purple-300 mt-2">
+                    Acceso completo a la plataforma con funcionalidades
+                    esenciales
+                  </p>
                 </div>
 
                 <!-- Features -->
@@ -788,7 +837,9 @@
                     <span class="text-3xl font-bold text-white">$199</span>
                     <span class="text-lg text-purple-200">/mes</span>
                   </div>
-                  <p class="text-sm text-purple-300 mt-2">Todo lo de la básica más beneficios exclusivos premium</p>
+                  <p class="text-sm text-purple-300 mt-2">
+                    Todo lo de la básica más beneficios exclusivos premium
+                  </p>
                 </div>
 
                 <!-- Features -->
@@ -841,12 +892,17 @@
               >
                 <!-- Header del Plan -->
                 <div class="text-center mb-6">
-                  <h3 class="text-xl font-bold text-white mb-2">Premium Anual</h3>
+                  <h3 class="text-xl font-bold text-white mb-2">
+                    Premium Anual
+                  </h3>
                   <div class="flex items-baseline justify-center mb-2">
                     <span class="text-3xl font-bold text-white">$5,999</span>
                     <span class="text-lg text-purple-200">/año</span>
                   </div>
-                  <p class="text-sm text-purple-300 mt-2">Inversión anual con beneficios exclusivos y ahorro garantizado</p>
+                  <p class="text-sm text-purple-300 mt-2">
+                    Inversión anual con beneficios exclusivos y ahorro
+                    garantizado
+                  </p>
                 </div>
 
                 <!-- Features -->

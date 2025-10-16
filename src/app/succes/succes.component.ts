@@ -29,15 +29,15 @@ export class SuccesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     // Auto-cerrar después de 5 segundos
-    this.autoCloseTimeout = setTimeout(() => {
-      this.closeSuccess();
-    }, 5000);
+    // this.autoCloseTimeout = setTimeout(() => {
+    //   this.closeSuccess();
+    // }, 5000);
   }
 
   ngOnDestroy(): void {
-    if (this.autoCloseTimeout) {
-      clearTimeout(this.autoCloseTimeout);
-    }
+    // if (this.autoCloseTimeout) {
+    //   clearTimeout(this.autoCloseTimeout);
+    // }
   }
 
   private generateStars(): void {

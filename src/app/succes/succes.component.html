@@ -3,52 +3,32 @@
   <div class="fixed inset-0 pointer-events-none z-0">
     <!-- Large Stars -->
     @for (star of largeStars; track $index) {
-    <div
-      class="star large"
-      [style.top.%]="star.top"
-      [style.left.%]="star.left"
-      [style.animation-delay.s]="star.delay"
-    ></div>
+    <div class="star large" [style.top.%]="star.top" [style.left.%]="star.left" [style.animation-delay.s]="star.delay">
+    </div>
     }
 
     <!-- Medium Stars -->
     @for (star of mediumStars; track $index) {
-    <div
-      class="star medium"
-      [style.top.%]="star.top"
-      [style.left.%]="star.left"
-      [style.animation-delay.s]="star.delay"
-    ></div>
+    <div class="star medium" [style.top.%]="star.top" [style.left.%]="star.left" [style.animation-delay.s]="star.delay">
+    </div>
     }
 
     <!-- Small Stars -->
     @for (star of smallStars; track $index) {
-    <div
-      class="star small"
-      [style.top.%]="star.top"
-      [style.left.%]="star.left"
-      [style.animation-delay.s]="star.delay"
-    ></div>
+    <div class="star small" [style.top.%]="star.top" [style.left.%]="star.left" [style.animation-delay.s]="star.delay">
+    </div>
     }
 
     <!-- Sparkles -->
     @for (sparkle of sparkles; track $index) {
-    <div
-      class="sparkle"
-      [style.top.%]="sparkle.top"
-      [style.left.%]="sparkle.left"
-      [style.animation-delay.s]="sparkle.delay"
-    ></div>
+    <div class="sparkle" [style.top.%]="sparkle.top" [style.left.%]="sparkle.left"
+      [style.animation-delay.s]="sparkle.delay"></div>
     }
 
     <!-- Floating Sparkles -->
     @for (floatingSparkle of floatingSparkles; track $index) {
-    <div
-      class="floating-sparkle"
-      [style.top.%]="floatingSparkle.top"
-      [style.left.%]="floatingSparkle.left"
-      [style.animation-delay.s]="floatingSparkle.delay"
-    ></div>
+    <div class="floating-sparkle" [style.top.%]="floatingSparkle.top" [style.left.%]="floatingSparkle.left"
+      [style.animation-delay.s]="floatingSparkle.delay"></div>
     }
   </div>
 
@@ -66,15 +46,20 @@
     <h1 class="success-title">¡Compra Exitosa!</h1>
     <p class="success-message">
       Tu pago ha sido procesado correctamente.<br />
-      La magia está en camino hacia ti ✨
+      La magia está en camino hacia ti ✨<br/>
     </p>
-
+    
     <!-- Botón opcional para cerrar -->
     <button class="success-button" (click)="closeSuccess()">Continuar</button>
+    <p>
+      <small>
+        Puedes cerrar esta ventana y regresar a la app.
+      </small>
+    </p>
 
     <!-- Indicador de auto-cierre -->
-    <div class="auto-close-indicator">
+    <!-- <div class="auto-close-indicator">
       <div class="auto-close-bar"></div>
-    </div>
+    </div> -->
   </div>
 </div>

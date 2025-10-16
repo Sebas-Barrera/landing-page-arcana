@@ -4,14 +4,13 @@ import { SoporteComponent } from './soporte/soporte.component';
 import { HomeComponent } from './home/home.component';
 import { SuccesComponent } from './succes/succes.component';
 import { CancelComponent } from './cancel/cancel.component';
+import { MagiaComponent } from './magia/magia.component';
 
 export const routes: Routes = [
-  // Ruta raíz - muestra el HomeComponent
   {
     path: '',
     component: HomeComponent,
   },
-  // Nuevas rutas
   {
     path: 'terminos-y-condiciones',
     component: TerminosYCondicionesComponent,
@@ -28,6 +27,11 @@ export const routes: Routes = [
     path: 'payment/cancel',
     component: CancelComponent,
   },
+  {
+    path: 'magia',
+    component: MagiaComponent,
+  },
+
   {
     path: '**',
     redirectTo: '',

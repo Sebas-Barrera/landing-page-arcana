@@ -31,7 +31,7 @@
               "src/_redirects",
               {
                 "glob": "**/*",
-                "input": "src/.well-known",
+                "input": "public/.well-known",
                 "output": "/.well-known"
               }
             ],

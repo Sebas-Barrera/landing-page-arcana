@@ -31,7 +31,10 @@ export const routes: Routes = [
     path: 'magia',
     component: MagiaComponent,
   },
-
+  {
+    path: 'reset-password',
+    component: HomeComponent,
+  },
   {
     path: '**',
     redirectTo: '',

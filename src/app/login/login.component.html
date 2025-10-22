@@ -1,0 +1,89 @@
+<div class="login-container">
+  <!-- Background con gradiente -->
+  <div class="gradient-background"></div>
+
+  <!-- Elementos decorativos -->
+  <div class="decorative-element decorative-element-1"></div>
+  <div class="decorative-element decorative-element-2"></div>
+
+  <!-- Contenido principal -->
+  <div class="content">
+    <!-- Header con logo -->
+    <div class="header">
+      <div class="logo-container">
+        <img src="/logos/Isotipo.png" alt="Arcana Logo" class="logo-image">
+      </div>
+      <h1 class="title">Arcana</h1>
+      <p class="subtitle">Comienza una nueva era espiritual</p>
+    </div>
+
+    <!-- Mensaje de error -->
+    <div class="error-alert" *ngIf="showError()">
+      <div class="error-content">
+        <span class="error-icon">⚠️</span>
+        <div class="error-text">
+          <h3 class="error-title">Error</h3>
+          <p class="error-message">{{ errorMessage() }}</p>
+        </div>
+        <button type="button" class="error-close" (click)="closeError()">✕</button>
+      </div>
+    </div>
+
+    <!-- Formulario de login -->
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+      <!-- Campo de email -->
+      <div class="form-group">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          placeholder="tu@email.com"
+          class="form-input"
+          [class.has-error]="hasError('email')"
+          autocomplete="email"
+        >
+        <span class="error-text-field" *ngIf="hasError('email')">
+          {{ getErrorMessage('email') }}
+        </span>
+      </div>
+
+      <!-- Campo de contraseña -->
+      <div class="form-group">
+        <label for="password" class="form-label">Contraseña</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          placeholder="••••••••"
+          class="form-input"
+          [class.has-error]="hasError('password')"
+          autocomplete="current-password"
+        >
+        <span class="error-text-field" *ngIf="hasError('password')">
+          {{ getErrorMessage('password') }}
+        </span>
+      </div>
+
+      <!-- Botón de submit -->
+      <button
+        type="submit"
+        class="login-button"
+        [disabled]="isLoading()"
+      >
+        <span *ngIf="!isLoading()">Iniciar Sesión</span>
+        <span *ngIf="isLoading()" class="loading-container">
+          <span class="spinner"></span>
+          <span>Conectando...</span>
+        </span>
+      </button>
+    </form>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p class="footer-text">
+        <a href="/" class="back-link">← Volver al inicio</a>
+      </p>
+    </div>
+  </div>
+</div>

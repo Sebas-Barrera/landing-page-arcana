@@ -1,0 +1,377 @@
+// ========================================
+// VARIABLES Y MIXINS
+// ========================================
+
+$primary-gold: #d4af37;
+$primary-light: #b4a2fd;
+$primary-shadow: rgba(180, 162, 253, 0.5);
+$text-primary: #ffffff;
+$text-secondary: #e0e0e0;
+$text-tertiary: #a0a0a0;
+$text-link: #b4a2fd;
+$background-card: rgba(255, 255, 255, 0.05);
+$decorative-primary: rgba(180, 162, 253, 0.15);
+$decorative-secondary: rgba(212, 175, 55, 0.1);
+
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-xxl: 40px;
+$spacing-xxxl: 48px;
+
+// Border Radius
+$border-radius-sm: 8px;
+$border-radius-md: 12px;
+$border-radius-lg: 16px;
+$border-radius-xl: 24px;
+
+// Font Sizes
+$font-xs: 12px;
+$font-sm: 14px;
+$font-md: 16px;
+$font-lg: 18px;
+$font-xl: 24px;
+$font-xxl: 32px;
+
+// ========================================
+// ESTILOS PRINCIPALES
+// ========================================
+
+.login-container {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: $spacing-lg;
+}
+
+.gradient-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, #0a0a0a 0%, #1a0a2e 35%, #16213e 70%, #0f0f23 100%);
+  z-index: 0;
+}
+
+// ========================================
+// ELEMENTOS DECORATIVOS
+// ========================================
+
+.decorative-element {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 1;
+
+  &-1 {
+    top: 10%;
+    right: 10%;
+    width: 100px;
+    height: 100px;
+    background-color: $decorative-primary;
+    box-shadow: 0 0 30px $primary-shadow;
+  }
+
+  &-2 {
+    bottom: 15%;
+    left: 5%;
+    width: 60px;
+    height: 60px;
+    background-color: $decorative-secondary;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+  }
+}
+
+// ========================================
+// CONTENIDO
+// ========================================
+
+.content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 400px;
+}
+
+// ========================================
+// HEADER
+// ========================================
+
+.header {
+  text-align: center;
+  margin-bottom: $spacing-xxxl;
+}
+
+.logo-container {
+  margin-bottom: 15px;
+}
+
+.logo-image {
+  width: 134px;
+  height: 134px;
+  border-radius: 67px;
+  box-shadow: 0 0 20px $primary-shadow;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: bold;
+  color: $text-primary;
+  margin-bottom: $spacing-sm;
+  text-shadow: 0 0 10px $primary-shadow;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: $text-tertiary;
+  opacity: 0.8;
+}
+
+// ========================================
+// MENSAJE DE ERROR
+// ========================================
+
+.error-alert {
+  margin-bottom: $spacing-lg;
+  animation: slideIn 0.3s ease-out;
+}
+
+.error-content {
+  background: rgba(220, 53, 69, 0.15);
+  border: 1px solid rgba(220, 53, 69, 0.3);
+  border-radius: $border-radius-lg;
+  padding: $spacing-md;
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-md;
+}
+
+.error-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.error-text {
+  flex: 1;
+}
+
+.error-title {
+  font-size: $font-md;
+  font-weight: 600;
+  color: #ff6b6b;
+  margin: 0 0 $spacing-xs 0;
+}
+
+.error-message {
+  font-size: $font-sm;
+  color: $text-secondary;
+  margin: 0;
+}
+
+.error-close {
+  background: transparent;
+  border: none;
+  color: $text-secondary;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+
+  &:hover {
+    color: $text-primary;
+  }
+}
+
+// ========================================
+// FORMULARIO
+// ========================================
+
+.login-form {
+  margin-bottom: $spacing-xxl;
+}
+
+.form-group {
+  margin-bottom: $spacing-lg;
+}
+
+.form-label {
+  display: block;
+  font-size: $font-md;
+  color: $text-primary;
+  margin-bottom: $spacing-sm;
+  font-weight: 500;
+}
+
+.form-input {
+  width: 100%;
+  padding: $spacing-md;
+  background-color: $background-card;
+  border: 1px solid rgba(180, 162, 253, 0.3);
+  border-radius: $border-radius-lg;
+  color: $text-primary;
+  font-size: $font-md;
+  transition: all 0.3s;
+
+  &::placeholder {
+    color: $text-tertiary;
+    opacity: 0.6;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $primary-light;
+    box-shadow: 0 0 0 3px rgba(180, 162, 253, 0.1);
+  }
+
+  &.has-error {
+    border-color: rgba(220, 53, 69, 0.5);
+
+    &:focus {
+      border-color: rgba(220, 53, 69, 0.7);
+      box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+    }
+  }
+}
+
+.error-text-field {
+  display: block;
+  margin-top: $spacing-xs;
+  font-size: $font-xs;
+  color: #ff6b6b;
+}
+
+// ========================================
+// BOTÓN DE LOGIN
+// ========================================
+
+.login-button {
+  width: 100%;
+  padding: $spacing-md $spacing-xl;
+  background: linear-gradient(135deg, $primary-light 0%, darken($primary-light, 10%) 100%);
+  border: none;
+  border-radius: $border-radius-lg;
+  color: $text-primary;
+  font-size: $font-lg;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(180, 162, 253, 0.3);
+  margin-top: $spacing-md;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(180, 162, 253, 0.4);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}
+
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: $text-primary;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+// ========================================
+// FOOTER
+// ========================================
+
+.footer {
+  text-align: center;
+  margin-top: $spacing-md;
+}
+
+.footer-text {
+  font-size: $font-sm;
+  color: $text-tertiary;
+  margin: 0;
+}
+
+.back-link {
+  color: $text-link;
+  text-decoration: none;
+  transition: color 0.2s;
+
+  &:hover {
+    color: lighten($text-link, 10%);
+  }
+}
+
+// ========================================
+// ANIMACIONES
+// ========================================
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// ========================================
+// RESPONSIVE
+// ========================================
+
+@media (max-width: 768px) {
+  .login-container {
+    padding: $spacing-md;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .logo-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+  }
+
+  .decorative-element-1 {
+    width: 60px;
+    height: 60px;
+  }
+
+  .decorative-element-2 {
+    width: 40px;
+    height: 40px;
+  }
+}

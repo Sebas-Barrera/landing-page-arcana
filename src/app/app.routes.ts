@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { SuccesComponent } from './succes/succes.component';
 import { CancelComponent } from './cancel/cancel.component';
 import { MagiaComponent } from './magia/magia.component';
+import { LoginComponent } from './login/login.component';
 
 export const routes: Routes = [
   {
@@ -28,8 +29,12 @@ export const routes: Routes = [
     component: CancelComponent,
   },
   {
-    path: 'magia',
+    path: 'membresias',
     component: MagiaComponent,
+  },
+  {
+    path: 'magia',
+    component: LoginComponent,
   },
   {
     path: 'reset-password',

@@ -55,6 +55,7 @@ export class MagiaComponent implements OnInit {
       }
       
       const userId = this.userIdParam ?? this.getUserId();
+      console.log('🔍 [MagiaComponent] User ID obtenido:', userId);
       await this.createCheckoutSession(userId!, tier, stripeProductId);
       
     } catch (error) {
@@ -113,13 +114,22 @@ export class MagiaComponent implements OnInit {
     }
   }
 
-  // Helper para obtener el userId (ajusta la clave según tu autenticación)
+  // Helper para obtener el userId desde la sesión guardada por AuthService
   private getUserId(): string | null {
     if (!this.isBrowser) return null;
-    return (
-      localStorage.getItem('arcana_user_id') ||
-      localStorage.getItem('userId') ||
-      null
-    );
+
+    // Leer la sesión completa guardada por AuthService
+    const sessionData = localStorage.getItem('arcana_session');
+    if (sessionData) {
+      try {
+        const session = JSON.parse(sessionData);
+        return session.user?.id || null;
+      } catch (error) {
+        console.error('❌ Error al leer sesión de usuario:', error);
+        return null;
+      }
+    }
+
+    return null;
   }
 }

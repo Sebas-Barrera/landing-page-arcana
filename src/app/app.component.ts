@@ -66,14 +66,21 @@ import { RouterOutlet, RouterModule } from '@angular/router';
 
           <!-- Enlaces legales -->
           <div class="flex space-x-6">
-            <a 
+            <a
               routerLink="/terminos-y-condiciones"
               class="text-sm hover:text-white transition-colors duration-300 cursor-pointer"
               style="color: #b4a2fd"
             >
               Términos y Condiciones
             </a>
-            <a 
+            <a
+              routerLink="/politica-de-privacidad"
+              class="text-sm hover:text-white transition-colors duration-300 cursor-pointer"
+              style="color: #b4a2fd"
+            >
+              Política de Privacidad
+            </a>
+            <a
               routerLink="/soporte"
               class="text-sm hover:text-white transition-colors duration-300 cursor-pointer"
               style="color: #b4a2fd"

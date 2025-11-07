@@ -12,6 +12,7 @@ import { Subject } from 'rxjs';
 import { DeviceDetectionService } from '../../services/device-detection.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { PreRegistroComponent } from '../app/pre-registro/pre-registro.component';
 
 // ========================================
 // INTERFACES
@@ -111,7 +112,7 @@ export interface BrandValue {
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, PreRegistroComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
@@ -140,6 +141,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   readonly currentTestimonial = signal<number>(0);
   isMobile: boolean = false;
   readonly showMembershipModal = signal<boolean>(false);
+  readonly showPreRegistroModal = signal<boolean>(false);
   readonly showNotification = signal<boolean>(false);
   readonly notificationData = signal<{
     type: 'success' | 'error' | 'warning' | 'info';
@@ -823,6 +825,26 @@ export class HomeComponent implements OnInit, OnDestroy {
     } else {
       alert('Función de soporte en desarrollo. Contacta a support@arcana.com');
     }
+  }
+
+  // ========================================
+  // MÉTODOS PARA MODAL DE PRE-REGISTRO
+  // ========================================
+
+  onOpenPreRegistro(): void {
+    this.saveScrollPosition();
+    this.showPreRegistroModal.set(true);
+    this.blockBodyScroll();
+    this.hideNavbar();
+  }
+
+  onClosePreRegistro(): void {
+    this.showPreRegistroModal.set(false);
+    this.unblockBodyScroll();
+    this.showNavbar();
+    setTimeout(() => {
+      this.restoreScrollPosition();
+    }, 100);
   }
 
   // ========================================

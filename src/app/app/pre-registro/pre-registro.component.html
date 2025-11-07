@@ -1,0 +1,125 @@
+<!-- Modal Backdrop -->
+<div
+  class="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto backdrop-modal p-4 md:p-10"
+  style="background-color: rgba(16, 8, 32, 0.95); backdrop-filter: blur(5px)"
+  (click)="onBackdropClick()"
+>
+  <!-- Card Container -->
+  <div
+    class="modal-card"
+    (click)="onModalClick($event)"
+  >
+    <!-- LEFT: Artwork Area -->
+    <section class="left-panel">
+      <div class="text-center-container">
+        <div class="top-left-text">DESPIERTA TU PODER</div>
+      </div>
+
+      <div class="center-block">
+        <!-- Emblem with Logo -->
+        <div class="emblem-wrap">
+          <div class="emblem">
+            <!-- Logo Arcana -->
+            <img
+              src="/assets/logo/logoMargenDorado.png"
+              alt="Arcana Logo"
+              class="arcana-logo"
+            />
+          </div>
+        </div>
+
+        <div class="date-wrap">
+          <div class="date-text">15 OCTUBRE 2025</div>
+        </div>
+      </div>
+
+      <!-- Decorative SVG -->
+      <svg class="decor-svg" width="320" height="320" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" stroke="#d2b24a" stroke-opacity="0.14">
+          <circle cx="160" cy="160" r="120"/>
+          <circle cx="160" cy="160" r="90"/>
+          <path d="M160 40 L160 0" />
+          <path d="M40 160 L0 160" />
+        </g>
+      </svg>
+    </section>
+
+    <!-- RIGHT: Form Panel -->
+    <aside class="right-panel">
+      <!-- Close Button -->
+      <button
+        (click)="onClose()"
+        class="close-btn"
+        type="button"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="form-title-text">REGÍSTRATE</div>
+
+      <!-- Formulario normal (antes de enviar) -->
+      <div *ngIf="!formSubmitted()">
+        <div class="form-group">
+          <input
+            class="field-input"
+            type="text"
+            placeholder="*Nombre"
+            [(ngModel)]="registrationForm.name"
+            (input)="onNameChange()"
+          />
+          <div class="error-message">
+            {{ registrationErrors().name || '&nbsp;' }}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input
+            class="field-input"
+            type="email"
+            placeholder="*Email"
+            [(ngModel)]="registrationForm.email"
+            (input)="onEmailChange()"
+          />
+          <div class="error-message">
+            {{ registrationErrors().email || '&nbsp;' }}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input
+            class="field-input"
+            type="tel"
+            placeholder="*WhatsApp"
+            [(ngModel)]="registrationForm.whatsapp"
+            (input)="onWhatsAppChange()"
+          />
+          <div class="error-message">
+            {{ registrationErrors().whatsapp || '&nbsp;' }}
+          </div>
+        </div>
+
+        <button
+          class="download-button"
+          type="button"
+          (click)="onSubmitRegistration()"
+          [disabled]="loading"
+        >
+          <span *ngIf="!loading">Registrarme</span>
+          <span *ngIf="loading">Enviando...</span>
+        </button>
+      </div>
+
+      <!-- Mensaje de confirmación (después de enviar) -->
+      <div *ngIf="formSubmitted()" class="success-message">
+        <div class="success-icon">✓</div>
+        <h3 class="success-title">¡Registro Exitoso!</h3>
+        <p class="success-text">
+          Tu regalo está siendo preparado. Revisa tus descargas.
+        </p>
+      </div>
+    </aside>
+  </div>
+</div>

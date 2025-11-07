@@ -3997,3 +3997,52 @@ button:hover {
     padding: 0 0.5rem;
   }
 }
+
+// ========================================
+// Estilos del Botón Pre-registro
+// ========================================
+
+.pre-registro-btn {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  // Efecto hover mejorado
+  &:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 6px 25px rgba(255, 215, 0, 0.6), 0 0 30px rgba(255, 215, 0, 0.3) !important;
+  }
+
+  // Efecto activo
+  &:active {
+    box-shadow: 0 2px 10px rgba(255, 215, 0, 0.4) !important;
+  }
+
+  // Animación de pulso sutil
+  animation: pulse-btn 3s ease-in-out infinite;
+}
+
+// Animación de brillo deslizante
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) skewX(-15deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-15deg);
+  }
+}
+
+// Animación de pulso del botón
+@keyframes pulse-btn {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4), 0 0 20px rgba(255, 215, 0, 0.2);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.6), 0 0 30px rgba(255, 215, 0, 0.3);
+  }
+}
+
+// Efecto de brillo deslizante
+.animate-shimmer {
+  animation: shimmer 3s infinite;
+  pointer-events: none;
+}

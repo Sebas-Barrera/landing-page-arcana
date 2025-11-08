@@ -122,15 +122,23 @@
         <a
           class="pre-registro-btn relative text-xs lg:text-sm px-4 py-2 lg:px-5 lg:py-2.5 rounded-lg transition-all duration-300 cursor-pointer font-bold overflow-hidden shadow-lg hover:shadow-2xl transform hover:scale-105 active:scale-95"
           style="
-            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffa500 100%);
+            background: linear-gradient(
+              135deg,
+              #ffd700 0%,
+              #ffed4e 50%,
+              #ffa500 100%
+            );
             color: #1a0a33;
             border: 2px solid rgba(255, 215, 0, 0.8);
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4), 0 0 20px rgba(255, 215, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4),
+              0 0 20px rgba(255, 215, 0, 0.2);
           "
           (click)="onOpenPreRegistro()"
         >
           <!-- Efecto de brillo animado -->
-          <span class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer"></span>
+          <span
+            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer"
+          ></span>
 
           <span class="relative flex items-center gap-2">
             <i class="fas fa-star animate-pulse"></i>
@@ -177,30 +185,32 @@
         para transformar tu energía y tu vida.
       </p>
 
-      <div class="text-center mb-6">
+      <div class="text-center mb-8">
         <div
-          class="inline-block bg-yellow-500/20 border border-yellow-400/50 text-yellow-200 px-6 py-3 rounded-lg mb-4"
+          class="inline-block bg-yellow-500/20 border border-yellow-400/50 text-yellow-200 px-8 py-4 rounded-lg mb-6 shadow-lg shadow-yellow-400/30"
         >
-          <i class="fas fa-exclamation-triangle mr-2"></i>
+          <i class="fas fa-exclamation-triangle mr-2 text-xl"></i>
           <span class="font-semibold">Aviso Importante:</span>
         </div>
-        <p class="text-lg text-yellow-100 max-w-2xl mx-auto">
+        <p class="text-xl text-yellow-100 max-w-2xl mx-auto mb-4">
           El lanzamiento se retrasará temporalmente debido a problemas técnicos
           con nuestros servidores.
           <br />
-          <span class="font-bold"
-            >Estaremos en servicio a partir del 25 de octubre.</span
+          <span
+            class="font-bold text-2xl block mt-2"
+            style="text-shadow: 0 0 20px rgba(255, 215, 0, 0.5)"
+            >Estaremos en servicio próximamente.</span
           >
         </p>
-        <p class="text-sm text-yellow-200/80 mt-2">
+        <p class="text-base text-yellow-200/80 mt-3">
           Agradecemos tu comprensión y paciencia.
         </p>
       </div>
 
       <!-- Badge Ya Disponible -->
       <!-- <div class="blur-[4px] p-6 rounded-2xl"> -->
-        <!-- Tu contenido actual aquí -->
-        <!-- <div
+      <!-- Tu contenido actual aquí -->
+      <!-- <div
           class="inline-block bg-gradient-to-r from-transparent via-purple-500/20 to-transparent p-4 lg:p-6 rounded-2xl border border-purple-400/30 mb-8"
         >
           <div
@@ -215,12 +225,12 @@
           </div>
         </div> -->
 
-        <!-- Badges de las Tiendas -->
-        <!-- <div
+      <!-- Badges de las Tiendas -->
+      <!-- <div
           class="flex flex-col sm:flex-row gap-4 items-center justify-center mb-12"
         > -->
-          <!-- App Store Badge -->
-          <!-- <div class="transform hover:scale-105 transition-all duration-300">
+      <!-- App Store Badge -->
+      <!-- <div class="transform hover:scale-105 transition-all duration-300">
             <img
               src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/es-mx?size=250x83"
               alt="Descargar en App Store"
@@ -228,15 +238,15 @@
             />
           </div> -->
 
-          <!-- Google Play Badge -->
-          <!-- <div class="transform hover:scale-105 transition-all duration-300">
+      <!-- Google Play Badge -->
+      <!-- <div class="transform hover:scale-105 transition-all duration-300">
             <img
               src="https://play.google.com/intl/en_us/badges/static/images/badges/es_badge_web_generic.png"
               alt="Disponible en Google Play"
               class="h-14 lg:h-16 cursor-pointer"
             />
           </div> -->
-        <!-- </div> -->
+      <!-- </div> -->
       <!-- </div> -->
 
       <!-- Descripción adicional -->
@@ -306,9 +316,9 @@
         border-color: #3a3a5a;
       "
     > -->
-      <!-- <div class="max-w-6xl mx-auto relative z-10"> -->
-        <!-- Header de la sección -->
-        <!-- <div class="text-center mb-12 lg:mb-16 blur-[3px]">
+    <!-- <div class="max-w-6xl mx-auto relative z-10"> -->
+    <!-- Header de la sección -->
+    <!-- <div class="text-center mb-12 lg:mb-16 blur-[3px]">
           <h2
             class="text-4xl lg:text-6xl xl:text-7xl font-normal mb-4 lg:mb-6 text-glow"
             style="color: #b4a2fd"
@@ -337,7 +347,7 @@
           </div>
         </div> -->
 
-        <!-- <div class="text-center mb-6">
+    <!-- <div class="text-center mb-6">
           <div
             class="inline-block bg-yellow-500/20 border border-yellow-400/50 text-yellow-200 px-6 py-3 rounded-lg mb-4"
           >
@@ -357,12 +367,12 @@
           </p>
         </div> -->
 
-        <!-- Contenido principal con mockups -->
-        <!-- <div
+    <!-- Contenido principal con mockups -->
+    <!-- <div
           class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-12"
         > -->
-          <!-- Columna Izquierda - Badges y QR Codes -->
-          <!-- <div class="space-y-8">
+    <!-- Columna Izquierda - Badges y QR Codes -->
+    <!-- <div class="space-y-8">
             <h3
               class="text-2xl lg:text-3xl xl:text-4xl font-normal mb-6 blur-[4px]"
               style="color: #b4a2fd"
@@ -371,8 +381,8 @@
               Descarga desde tu teléfono
             </h3> -->
 
-            <!-- Badges Oficiales -->
-            <!-- <div
+    <!-- Badges Oficiales -->
+    <!-- <div
               class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start blur-[4px]"
             >
               <div
@@ -398,8 +408,8 @@
               </div>
             </div> -->
 
-            <!-- Divider -->
-            <!-- <div class="flex items-center gap-4 my-8 blur-[4px]">
+    <!-- Divider -->
+    <!-- <div class="flex items-center gap-4 my-8 blur-[4px]">
               <div class="flex-1 h-px bg-purple-400/30"></div>
               <span class="text-sm opacity-75" style="color: #b4a2fd"
                 >o escanea el código QR</span
@@ -407,10 +417,10 @@
               <div class="flex-1 h-px bg-purple-400/30"></div>
             </div> -->
 
-            <!-- QR Codes -->
-            <!-- <div class="grid grid-cols-2 gap-6 blur-[4px]"> -->
-              <!-- QR App Store -->
-              <!-- <div class="text-center">
+    <!-- QR Codes -->
+    <!-- <div class="grid grid-cols-2 gap-6 blur-[4px]"> -->
+    <!-- QR App Store -->
+    <!-- <div class="text-center">
                 <div class="bg-white p-4 rounded-xl inline-block mb-3">
                   <img
                     src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://apps.apple.com/mx/app/arcana"
@@ -423,8 +433,8 @@
                 </p>
               </div> -->
 
-              <!-- QR Google Play -->
-              <!-- <div class="text-center">
+    <!-- QR Google Play -->
+    <!-- <div class="text-center">
                 <div class="bg-white p-4 rounded-xl inline-block mb-3">
                   <img
                     src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://play.google.com/store/apps/details?id=com.arcana"
@@ -438,8 +448,8 @@
               </div>
             </div> -->
 
-            <!-- Contador social -->
-            <!-- <div class="text-center lg:text-left mt-8">
+    <!-- Contador social -->
+    <!-- <div class="text-center lg:text-left mt-8">
               <p class="text-base opacity-80" style="color: #b4a2fd">
                 <i class="fas fa-users mr-2"></i>
                 Únete a más de <strong>10,000 personas</strong> que ya
@@ -448,8 +458,8 @@
             </div>
           </div> -->
 
-          <!-- Columna Derecha - Video -->
-          <!-- <div>
+    <!-- Columna Derecha - Video -->
+    <!-- <div>
             <div
               class="relative w-full overflow-hidden rounded-xl border border-purple-400/30 bg-purple-500/10 shadow-lg"
               style="padding-top: 56.25%"
@@ -471,10 +481,10 @@
               </p>
             </div>
           </div> -->
-        <!-- </div> -->
+    <!-- </div> -->
 
-        <!-- Información adicional -->
-        <!-- <div class="text-center">
+    <!-- Información adicional -->
+    <!-- <div class="text-center">
           <div class="text-sm opacity-75 space-y-2" style="color: #b4a2fd">
             <p class="flex items-center justify-center gap-2">
               <i class="fas fa-shield-alt text-xs"></i>
@@ -486,7 +496,7 @@
             </p>
           </div>
         </div> -->
-      <!-- </div> -->
+    <!-- </div> -->
     <!-- </section> -->
 
     <section
@@ -780,15 +790,13 @@
         <div class="p-6 rounded-b-2xl" style="background-color: #0f0820">
           <!-- Grid de Planes -->
           <div
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-6xl mx-auto"
           >
             <!-- Plan Básico -->
-            <div class="relative group">
-              <!-- Card del Plan -->
+            <!-- <div class="relative group">
               <div
                 class="relative h-full p-6 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-xl border border-purple-400 transition-all duration-300 hover:scale-105 hover:shadow-xl group-hover:border-purple-300/50"
               >
-                <!-- Header del Plan -->
                 <div class="text-center mb-6">
                   <h3 class="text-xl font-bold text-white mb-2">Básica</h3>
                   <div class="flex items-baseline justify-center mb-2">
@@ -801,7 +809,6 @@
                   </p>
                 </div>
 
-                <!-- Features -->
                 <ul class="space-y-3 mb-8 text-left">
                   <li class="flex items-start gap-3 text-sm text-purple-100">
                     <i class="fas fa-check text-green-400 mt-1"></i>
@@ -825,7 +832,6 @@
                   </li>
                 </ul>
 
-                <!-- Botón de Acción -->
                 <button
                   class="w-full py-3 px-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:from-purple-500 hover:to-indigo-500"
                   (click)="scrollToSection('el-despertar-llega-pronto')"
@@ -834,7 +840,7 @@
                   <span>Elegir Básica</span>
                 </button>
               </div>
-            </div>
+            </div> -->
 
             <!-- Plan VIP -->
             <div class="relative group">
@@ -855,13 +861,13 @@
               >
                 <!-- Header del Plan -->
                 <div class="text-center mb-6">
-                  <h3 class="text-xl font-bold text-white mb-2">Premium</h3>
+                  <h3 class="text-xl font-bold text-white mb-2">Arcana+</h3>
                   <div class="flex items-baseline justify-center mb-2">
-                    <span class="text-3xl font-bold text-white">$199</span>
+                    <span class="text-3xl font-bold text-white">$299</span>
                     <span class="text-lg text-purple-200">/mes</span>
                   </div>
                   <p class="text-sm text-purple-300 mt-2">
-                    Todo lo de la básica más beneficios exclusivos premium
+                    Beneficios exclusivos Arcana
                   </p>
                 </div>
 
@@ -869,19 +875,23 @@
                 <ul class="space-y-3 mb-8 text-left">
                   <li class="flex items-start gap-3 text-sm text-purple-100">
                     <i class="fas fa-check text-green-400 mt-1"></i>
-                    <span>Todo lo de la básica</span>
+                    <span>Acceso completo a la plataforma</span>
                   </li>
                   <li class="flex items-start gap-3 text-sm text-purple-100">
                     <i class="fas fa-check text-green-400 mt-1"></i>
-                    <span>Artículo mágico mensual</span>
+                    <span>Rituales y tutoriales</span>
                   </li>
                   <li class="flex items-start gap-3 text-sm text-purple-100">
                     <i class="fas fa-check text-green-400 mt-1"></i>
-                    <span>Eventos en vivo exclusivos</span>
+                    <span>Meditaciones guiadas</span>
                   </li>
                   <li class="flex items-start gap-3 text-sm text-purple-100">
                     <i class="fas fa-check text-green-400 mt-1"></i>
-                    <span>Soporte prioritario</span>
+                    <span>Lecturas onteractivas</span>
+                  </li>
+                  <li class="flex items-start gap-3 text-sm text-purple-100">
+                    <i class="fas fa-check text-green-400 mt-1"></i>
+                    <span>Eventis en vivo exclusivos</span>
                   </li>
                 </ul>
 
@@ -891,7 +901,7 @@
                   (click)="scrollToSection('el-despertar-llega-pronto')"
                 >
                   <i class="fas fa-magic"></i>
-                  <span>Elegir Premium</span>
+                  <span>Elegir Arcana+</span>
                 </button>
               </div>
             </div>
@@ -916,15 +926,17 @@
                 <!-- Header del Plan -->
                 <div class="text-center mb-6">
                   <h3 class="text-xl font-bold text-white mb-2">
-                    Premium Anual
+                    Arcana + Anual
                   </h3>
+                  <div class="text-center mb-1">
+                    <span class="text-lg text-gray-400 line-through">$3,588</span>
+                  </div>
                   <div class="flex items-baseline justify-center mb-2">
-                    <span class="text-3xl font-bold text-white">$5,999</span>
+                    <span class="text-3xl font-bold text-white">$2,999</span>
                     <span class="text-lg text-purple-200">/año</span>
                   </div>
                   <p class="text-sm text-purple-300 mt-2">
-                    Inversión anual con beneficios exclusivos y ahorro
-                    garantizado
+                    Beneficios exclusivos Arcana Premium Anual
                   </p>
                 </div>
 
@@ -932,7 +944,7 @@
                 <ul class="space-y-3 mb-8 text-left">
                   <li class="flex items-start gap-3 text-sm text-purple-100">
                     <i class="fas fa-check text-green-400 mt-1"></i>
-                    <span>Todo lo de la premium</span>
+                    <span>Todo lo de Arcana+</span>
                   </li>
                   <li class="flex items-start gap-3 text-sm text-purple-100">
                     <i class="fas fa-check text-green-400 mt-1"></i>
@@ -940,7 +952,7 @@
                   </li>
                   <li class="flex items-start gap-3 text-sm text-purple-100">
                     <i class="fas fa-check text-green-400 mt-1"></i>
-                    <span><strong>Ahorro de $1,189 al año</strong></span>
+                    <span><strong>Ahorro de $589 al año</strong></span>
                   </li>
                   <li class="flex items-start gap-3 text-sm text-purple-100">
                     <i class="fas fa-check text-green-400 mt-1"></i>
@@ -954,7 +966,7 @@
                   (click)="scrollToSection('el-despertar-llega-pronto')"
                 >
                   <i class="fas fa-magic"></i>
-                  <span>Elegir Premium Anual</span>
+                  <span>Elegir Arcana + Anual</span>
                 </button>
               </div>
             </div>
@@ -1122,9 +1134,8 @@
           class="text-xl leading-relaxed mb-8 opacity-80"
           style="color: #b4a2fd"
         >
-          Accede a todo el poder de la magia ancestral en tu
-          móvil. Rituales, cristales, tarot y sabiduría espiritual esperan por
-          ti.
+          Accede a todo el poder de la magia ancestral en tu móvil. Rituales,
+          cristales, tarot y sabiduría espiritual esperan por ti.
         </p>
 
         <!-- Botones de Acción Final -->

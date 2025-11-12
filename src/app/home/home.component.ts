@@ -136,6 +136,16 @@ export class HomeComponent implements OnInit, OnDestroy {
   // PROPIEDADES PÚBLICAS - ESTADO
   // ========================================
 
+  // 🔧 CONFIGURACIÓN GOOGLE PLAY
+  // ==========================================
+  // INSTRUCCIONES PARA ACTIVAR GOOGLE PLAY:
+  // 1. Cambia googlePlayIsActive de false a true
+  // 2. Reemplaza googlePlayUrl con la URL real de Google Play Store
+  // 3. Eso es todo! Los 2 botones y el QR aparecerán automáticamente
+  // ==========================================
+  googlePlayIsActive: boolean = false; // ← Cambiar a true cuando esté listo
+  googlePlayUrl: string = 'https://play.google.com/store/apps/details?id=com.arcana'; // ← Poner URL real aquí
+
   private scrollPosition: number = 0;
   readonly activeService = signal<string>('tarot');
   readonly currentTestimonial = signal<number>(0);
@@ -1561,10 +1571,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   // Métodos para abrir las tiendas
   openAppStore(): void {
-    window.open('https://www.facebook.com/');
+    window.open('https://apps.apple.com/mx/app/arcana/id6752884968', '_blank');
   }
 
   openGooglePlay(): void {
-    window.open('https://www.facebook.com/');
+    window.open(this.googlePlayUrl, '_blank');
   }
 }

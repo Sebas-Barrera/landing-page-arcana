@@ -1,0 +1,232 @@
+<div class="dashboard-container">
+  <!-- Header -->
+  <header class="dashboard-header">
+    <div class="header-content">
+      <div class="header-title">
+        <h1>Panel de Administración</h1>
+        <p>Bienvenido, {{ adminEmail() }}</p>
+      </div>
+      <button class="logout-button" (click)="logout()">
+        Cerrar Sesión
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="dashboard-content">
+    @if (isLoading()) {
+      <div class="loading-container">
+        <div class="spinner"></div>
+        <p>Cargando datos...</p>
+      </div>
+    } @else if (error()) {
+      <div class="error-container">
+        <p>{{ error() }}</p>
+        <button class="retry-button" (click)="loadUsers()">Reintentar</button>
+      </div>
+    } @else {
+      <!-- Statistics Cards -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">👥</div>
+          <div class="stat-info">
+            <p class="stat-label">Total Usuarios</p>
+            <p class="stat-value">{{ totalUsers() }}</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">💎</div>
+          <div class="stat-info">
+            <p class="stat-label">Suscripciones Activas</p>
+            <p class="stat-value">{{ activeSubscriptions() }}</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">✨</div>
+          <div class="stat-info">
+            <p class="stat-label">Miembros Arcana</p>
+            <p class="stat-value">{{ arcanaMembers() }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Users Table -->
+      <div class="table-container">
+        <div class="table-header">
+          <h2>Usuarios Registrados</h2>
+          <button class="refresh-button" (click)="loadUsers()">
+            🔄 Actualizar
+          </button>
+        </div>
+
+        <!-- Controles de búsqueda y filtros -->
+        <div class="controls-container">
+          <div class="search-box">
+            <input
+              type="text"
+              [(ngModel)]="searchTerm"
+              (ngModelChange)="onFilterChange()"
+              placeholder="🔍 Buscar por nombre o apellido..."
+              class="search-input"
+            />
+          </div>
+
+          <div class="filters-box">
+            <select
+              [(ngModel)]="filterStatus"
+              (ngModelChange)="onFilterChange()"
+              class="filter-select"
+            >
+              <option value="all">Todos los estados</option>
+              <option value="active">Con suscripción activa</option>
+              <option value="none">Sin suscripción</option>
+            </select>
+
+            <select
+              [(ngModel)]="filterArcana"
+              (ngModelChange)="onFilterChange()"
+              class="filter-select"
+            >
+              <option value="all">Todos (Arcana)</option>
+              <option value="yes">Miembros Arcana</option>
+              <option value="no">No Arcana</option>
+            </select>
+
+            <button class="clear-filters-button" (click)="clearFilters()">
+              ✕ Limpiar filtros
+            </button>
+          </div>
+        </div>
+
+        <!-- Información de resultados -->
+        <div class="results-info">
+          Mostrando {{ (currentPage() - 1) * itemsPerPage + 1 }} -
+          {{ Math.min(currentPage() * itemsPerPage, filteredUsers().length) }}
+          de {{ filteredUsers().length }} usuarios
+          @if (searchTerm() || filterStatus() !== 'all' || filterArcana() !== 'all') {
+            <span class="filtered-indicator">(filtrados de {{ totalUsers() }} totales)</span>
+          }
+        </div>
+
+        <!-- Vista de tabla para desktop -->
+        <div class="table-wrapper">
+          <table class="users-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Fecha Registro</th>
+                <th>Arcana</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (user of paginatedUsers(); track user.id) {
+                <tr>
+                  <td>{{ user.id }}</td>
+                  <td>{{ user.first_name }}</td>
+                  <td>{{ user.last_name }}</td>
+                  <td>{{ formatDate(user.created_at) }}</td>
+                  <td>
+                    <span [class]="user.arcana ? 'badge-arcana-yes' : 'badge-arcana-no'">
+                      {{ user.arcana ? 'Sí' : 'No' }}
+                    </span>
+                  </td>
+                  <td>
+                    <span [class]="getSubscriptionBadgeClass(user.subscription_status)">
+                      {{ user.subscription_status || 'Sin suscripción' }}
+                    </span>
+                  </td>
+                </tr>
+              } @empty {
+                <tr>
+                  <td colspan="6" class="empty-message">
+                    @if (searchTerm() || filterStatus() !== 'all' || filterArcana() !== 'all') {
+                      No se encontraron usuarios con los filtros aplicados
+                    } @else {
+                      No hay usuarios registrados
+                    }
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Vista de cards para móvil -->
+        <div class="mobile-user-card">
+          <div class="user-cards-container">
+            @for (user of paginatedUsers(); track user.id) {
+              <div class="user-card">
+                <div class="user-card-header">
+                  <div class="user-name">
+                    <div class="name">{{ user.first_name }} {{ user.last_name }}</div>
+                    <div class="id">ID: {{ user.id }}</div>
+                  </div>
+                  <div class="user-badges">
+                    <span [class]="user.arcana ? 'badge-arcana-yes' : 'badge-arcana-no'">
+                      {{ user.arcana ? 'Arcana' : 'No Arcana' }}
+                    </span>
+                    <span [class]="getSubscriptionBadgeClass(user.subscription_status)">
+                      {{ user.subscription_status || 'Sin suscripción' }}
+                    </span>
+                  </div>
+                </div>
+                <div class="user-card-details">
+                  <div class="detail-item">
+                    <div class="detail-label">Fecha Registro</div>
+                    <div class="detail-value">{{ formatDate(user.created_at) }}</div>
+                  </div>
+                </div>
+              </div>
+            } @empty {
+              <div class="empty-message" style="text-align: center; padding: 40px 20px; color: rgba(255, 255, 255, 0.5);">
+                @if (searchTerm() || filterStatus() !== 'all' || filterArcana() !== 'all') {
+                  No se encontraron usuarios con los filtros aplicados
+                } @else {
+                  No hay usuarios registrados
+                }
+              </div>
+            }
+          </div>
+        </div>
+
+        <!-- Paginación -->
+        @if (totalPages() > 1) {
+          <div class="pagination">
+            <button
+              class="pagination-button"
+              [disabled]="currentPage() === 1"
+              (click)="prevPage()"
+            >
+              ← Anterior
+            </button>
+
+            <div class="pagination-numbers">
+              @for (page of [].constructor(totalPages()); track $index) {
+                <button
+                  class="pagination-number"
+                  [class.active]="currentPage() === $index + 1"
+                  (click)="goToPage($index + 1)"
+                >
+                  {{ $index + 1 }}
+                </button>
+              }
+            </div>
+
+            <button
+              class="pagination-button"
+              [disabled]="currentPage() === totalPages()"
+              (click)="nextPage()"
+            >
+              Siguiente →
+            </button>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>

@@ -7,6 +7,9 @@ import { SuccesComponent } from './succes/succes.component';
 import { CancelComponent } from './cancel/cancel.component';
 import { MagiaComponent } from './magia/magia.component';
 import { LoginComponent } from './login/login.component';
+import { LoginComponent as AdminLoginComponent } from './admin/login/login.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { adminGuard } from './guards/admin.guard';
 
 export const routes: Routes = [
   {
@@ -44,6 +47,15 @@ export const routes: Routes = [
   {
     path: 'reset-password',
     component: HomeComponent,
+  },
+  {
+    path: 'admin',
+    component: AdminLoginComponent,
+  },
+  {
+    path: 'admin/dashboard',
+    component: DashboardComponent,
+    canActivate: [adminGuard],
   },
   {
     path: '**',

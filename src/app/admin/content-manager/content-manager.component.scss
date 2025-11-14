@@ -1,0 +1,191 @@
+.content-manager-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #100820 0%, #1a0f2e 50%, #2a1545 100%);
+
+  // Mejorar scroll en m�vil
+  -webkit-overflow-scrolling: touch;
+
+  // Prevenir selecci�n de texto en m�vil (solo en botones)
+  button {
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+}
+
+.manager-header {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(180, 162, 253, 0.2);
+  padding: 20px 40px;
+
+  .header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .header-text {
+      h1 {
+        color: #b4a2fd;
+        font-size: 28px;
+        font-weight: 700;
+        margin: 0 0 8px 0;
+        text-shadow: 0 0 20px rgba(180, 162, 253, 0.5);
+      }
+
+      p {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 14px;
+        margin: 0;
+      }
+    }
+
+    .back-button {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(180, 162, 253, 0.3);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 14px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      i {
+        font-size: 14px;
+      }
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: #b4a2fd;
+      }
+    }
+  }
+}
+
+.tabs-navigation {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 40px 0;
+  display: flex;
+  gap: 12px;
+  border-bottom: 2px solid rgba(180, 162, 253, 0.1);
+
+  .tab-button {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(180, 162, 253, 0.2);
+    color: rgba(255, 255, 255, 0.6);
+    padding: 12px 24px;
+    border-radius: 8px 8px 0 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    bottom: -2px;
+    border-bottom: none;
+
+    i {
+      font-size: 16px;
+    }
+
+    .tab-badge {
+      background: rgba(180, 162, 253, 0.2);
+      color: #b4a2fd;
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.8);
+      border-color: rgba(180, 162, 253, 0.4);
+    }
+
+    &.active {
+      background: rgba(180, 162, 253, 0.1);
+      border-color: #b4a2fd;
+      color: white;
+      border-bottom: 2px solid #b4a2fd;
+
+      .tab-badge {
+        background: #b4a2fd;
+        color: #100820;
+      }
+    }
+  }
+}
+
+.tab-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .manager-header {
+    padding: 16px 20px;
+
+    .header-content {
+      h1 {
+        font-size: 22px;
+      }
+
+      p {
+        font-size: 13px;
+      }
+    }
+  }
+
+  .tabs-navigation {
+    padding: 16px 20px 0;
+    gap: 8px;
+
+    .tab-button {
+      padding: 10px 16px;
+      font-size: 13px;
+
+      span:not(.tab-badge) {
+        display: none;
+      }
+
+      i {
+        font-size: 18px;
+      }
+
+      .tab-badge {
+        font-size: 9px;
+        padding: 2px 6px;
+      }
+    }
+  }
+
+  .tab-content {
+    padding: 20px;
+  }
+}

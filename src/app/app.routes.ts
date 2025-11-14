@@ -9,6 +9,7 @@ import { MagiaComponent } from './magia/magia.component';
 import { LoginComponent } from './login/login.component';
 import { LoginComponent as AdminLoginComponent } from './admin/login/login.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { ContentManagerComponent } from './admin/content-manager/content-manager.component';
 import { adminGuard } from './guards/admin.guard';
 
 export const routes: Routes = [
@@ -55,6 +56,11 @@ export const routes: Routes = [
   {
     path: 'admin/dashboard',
     component: DashboardComponent,
+    canActivate: [adminGuard],
+  },
+  {
+    path: 'admin/content-manager',
+    component: ContentManagerComponent,
     canActivate: [adminGuard],
   },
   {

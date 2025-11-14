@@ -6,9 +6,16 @@
         <h1>Panel de Administración</h1>
         <p>Bienvenido, {{ adminEmail() }}</p>
       </div>
-      <button class="logout-button" (click)="logout()">
-        Cerrar Sesión
-      </button>
+      <div class="header-actions">
+        <a routerLink="/admin/content-manager" class="nav-button">
+          <i class="fas fa-database"></i>
+          Gestor de Contenido
+        </a>
+        <button class="logout-button" (click)="logout()">
+          <i class="fas fa-sign-out-alt"></i>
+          Cerrar Sesión
+        </button>
+      </div>
     </div>
   </header>
 

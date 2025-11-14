@@ -1,5 +1,110 @@
 @use "tailwindcss" as *;
 
+// Quill Editor Styles
+@import 'quill/dist/quill.snow.css';
+
+// Quill Custom Styles Override - DESPUÉS del import
+.ql-editor {
+  color: white !important;
+
+  // Todos los elementos de texto en blanco
+  p, h1, h2, h3, h4, h5, h6, span, div, li, ol, ul {
+    color: white !important;
+  }
+
+  // Headers destacados en purple
+  h1, h2, h3, h4, h5, h6 {
+    color: #b4a2fd !important;
+    font-weight: 700;
+  }
+
+  // Links
+  a {
+    color: #b4a2fd !important;
+  }
+
+  // Strong, em, etc
+  strong, b, em, i, u, s, strike {
+    color: inherit !important;
+  }
+
+  // Code
+  code, pre {
+    background: rgba(0, 0, 0, 0.3);
+    color: #ffa500 !important;
+  }
+
+  // Blockquote
+  blockquote {
+    color: rgba(255, 255, 255, 0.8) !important;
+    border-left: 4px solid #b4a2fd;
+  }
+
+  // Placeholder
+  &.ql-blank::before {
+    color: rgba(255, 255, 255, 0.4) !important;
+  }
+}
+
+// Toolbar styles
+.ql-toolbar {
+  background: rgba(180, 162, 253, 0.1) !important;
+  border-color: rgba(180, 162, 253, 0.3) !important;
+
+  .ql-stroke {
+    stroke: rgba(255, 255, 255, 0.7) !important;
+  }
+
+  .ql-fill {
+    fill: rgba(255, 255, 255, 0.7) !important;
+  }
+
+  .ql-picker-label {
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+
+  button:hover .ql-stroke,
+  button.ql-active .ql-stroke {
+    stroke: #b4a2fd !important;
+  }
+
+  button:hover .ql-fill,
+  button.ql-active .ql-fill {
+    fill: #b4a2fd !important;
+  }
+
+  button.ql-active {
+    background: rgba(180, 162, 253, 0.2) !important;
+  }
+}
+
+// Picker dropdowns
+.ql-picker-options {
+  background: #1a0f2e !important;
+  border: 1px solid #b4a2fd !important;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.ql-picker-item {
+  color: rgba(255, 255, 255, 0.7) !important;
+
+  &:hover {
+    color: white !important;
+    background: rgba(180, 162, 253, 0.2) !important;
+  }
+
+  &.ql-selected {
+    color: #b4a2fd !important;
+    background: rgba(180, 162, 253, 0.1) !important;
+  }
+}
+
+.ql-picker.ql-expanded .ql-picker-label {
+  color: white !important;
+  border-color: #b4a2fd !important;
+}
+
 * {
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE 10+ */

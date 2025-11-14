@@ -1,0 +1,406 @@
+<div class="rich-content-container">
+  <!-- Filters Section -->
+  <div class="filters-section">
+    <div class="filters-row">
+      <!-- Section Filter -->
+      <div class="filter-group">
+        <label for="section-filter">Section</label>
+        <select
+          id="section-filter"
+          [ngModel]="selectedSection()"
+          (ngModelChange)="selectedSection.set($event); onSectionChange()">
+          <option value="">Todas las secciones</option>
+          @for (section of sections(); track section) {
+            <option [value]="section">{{ section }}</option>
+          }
+        </select>
+      </div>
+
+      <!-- Category Filter -->
+      <div class="filter-group">
+        <label for="category-filter">Category</label>
+        <select
+          id="category-filter"
+          [ngModel]="selectedCategory()"
+          (ngModelChange)="selectedCategory.set($event); onCategoryChange()"
+          [disabled]="!selectedSection()">
+          <option value="">Todas las categorías</option>
+          @for (category of categories(); track category) {
+            <option [value]="category">{{ category }}</option>
+          }
+        </select>
+      </div>
+
+      <!-- Search -->
+      <div class="filter-group search-group">
+        <label for="search">Buscar</label>
+        <div class="search-input-wrapper">
+          <i class="fas fa-search"></i>
+          <input
+            type="text"
+            id="search"
+            placeholder="Buscar en todos los campos..."
+            [ngModel]="searchTerm()"
+            (ngModelChange)="searchTerm.set($event); applyFilters()" />
+        </div>
+      </div>
+
+      <!-- Clear Filters Button -->
+      <div class="filter-group">
+        <button class="btn-secondary" (click)="clearFilters()">
+          <i class="fas fa-times"></i>
+          Limpiar
+        </button>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="actions-row">
+      <button class="btn-primary" (click)="openCreateModal()">
+        <i class="fas fa-plus"></i>
+        Crear Nuevo
+      </button>
+      <div class="results-info">
+        Mostrando {{ paginatedItems().length }} de {{ filteredItems().length }} registros
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  @if (isLoading()) {
+    <div class="loading-container">
+      <div class="spinner"></div>
+      <p>Cargando datos...</p>
+    </div>
+  }
+
+  <!-- Error State -->
+  @else if (error()) {
+    <div class="error-container">
+      <i class="fas fa-exclamation-circle"></i>
+      <p>{{ error() }}</p>
+      <button class="btn-primary" (click)="loadData()">Reintentar</button>
+    </div>
+  }
+
+  <!-- Data Table (Desktop) -->
+  @else if (paginatedItems().length > 0) {
+    <div class="table-container desktop-only">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Section</th>
+            <th>Category</th>
+            <th>Tags</th>
+            <th>Preview</th>
+            <th class="actions-column">Editar</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of paginatedItems(); track item.id) {
+            <tr>
+              <td>{{ item.id }}</td>
+              <td><span class="badge badge-section">{{ item.section }}</span></td>
+              <td><span class="badge badge-category">{{ item.category }}</span></td>
+              <td>
+                @if (item.tag && item.tag.length > 0) {
+                  <div class="tags-container">
+                    @for (tag of item.tag; track tag) {
+                      <span class="badge badge-tag">{{ tag }}</span>
+                    }
+                  </div>
+                } @else {
+                  <span class="text-muted">-</span>
+                }
+              </td>
+              <td>
+                <div class="html-preview">
+                  {{ truncateHtml(item.html, 80) }}
+                  <!-- <button class="btn-preview" (click)="openPreviewModal(item.html)" title="Ver completo">
+                    <i class="fas fa-eye"></i>
+                  </button> -->
+                </div>
+              </td>
+              <td class="actions-column">
+                <button class="btn-icon btn-edit" (click)="openEditModal(item)" title="Editar">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <!-- <button class="btn-icon btn-delete" (click)="openDeleteModal(item.id)" title="Eliminar">
+                  <i class="fas fa-trash"></i>
+                </button> -->
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Data Cards (Mobile) -->
+    <div class="cards-container mobile-only">
+      @for (item of paginatedItems(); track item.id) {
+        <div class="data-card">
+          <div class="card-header">
+            <div class="card-title">
+              <strong>ID:</strong> {{ item.id }}
+            </div>
+            <div class="card-actions">
+              <button class="btn-icon btn-edit" (click)="openEditModal(item)">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="btn-icon btn-delete" (click)="openDeleteModal(item.id)">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-row">
+              <strong>Section:</strong>
+              <span class="badge badge-section">{{ item.section }}</span>
+            </div>
+            <div class="card-row">
+              <strong>Category:</strong>
+              <span class="badge badge-category">{{ item.category }}</span>
+            </div>
+            @if (item.tag && item.tag.length > 0) {
+              <div class="card-row">
+                <strong>Tags:</strong>
+                <div class="tags-container">
+                  @for (tag of item.tag; track tag) {
+                    <span class="badge badge-tag">{{ tag }}</span>
+                  }
+                </div>
+              </div>
+            }
+            <div class="card-row">
+              <strong>Preview:</strong>
+              <div class="html-preview-mobile">
+                <p>{{ truncateHtml(item.html, 60) }}</p>
+                <button class="btn-preview-small" (click)="openPreviewModal(item.html)">
+                  <i class="fas fa-eye"></i> Ver completo
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination-container">
+      <button
+        class="pagination-btn"
+        [disabled]="currentPage() === 1"
+        (click)="changePage(currentPage() - 1)">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+
+      @for (page of getPageRange(); track page) {
+        <button
+          class="pagination-btn"
+          [class.active]="currentPage() === page"
+          (click)="changePage(page)">
+          {{ page }}
+        </button>
+      }
+
+      <button
+        class="pagination-btn"
+        [disabled]="currentPage() === totalPages()"
+        (click)="changePage(currentPage() + 1)">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+
+      <span class="pagination-info">
+        Página {{ currentPage() }} de {{ totalPages() }}
+      </span>
+    </div>
+  }
+
+  <!-- Empty State -->
+  @else {
+    <div class="empty-state">
+      <i class="fas fa-inbox"></i>
+      <h3>No hay datos para mostrar</h3>
+      <p>Selecciona filtros o crea un nuevo registro para comenzar</p>
+      <button class="btn-primary" (click)="openCreateModal()">
+        <i class="fas fa-plus"></i>
+        Crear Primer Registro
+      </button>
+    </div>
+  }
+</div>
+
+<!-- Create/Edit Modal with Quill Editor -->
+@if (showCreateEditModal()) {
+  <div class="modal-overlay" (click)="closeCreateEditModal()">
+    <div class="modal-content modal-large" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2>{{ editingItem() ? 'Editar' : 'Crear' }} Descripción</h2>
+        <button class="modal-close" (click)="closeCreateEditModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        @if (formError()) {
+          <div class="alert alert-error">
+            <i class="fas fa-exclamation-circle"></i>
+            {{ formError() }}
+          </div>
+        }
+
+        <div class="form-group">
+          <label for="modal-section">Section *</label>
+          <select
+            id="modal-section"
+            [ngModel]="formData().section"
+            (ngModelChange)="onModalSectionChange($event)">
+            <option value="">Selecciona una sección</option>
+            @for (section of sections(); track section) {
+              <option [value]="section">{{ section }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="modal-category">Category *</label>
+          <select
+            id="modal-category"
+            [ngModel]="formData().category"
+            (ngModelChange)="updateFormCategory($event)"
+            [disabled]="!formData().section">
+            <option value="">Selecciona una categoría</option>
+            @for (category of categories(); track category) {
+              <option [value]="category">{{ category }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Tags</label>
+          @if (existingTags().length > 0) {
+            <div class="existing-tags-container">
+              <small class="tags-label">Tags existentes (no editables):</small>
+              <div class="tags-chips">
+                @for (tag of existingTags(); track tag) {
+                  <span class="tag-chip locked">
+                    {{ tag }}
+                    <!-- <button
+                      type="button"
+                      class="tag-remove"
+                      (click)="removeExistingTag(tag)"
+                      title="Eliminar tag">
+                      <i class="fas fa-times"></i>
+                    </button> -->
+                  </span>
+                }
+              </div>
+            </div>
+          }
+          <div class="new-tags-input">
+            <label for="modal-new-tags">
+              <small>{{ existingTags().length > 0 ? 'Agregar nuevas tags (separadas por comas):' : 'Tags (separadas por comas):' }}</small>
+            </label>
+            <input
+              type="text"
+              id="modal-new-tags"
+              [ngModel]="newTagInput()"
+              (ngModelChange)="newTagInput.set($event)"
+              placeholder="ej: featured, premium, new" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Contenido HTML * <small>(Editor WYSIWYG)</small></label>
+          <div class="quill-editor-wrapper">
+            <div #quillEditor class="quill-editor"></div>
+          </div>
+          <small>Usa el editor para formatear tu contenido</small>
+        </div>
+
+        <!-- <div class="form-group">
+          <label for="modal-plaintext">Plain Text (opcional)</label>
+          <textarea
+            id="modal-plaintext"
+            rows="3"
+            [ngModel]="formData().plain_text"
+            (ngModelChange)="updateFormPlainText($event)"
+            placeholder="Se genera automáticamente, pero puedes editarlo aquí"
+            readonly></textarea>
+          <small>Generado automáticamente del contenido HTML</small>
+        </div> -->
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-secondary" (click)="closeCreateEditModal()">
+          Cancelar
+        </button>
+        <button class="btn-primary" (click)="saveItem()" [disabled]="isLoading()">
+          @if (isLoading()) {
+            <i class="fas fa-spinner fa-spin"></i>
+          }
+          {{ editingItem() ? 'Actualizar' : 'Crear' }}
+        </button>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- Preview Modal -->
+@if (showPreviewModal()) {
+  <div class="modal-overlay" (click)="closePreviewModal()">
+    <div class="modal-content modal-large" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2>Vista Previa HTML</h2>
+        <button class="modal-close" (click)="closePreviewModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="preview-container" [innerHTML]="previewContent()"></div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-secondary" (click)="closePreviewModal()">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- Delete Confirmation Modal -->
+@if (showDeleteModal()) {
+  <div class="modal-overlay" (click)="closeDeleteModal()">
+    <div class="modal-content modal-small" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2>Confirmar Eliminación</h2>
+        <button class="modal-close" (click)="closeDeleteModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="alert alert-warning">
+          <i class="fas fa-exclamation-triangle"></i>
+          <p>¿Estás seguro de que quieres eliminar este registro?</p>
+          <p><strong>Esta acción no se puede deshacer.</strong></p>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-secondary" (click)="closeDeleteModal()">
+          Cancelar
+        </button>
+        <button class="btn-danger" (click)="confirmDelete()" [disabled]="isLoading()">
+          @if (isLoading()) {
+            <i class="fas fa-spinner fa-spin"></i>
+          }
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+}

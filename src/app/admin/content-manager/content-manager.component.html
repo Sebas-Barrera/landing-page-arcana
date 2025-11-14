@@ -1,0 +1,45 @@
+<div class="content-manager-container">
+  <!-- Header -->
+  <header class="manager-header">
+    <div class="header-content">
+      <div class="header-text">
+        <h1>Gestor de Contenido</h1>
+        <p>Administra el contenido de la app y sus descripciones</p>
+      </div>
+      <a routerLink="/admin/dashboard" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+        Volver al Dashboard
+      </a>
+    </div>
+  </header>
+
+  <!-- Tabs Navigation -->
+  <div class="tabs-navigation">
+    <button
+      class="tab-button"
+      [class.active]="activeTab() === 'content_library'"
+      (click)="switchTab('content_library')">
+      <i class="fas fa-database"></i>
+      <span>Libreria de Contenido</span>
+      <!-- <span class="tab-badge">JSON</span> -->
+    </button>
+
+    <button
+      class="tab-button"
+      [class.active]="activeTab() === 'rich_content'"
+      (click)="switchTab('rich_content')">
+      <i class="fas fa-code"></i>
+      <span>Descripciones</span>
+      <!-- <span class="tab-badge">HTML</span> -->
+    </button>
+  </div>
+
+  <!-- Tab Content -->
+  <div class="tab-content">
+    @if (activeTab() === 'content_library') {
+      <app-content-library-tab />
+    } @else {
+      <app-rich-content-tab />
+    }
+  </div>
+</div>

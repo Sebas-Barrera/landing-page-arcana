@@ -1,0 +1,34 @@
+[build]
+  # Comando para construir el proyecto
+  command = "npm run build"
+  # Directorio de publicación (donde están los archivos del build)
+  publish = "dist/landing-page-arcana/browser"
+
+# Configuración de headers
+[[headers]]
+  # Headers para apple-app-site-association
+  for = "/.well-known/apple-app-site-association"
+  [headers.values]
+    Content-Type = "application/json"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  # Headers para assetlinks.json
+  for = "/.well-known/assetlinks.json"
+  [headers.values]
+    Content-Type = "application/json"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Reglas de redirección
+[[redirects]]
+  # NO redirigir archivos .well-known
+  from = "/.well-known/*"
+  to = "/.well-known/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  # SPA fallback - redirigir todo lo demás a index.html
+  from = "/*"
+  to = "/index.html"
+  status = 200

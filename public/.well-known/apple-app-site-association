@@ -1,9 +1,10 @@
 {
   "applinks": {
+    "apps": [],
     "details": [
       {
         "appID": "22268QBBNF.com.brandongr90.arcanamobile",
-        "paths": ["/payment/success/*", "/payment/cancel/*", "/reset-password/*", "/download/*"]
+        "paths": ["/payment/success", "/payment/success/*", "/payment/cancel", "/payment/cancel/*", "/reset-password", "/reset-password/*", "/download", "/download/*"]
       }
     ]
   }
